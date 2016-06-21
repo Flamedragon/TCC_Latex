@@ -4,7 +4,7 @@
 
 \textit{Structure from motion} é o processo de estimar estruturas 3D partindo de imagens sequenciais em duas dimensões [15], que pode conter sinais de movimento, em analogia com a biologia, seria o equivalente ao modo  como os olhos humanos e de outros animais conseguem recuperar estruturas 3D de um plano 2D, nesse caso a retina, partindo de uma cena ou objeto em movimento.
 
-Tendo como exemplo os planos C e C’ na imagem 2.1, dois pontos, chamados m no plano C e m’ no plano C', podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço M. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
+Tendo como exemplo os planos $C$ e $C'$ na imagem 2.1, dois pontos, chamados $m$ no plano $C$ e $m'$ no plano $C'$, podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço $M$. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
 
 \begin{itemize}
 	\item{Dado um ponto m na primeira imagem, onde está seu correspondente m’ na segunda imagem?}
@@ -14,60 +14,112 @@ Tendo como exemplo os planos C e C’ na imagem 2.1, dois pontos, chamados m no 
 	
 Com pelo menos duas imagens em diferentes posições, se torna possível inferir a posição 3D de um ponto utilizando sua diferença de posição em ambas imagens. Para tanto é necessário deduzir a posição de duas retas num sistema de coordenadas em comum e é preciso também ter conhecimento da posição relativa da segunda imagem ou câmera com a primeira, o que pode ser chamado de movimento.
 
-Algebricamente, é possível descrever as características da câmera em matrizes chamadas \textbf{matrizes de projeção} [2] com as quais, sabendo seus valores, obtém-se um sistema de equações e computa-se o plano M, abaixo:
+Algebricamente, é possível descrever as características da câmera em matrizes chamadas \textbf{matrizes de projeção} [2] com as quais, sabendo seus valores, obtém-se um sistema de equações e computa-se o plano $M$, abaixo:
+
+%Ajeitar tamanho da equação
+
+$$
+	\begin{bmatrix}
+		P
+	\end{bmatrix}
+	\begin{bmatrix}
+		x\\y\\z
+	\end{bmatrix}
+	\begin{bmatrix}
+		m\\v\\1
+	\end{bmatrix}
+	\begin{bmatrix}
+		m'\\v'\\1
+	\end{bmatrix}
+$$
+
+Equação 2.1: Matriz de projeção $P$, plano $M$ e retas $m^T = \begin{bmatrix}u & v & 1\end{bmatrix}$ e $m'^T = \begin{bmatrix}u' & v' & 1\end{bmatrix}$, respectivamente.
 
 %Gerar equação
 
-Equação 2.1: Matriz de projeção P, plano M e retas m\textasciicircum T = [u v 1] e m’\textasciicircum T = [u’ v’ 1], respectivamente.
+$$
+\begin{cases}
+P M \simeq m, \\
+P' M \simeq m'.
+\end{cases}
+$$
 
-%Gerar equação
+Equação 2.2: Sistema de equações para a matriz de projeção $P$ e $P'$, respectivamente.
 
-Equação 2.2: Sistema de equações para a matriz de projeção P e P’, respectivamente.
+Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. As equações da figura 2.2 representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
 
-Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção \textbf{P e P’}, pois possuem informações acerca da geometria da cena. As equações da figura 2.2 representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de \textbf{m e m’} precisam satisfazer algumas restrições, logo, o ponto \textbf{m’} não pode ser um ponto arbitrário na segunda imagem.
+Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia[2] entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz 3x3 $M$. Tal homografia é exemplificada como equação pela figura 2.3 e também na figura 2.4:
 
-Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia[2] entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz 3x3 \textbf{M}. Tal homografia é exemplificada como equação pela figura 2.3 e também na figura 2.4:
+$$
+m' \simeq Hm.
+$$
 
+Equação 2.3: Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira, como equação.
 
-Equação 2.3: Relação de homografia entre um ponto m’ da segunda imagem com um ponto m da primeira, como equação.
+Figura 2.1: Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira. Faugeras et al [2] pag. 22.
 
-Figura 2.1: Relação de homografia entre um ponto m’ da segunda imagem com um ponto m da primeira. Faugeras et al [2] pag. 22.
-
-Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam \textbf{m e m’} pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz \textbf{H}. Tal homografia pode ser utilizada para construir mosaicos, como mostra a figura 2.5 abaixo. Aplicando na primeira imagem, transformando numa imagem maior representando a cena pelo ponto de vista da segunda imagem mas com uma área de visão maior. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico [2], pois a ambiguidade continua já que os raios correspondentes são idênticos.
+Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Tal homografia pode ser utilizada para construir mosaicos, como mostra a figura 2.5 abaixo. Aplicando na primeira imagem, transformando numa imagem maior representando a cena pelo ponto de vista da segunda imagem mas com uma área de visão maior. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico [2], pois a ambiguidade continua já que os raios correspondentes são idênticos.
 
 Figura 2.5: Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al [2] pag. 24.
 
-Quando os pontos no espaço e as duas câmeras estão em posições distintas, não é possível predizer a posição do correspondente m’ de um ponto qualquer m da primeira imagem, pois tal informação depende da profundidade do ponto 3D ao longo do raio óptico. Geometricamente tal posição não é arbitrária, tal ponto m precisa estar numa linha (o raio óptico), logo m’ precisa estar localizado na projeção da reta na segunda imagem. Tal linha é chamada \textbf{Linha Epipolar}, do ponto \textbf{m} na segunda imagem. Tendo conhecimento dela, ao procurar o correspondente m’, não é necessário procurar em toda a imagem, bastando apenas na linha, reduzindo então uma busca 2D para 1D, mostrado na figura 2.6.
+Quando os pontos no espaço e as duas câmeras estão em posições distintas, não é possível predizer a posição do correspondente $m'$ de um ponto qualquer $m$ da primeira imagem, pois tal informação depende da profundidade do ponto 3D ao longo do raio óptico. Geometricamente tal posição não é arbitrária, tal ponto $m$ precisa estar numa linha, o raio óptico, logo $m'$ precisa estar localizado na projeção da reta na segunda imagem. Tal linha é chamada \textbf{Linha Epipolar}, do ponto \textbf{m} na segunda imagem. Tendo conhecimento dela, ao procurar o correspondente $m'$, não é necessário procurar em toda a imagem, bastando apenas na linha, reduzindo então uma busca 2D para 1D, mostrado na figura 2.6.
 
 
 Figura 2.6: Exemplificação da redução de 2D para 1D. Faugeras et al [2] pag. 12.
 
-Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre \textbf{m e m’}, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos \textbf{Lm e Lm’} se interceptem. Algebricamente, já que o ponto M da figura 2.5 depende de três coordenadas, e a correspondência entre m e m’ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de m e m’.
+Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre $m$ e $m'$, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos $Lm$ e $Lm'$ se interceptem. Algebricamente, já que o ponto $M$ da figura 2.5 depende de três coordenadas, e a correspondência entre $m$ e $m'$ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de $m$ e $m'$.
 
-A relação entre o ponto m e a linha epipolar l’m na segunda imagem é linearmente projetiva, já que o raio óptico de m é uma função linear de m, e a projeção também é linear. Portanto, há uma matriz 3x3 que descreve tal correspondência, chamada Matriz Fundamental [2]. Dada a linha epipolar do ponto m: l’m = Fm, se dois pontos m e m’ possuem uma correspondência, o ponto m’ pertence à linha epipolar de m, satisfazendo a seguinte restrição: 
-m’TFm = 0, que é bilinear nas coordenadas dos pontos das imagens. Invertendo as duas imagens, F seria transformada em sua versão transposta.
+A relação entre o ponto $m$ e a linha epipolar $l'm$ na segunda imagem é linearmente projetiva, já que o raio óptico de $m$ é uma função linear de $m$, e a projeção também é linear. Portanto, há uma matriz 3x3 que descreve tal correspondência, chamada Matriz Fundamental [2]. Dada a linha epipolar do ponto $m: l'm = Fm$, se dois pontos $m$ e $m'$ possuem uma correspondência, o ponto $m'$ pertence à linha epipolar de $m$, satisfazendo a seguinte restrição: 
+$$m'TFm = 0$$, que é bilinear nas coordenadas dos pontos das imagens. Invertendo as duas imagens, $F$ seria transformada em sua versão transposta.
 
-A matriz fundamental depende apenas da configuração das câmeras (seus parâmetros intrínsecos, posição e orientação) e não dos pontos 3D da cena. A figura 2.7 mostra um exemplo de geometria epipolar:
+A matriz fundamental depende apenas da configuração das câmeras ,seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura 2.7 mostra um exemplo de geometria epipolar:
 
-Figura 2.7: Exemplo de geometria epipolar. Dado um ponto m, o seu correspondente m’ precisa estar na linha epipolar l’m. Dada a correspondência válida entre m e m’, a interseção dos raios ópticos Lm e Lm é não-vazia, e coplanar com a linha CC’. Faugeras et al [2] pag. 25.
+Figura 2.7: Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'm$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al [2] pag. 25.
 
 Normalmente não se assume qualquer relação espacial entre os pontos no espaço, apenas a informação disponível pela correspondência projetiva, ou seja, a correspondência de pontos por projeção linear. A geometria epipolar é a restrição básica que decorre da existência de dois pontos de vista distintos. Ambos podem ser obtidos por duas câmeras diferentes ou com uma câmera em movimento, denominado \textit{Structure from Motion}. As restrições epipolares descrevem totalmente a correspondência de pares de correspondências genéricas entre pontos de cada imagem, e a ambiguidade ao longo da linha epipolar causada pela ambiguidade ao longo dos raios ópticos da operação de projeção. Partindo do fato de que a matriz fundamental depende apenas da geometria da câmera, descreve todas as restrições epipolares, logo compila toda a informação disponível das correspondências projetivas. 
 
-Já que todos os raios ópticos contém o centro óptico C da primeira câmera, todas as linhas epipolares contém a projeção de C na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamada epípole. Como mostra a figura 2.5, o fato da epípole  da segunda imagem pertencer às linhas epipolares significa que e’TFm = 0, ou, FTe’ = 0. Invertendo as duas imagens, Fe = 0. Pode-se concluir que F é uma matriz de grau 2 e det(F) = 0. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, F depende de sete parâmetros.
+Já que todos os raios ópticos contém o centro óptico $C$ da primeira câmera, todas as linhas epipolares contém a projeção de $C$ na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamada epípole. Como mostra a figura 2.5, o fato da epípole  da segunda imagem pertencer às linhas epipolares significa que $e'TFm = 0$, ou, $FTe' = 0$. Invertendo as duas imagens, $Fe = 0$. Pode-se concluir que $F$ é uma matriz de grau 2 e $det(F) = 0$. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, $F$ depende de sete parâmetros.
 
-Para o cálculo da matriz fundamental, tem-se m e m’ correspondentes abaixo:
+Para o cálculo da matriz fundamental, tem-se $m$ e $m'$ correspondentes abaixo:
 
+$$
+m = \begin{bmatrix}u\\v\\1\\ \end{bmatrix}, m' = \begin{bmatrix}u'\\v'\\1\end{bmatrix}
+$$
 
-Equação 2.4: Matrizes dos pontos m e m’.
+Equação 2.4: Matrizes dos pontos $m$ e $m'$.
 
-e F a matriz fundamental:
+e $F$ a matriz fundamental:
 
-Equação 2.5: Matriz fundamental F.
+$$
+F = 
+\begin{bmatrix}
+	F_{11} &  F_{12} &  F_{13}\\
+	F_{21} &  F_{22} &  F_{23}\\
+	F_{31} &  F_{32} &  F_{33}
+\end{bmatrix}, m' = \begin{bmatrix}u'\\v'\\1\end{bmatrix}
+$$
 
-Logo, a restrição epipolar m’TFm = 0 pode ser representada como UTf = 0, onde:
+Equação 2.5: Matriz fundamental $F$.
 
+Logo, a restrição epipolar $m'TFm = 0$ pode ser representada como $UTf = 0$, onde:
 
-Equação 2.6: Representações de f, U e UTf.
+$$
+f = [F_{11}, F_{12}, F_{13}, F_{21}, F_{22}, F_{23}, F_{31}, F_{32}, F_{33}]
+$$
+$$
+U = [uu', vu', u', uv', vv', v', uv]
+$$
+$$
+\begin{bmatrix}u' & v' & 1\end{bmatrix} 
+\begin{bmatrix}
+	F_{11} &  F_{12} &  F_{13}\\
+	F_{21} &  F_{22} &  F_{23}\\
+	F_{31} &  F_{32} &  F_{33}
+\end{bmatrix}
+\begin{bmatrix}u\\v\\1\end{bmatrix} = u'
+$$
+
+Equação 2.6: Representações de $f$, $U$ e $UTf$.
 
 Tal sistema de equações é linear, homogêneo e possui 9 incógnitas, com 8 pares de pontos correspondentes. É possível encontrar uma solução única para F determinam de até um fator de escala, conhecido também como o algoritmo dos 8 pontos.
 
