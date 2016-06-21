@@ -1,37 +1,38 @@
 \chapter{Introdução}
 
-Apresentaremos neste capítulo a motivação para este trabalho, problemas encontrados e outros trabalhos encontrados que também tentam reconstruir ambientes. A forma como o trabalho está estruturado e nossa proposta inicial será apresentada também.
-
+Apresentaremos neste capítulo a motivação para este trabalho, problemas encontrados e outros trabalhos que também tentam reconstruir ambientes. A forma como o trabalho está estruturado e a sua proposta inicial será apresentada também.
 
 \section{Motivação}
 
-Alguns avanços tecnológicos que se possui hoje em dia graças à modelagem de ambientes que podem ser citados é a melhor investigação forense com o mapeamento das cenas de um crime [13], o carro autônomo em desenvolvimento pela Google ou a realidade virtual. Criando assim novos ramos de pesquisa, novos mercados à serem explorados.
-	Um potencial uso, onde a vida de diversas pessoas seria mudada, é a utilização do mapeamento (seja ele on the fly ou realizado previamente) para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados [referencia para trabalhos de wendel] mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar a forma dos mais diversos objetos e também a topografia do ambiente. 
+Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime [13], o carro autônomo em desenvolvimento pela \textit{Google}[18] e realidade virtual, criando assim novos ramos de pesquisa, novos mercados à serem explorados.
 
+Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado previamente, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar a forma dos mais diversos objetos e também a topografia do ambiente. 
 
 
 \section{Objetivos}
 
-Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D do prédio do departamento de Ciências da Computação da UFS.
+Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D de estruturas e ambientes, internos e externos, afim de utilizá-lo para outros fins potenciais. Tendo como estudo de caso, a reconstrução 3D do prédio do departamento de computação.
 
 \subsection{Objetivos Específicos}
 
-Para atingir o objetivo, foram utilizadas duas câmeras, uma câmera usb (modelo PSEye®) e a câmera nativa do smartphone Motorola Moto X Play 32GB, para obter imagens e vídeos do ambiente, o software LSD-SLAM [referencia para lsdslam] para modelagem e o software VLC para extrair os frames dos vídeos capturados a fim de criar os datasets. Ao longo do trabalho, foi criado um aplicativo para o sistema mobile Android, onde seria possível calibrar a câmera do dispositivo smartphone Android e também gravar os datasets necessários para o trabalho, na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do dataset.
+Para atingir o objetivo, foram utilizadas duas câmeras: uma câmera \textit{USB} do modelo PSEye® e a câmera nativa do smartphone \textit{Motorola Moto X Play 32GB} para obter imagens e vídeos do ambiente; o software \textit{LSD-SLAM} [12] para modelagem e o \textit{software VLC} para extrair os quadros dos vídeos capturados pelas câmeras a fim de criar os \textit{datasets}. Ao longo do trabalho, foi criado um aplicativo para o sistema mobile \textit{Android}, onde seria possível calibrar a câmera do dispositivo \textit{smartphone Android} e também gravar os \textit{datasets} necessários para o trabalho, na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do \textit{dataset}.
+
 
 \section{Abordagem utilizada}
+
+O trabalho possui as seguintes fases:
+%considerar usar description lista no lugar
+\begin{itemize}
+\item{Estudo sobre o estado da arte: Foram pesquisados os diversos métodos disponíveis atualmente para mapeamento de ambientes, bem como seus pormenores. Também como  poderiam ser utilizados para o objetivo deste trabalho}
+\item{Criação de um aplicativo para o sistema operacional \textit{Android}, onde fosse possível calibrar a câmera e obter um preprocessamento do \textit{dataset}, na forma de um banco de dados com quadros e seus \textit{keypoints}}
+\item{Estudo e testes com as ferramentas encontradas: Várias ferramentas para reconstrução de ambientes foram encontradas, e nesta fase todas seriam testadas}
+\item{Criação do \textit{dataset}: Vídeos e imagens do ambiente externo e interno do departamento}
+\item{Processamento e avaliação do \textit{dataset}: Nesta fase foi realizado o processamento do \textit{dataset} com a ferramenta \textit{LSD-SLAM}, onde foi preciso realizar diversos testes para um melhor refinamento de suas configurações}
+\end{itemize}
+
 
 \section{Estrutura do Documento}
 
 
-Este trabalho está dividido da seguinte forma: No Capítulo 2 será apresentado o estado da arte sobre reconstrução 3D de ambientes; no Capítulo 3 a metodologia utilizada para obter os objetivos deste trabalho; no Capítulo 4 será abordados os resultados obtidos e por fim no Capítulo 5 nossa conclusão e possíveis trabalhos futuros.
+Este trabalho está dividido da seguinte forma: No Capítulo 2 será apresentado o estado da arte sobre reconstrução 3D de ambientes; no Capítulo 3 a metodologia utilizada para obter os objetivos deste trabalho; no Capítulo 4 serão abordados os resultados obtidos e por fim no Capítulo 5 a conclusão e possíveis trabalhos futuros.
 
-
-Para facilitar a navegação e melhor entendimento, este documento está
-estruturado em capítulos e seções, que são:
-\begin{itemize}
-\item {Capítulo 1 - Introdução}: xxx \cite{Yu:2004:ESG:1015090.1015207};
-\item {Capítulo 2 - Estado da Arte}: xxx \cite{Cormen:2009};
-\item {Capítulo 3 - Metodologia}: xxx \cite{Weicker:1984:DSS:358274.358283}
-\item {Capítulo 4 - Resultados}: xxx \cite{IEEE_802_11:6178212};
-\item {Capítulo 5 - Conclusão}: xxx \cite{Linux:402081};
-\end{itemize}
