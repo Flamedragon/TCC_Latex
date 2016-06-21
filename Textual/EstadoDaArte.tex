@@ -60,12 +60,19 @@ Equação 2.3: Relação de homografia entre um ponto $m'$ da segunda imagem com
 
 Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Tal homografia pode ser utilizada para construir mosaicos, como mostra a figura 2.5 abaixo. Aplicando na primeira imagem, transformando numa imagem maior representando a cena pelo ponto de vista da segunda imagem mas com uma área de visão maior. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico [2], pois a ambiguidade continua já que os raios correspondentes são idênticos.
 
-Figura 2.5: Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al [2] pag. 24.
+\begin{figure}
+	\centering
+		\includegraphics{Imagens/figura2-2.png}
+	\caption{Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al [2] pag. 24.}
+\end{figure}
 
 Quando os pontos no espaço e as duas câmeras estão em posições distintas, não é possível predizer a posição do correspondente $m'$ de um ponto qualquer $m$ da primeira imagem, pois tal informação depende da profundidade do ponto 3D ao longo do raio óptico. Geometricamente tal posição não é arbitrária, tal ponto $m$ precisa estar numa linha, o raio óptico, logo $m'$ precisa estar localizado na projeção da reta na segunda imagem. Tal linha é chamada \textbf{Linha Epipolar}, do ponto \textbf{m} na segunda imagem. Tendo conhecimento dela, ao procurar o correspondente $m'$, não é necessário procurar em toda a imagem, bastando apenas na linha, reduzindo então uma busca 2D para 1D, mostrado na figura 2.6.
 
-
-Figura 2.6: Exemplificação da redução de 2D para 1D. Faugeras et al [2] pag. 12.
+\begin{figure}
+	\centering
+		\includegraphics{Imagens/figura2-3.png}
+	\caption{Exemplificação da redução de 2D para 1D. Faugeras et al [2] pag. 12.}
+\end{figure}
 
 Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre $m$ e $m'$, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos $Lm$ e $Lm'$ se interceptem. Algebricamente, já que o ponto $M$ da figura 2.5 depende de três coordenadas, e a correspondência entre $m$ e $m'$ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de $m$ e $m'$.
 
@@ -74,7 +81,11 @@ $$m'TFm = 0$$, que é bilinear nas coordenadas dos pontos das imagens. Invertend
 
 A matriz fundamental depende apenas da configuração das câmeras ,seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura 2.7 mostra um exemplo de geometria epipolar:
 
-Figura 2.7: Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'm$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al [2] pag. 25.
+\begin{figure}
+	\centering
+		\includegraphics{Imagens/figura2-4.png}
+	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'm$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al [2] pag. 25.}
+\end{figure}
 
 Normalmente não se assume qualquer relação espacial entre os pontos no espaço, apenas a informação disponível pela correspondência projetiva, ou seja, a correspondência de pontos por projeção linear. A geometria epipolar é a restrição básica que decorre da existência de dois pontos de vista distintos. Ambos podem ser obtidos por duas câmeras diferentes ou com uma câmera em movimento, denominado \textit{Structure from Motion}. As restrições epipolares descrevem totalmente a correspondência de pares de correspondências genéricas entre pontos de cada imagem, e a ambiguidade ao longo da linha epipolar causada pela ambiguidade ao longo dos raios ópticos da operação de projeção. Partindo do fato de que a matriz fundamental depende apenas da geometria da câmera, descreve todas as restrições epipolares, logo compila toda a informação disponível das correspondências projetivas. 
 
