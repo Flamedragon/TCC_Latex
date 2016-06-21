@@ -25,9 +25,9 @@ Por fim, a ultima filtragem é realizada com o \textit{RANSAC} [19]. O \textit{R
 
 Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento, a figura \ref{fig3:2} mostra um exemplo da execução do app:
 
-\begin{figure}
+\begin{figure}[!htb]
 	\centering
-		\includegraphics{Imagens/figura3-2E4-4.png}
+		\includegraphics[width= \textwidth]{Imagens/figura3-2E4-4.png}
 	\caption{\textit{Keypoints} encontrados e filtrados entre duas imagens.}
 	\label{fig3:2}
 \end{figure}
@@ -36,25 +36,68 @@ Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypo
 Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com o auxílio da biblioteca \textit{OpenCV}, já que foi percebido que a distorção radial da câmera estava influenciando os resultados. A calibração da câmera, numa forma prática, consiste em fornecer um \textit{stream} da câmera ou sequência de fotos, contendo um padrão pré-definido. O \textit{OpenCV} fornece funções para calibrar a câmera de um dispositivo, necessitando das imagens capturadas do padrão, dentre as seguintes opções:
 
 \begin{itemize}
-	\item{Tabuleiro de xadrez.}
-	\item{Círculos alinhados assimetricamente.}
-	\item{Círculos alinhados simetricamente.}
+	\item{Tabuleiro de xadrez em \ref{fig3:3}}
+	\item{Círculos alinhados assimetricamente \ref{fig3:4}}
+	\item{Círculos alinhados simetricamente \ref{fig3:5}}
 \end{itemize}
 
-Exemplificados pelas imagens 3.3, 3.4 e 3.5, respectivamente; e como o \textit{OpenCV} os reconhece, apresentados nas imagens 3.5 para o tabuleiro de xadrez e 3.6 para círculos assimétricos:
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-3E3-12.png}
+  \caption{Tabuleiro de xadrez}\label{fig3:3}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-4.png}
+  \caption{Círculos alinhados assimetricamente}\label{fig3:4}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-5.jpg}
+  \caption{Círculos alinhados simetricamente}\label{fig3:5}
+\endminipage
+\end{figure}
 
-Da esquerda para direita, figura 3.3, 3.4 e 3.5: Padrões para a calibração da câmera.
 
+\begin{figure}[!hb]
+\minipage{0.49\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-6.jpg}
+  \caption{Reconhecimento do tabuleiro de xadrez}\label{fig3:6}
+\endminipage\hfill
+\minipage{0.49\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-7.jpg}
+  \caption{Reconhecimento dos círculos alinhados assimetricamente}\label{fig3:7}
+\endminipage
+\end{figure}
 
-Da esquerda para direita, figura 3.6 e 3.7: Reconhecimento do tabuleiro de xadrez e círculos alinhados assimetricamente.
+Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, a qual servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10}	 e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como a contra partida sem filtragem:
 
-Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, a qual servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As figuras 3.8 à 3.11 mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como a contra partida sem filtragem:
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-8.png}
+	\caption{Execução do \textit{PhotoGuide} e os \textit{keypoints} filtrados da cena \#1}
+	\label{fig3:8}
+\end{figure}
 
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-9.png}
+	\caption{Execução do \textit{PhotoGuide} e os \textit{keypoints} filtrados da cena \#2}
+	\label{fig3:9}
+\end{figure}
 
-Da esquerda para direita, figura 3.8 e 3.9: Execuções do \textit{PhotoGuide} e os \textit{keypoints} filtrados da cena.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-10.png}
+	\caption{\textit{Keypoints} não filtrados da cena \#1}
+	\label{fig3:10}
+\end{figure}
 
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-11.png}
+	\caption{\textit{Keypoints} não filtrados da cena \#2}
+	\label{fig3:11}
+\end{figure}
 
-Da esquerda para direita, figura 3.10 e 3.11: \textit{Keypoints} não filtrados da cena.
 
 É possível perceber a importância de se detectar e remover falsos positivos, ou \textit{outliers}, já que tal quantidade de pontos errôneos afetaria drasticamente o processamento.
 
@@ -148,25 +191,40 @@ Todos esses fatores interferem no reconhecimento do padrão fazendo com que o re
 
 Começa-se obtendo as dependências necessárias e compilando o driver usando os seguintes comandos respectivamente:
 
-\texttt{\$ rosdep install camera\_calibration}
-\texttt{\$ rosmake camera\_calibration}
+\begin{table}[!ht]
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{\$ rosdep install camera\_calibration} \\
+\texttt{\$ rosmake camera\_calibration} \\ \hline
+\end{tabular}
+\caption{Comandos para inicializar a instalação do módulo que fará a calibração da câmera}
+\end{table}
 
-Tabela 3.1: Comandos para inicializar a instalação do módulo que fará a calibração da câmera.
 
 \subsubsection{Envio de quadross pela câmera}
 
 Ao final da sessão 5, a câmera deve estar configurada e funcionando. Para ter certeza que a câmera está de fato enviando seus dados para o \textit{ROS}, usa-se o seguinte comando:
 
+\begin{table}[!ht]
+\begin{tabular}{| p{\textwidth}|}
+\hline
 \texttt{\$ rostopic list}
-
-Tabela 3.2: Comandos para inicializar a instalação do módulo que fará a calibração da câmera.
+\hline
+\end{tabular}
+\caption{Comandos para inicializar a instalação do módulo que fará a calibração da câmera}
+\end{table}
 
 Esse comando irá listar todos os topics que são os nodos ativos no \textit{ROS}. A saída deve conter esses \textit{topics}:
 
-\texttt{/usb\_cam/camera\_info}
-\texttt{/usb\_cam/image\_raw}
-
-Tabela 3.3: Resultado com os \textit{topics}.
+\begin{table}[!ht]
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{/usb\_cam/camera\_info} \\
+\texttt{/usb\_cam/image\_raw}\\
+\hline
+\end{tabular}
+\caption{Resultado com os \textit{topics}}
+\end{table}
 
 Caso a saída não apresente erros, a câmera está pronta para ser calibrada.
 
@@ -174,13 +232,24 @@ Caso a saída não apresente erros, a câmera está pronta para ser calibrada.
 
 Para começar a calibração é necessário carregar os topics com as imagens da câmera que será calibrada usando o seguinte comando:
 
+\begin{table}[!ht]
+\begin{tabular}{| p{\textwidth}|}
+\hline
 \texttt{\$ rosrun camera\_calibration cameracalibrator.py --size 9x6 --square 0.108 image:=/usb\_cam/image\_raw camera:=/usb\_cam}
-
-Tabela 3.4: Inicialização do módulo que calibrará a câmera.
+\hline
+\end{tabular}
+\caption{ Inicialização do módulo que calibrará a câmera}
+\end{table}
 
 Vale frisar a importância de que o parâmetro \texttt{--size} é o tamanho do tabuleiro, no entanto ele conta não as casas e sim as linhas entre as casas:
 
-Figura 3.12: Exemplo de padrão utilizado para a calibração.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-3E3-12.png}
+	\caption{Exemplo de padrão utilizado para a calibração}
+	\label{fig3:12}
+\end{figure}
+
 
 Esse padrão por exemplo tem 10x7 casas, no entanto suas linhas são 9x6. O parâmetro \texttt{--size} deve ser nesse caso 9x6.
 O parâmetro \texttt{--square} é o tamanho real do lado das casas do tabuleiro que imprimimos em metros. No caso o comando acima indica que cada casa do tabuleiro possui 0,108 metros ou 10,8 centímetros. É recomendado que o usuário que reproduza estes passos use uma régua para medir o seu tabuleiro.
