@@ -186,17 +186,17 @@ Para se obter uma boa calibração é necessário mover o tabuleiro pelo quadro 
 	\begin{itemize}
 		\item{Barra X - Campo de vista esquerda/direita.}
 		\item{Barra Y - Campo de vista topo/baixo.}
-		\item{Barra Size - Aproximando/Afastando e Rotação da câmera.}
+		\item{Barra \textit{Size} - Aproximando/Afastando e Rotação da câmera.}
 	\end{itemize}
 	\item{O tabuleiro preencha todo o campo de vista.}
-	\item{O tabuleiro inclinado para a esquerda,direita,topo,baixo (Barra Skew)}
+	\item{O tabuleiro inclinado para a esquerda,direita,topo,baixo (Barra \textit{Skew})}
 \end{itemize}
 
 A cada passo segure o tabuleiro até que que apareça na imagem o destaque do padrão.
 
 Figuras 3.14-3.19 - Demonstração de posições para calibração
 
-Ao mover o tabuleiro, podem ser percebidas 4 Barras (X,Y,Size,Skew) na barra lateral que aumentam de tamanho conforme ele vai capturando amostras. Quando o botão CALIBRATE estiver iluminado quer dizer que há dados o suficiente para calibrar, ao ser clicado, começará o processo de calibração.
+Ao mover o tabuleiro, podem ser percebidas 4 Barras (X,Y,\textit{Size},\textit{Skew}) na barra lateral que aumentam de tamanho conforme ele vai capturando amostras. Quando o botão \textit{CALIBRATE} estiver iluminado quer dizer que há dados o suficiente para calibrar, ao ser clicado, começará o processo de calibração.
 A calibração dura em média um minuto. A janela estará cinza e inativa durante esse tempo, nesse caso a calibração está ocorrendo e o programa não travou, bastando apenas aguardar.
 
 \subsubsection{Resultados da calibração}
@@ -204,133 +204,202 @@ A calibração dura em média um minuto. A janela estará cinza e inativa durant
 Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como essa. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
 
 
-\texttt{D = {[}-0.33758562758914146, 0.11161239414304096, -0.00021819272592442094, -3.029195446330518e-05{]}\\
-K = {[}430.21554970319971, 0.0, 306.6913434743704, 0.0, 430.53169252696676, 227.22480030078816, 0.0, 0.0, 1.0{]}}\\
-R = {[}1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0{]}
-P = {[}1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0{]}
-\# oST version 5.0 parameters
+{\setlength{\parindent}{0cm}
 
-{[}image{]}
+\texttt{D = {[}-0.33758562758914146, 0.11161239414304096, -0.00021819272592442094, -3.0291954\\46330518e-05{]}}
 
-width
-640
+ \texttt{K = {[}430.21554970319971, 0.0, 306.6913434743704, 0.0, 430.53169252696676, 227.22480030078816, 0.0, 0.0, 1.0{]}}
 
-height
-480
+\texttt{R = {[}1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0{]}}
 
-{[}narrow\_stereo/left{]}
+\texttt{P = {[}1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0{]}}
 
-camera matrix
-430.215550 0.000000 306.691343
-0.000000 430.531693 227.224800
-0.000000 0.000000 1.000000
+ \texttt{\# oST version 5.0 parameters}
 
-distortion
--0.337586 0.111612 -0.000218 -0.000030 0.0000
 
-rectification
-1.000000 0.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 0.000000 1.000000
+ \texttt{{[}image{]}}
 
-projection
-1.000000 0.000000 0.000000 0.000000
-0.000000 1.000000 0.000000 0.000000
-0.000000 0.000000 1.000000 0.000000
+
+ \texttt{width}
+
+ \texttt{640}
+
+
+
+ \texttt{height}
+
+ \texttt{480}
+
+
+
+ \texttt{{[}narrow\_stereo/left{]}}
+
+
+ \texttt{camera matrix}
+
+ \texttt{430.215550 0.000000 306.691343}
+
+ \texttt{0.000000 430.531693 227.224800}
+
+ \texttt{0.000000 0.000000 1.000000}
+
+
+ \texttt{distortion}
+
+ \texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}
+
+
+ \texttt{rectification}
+
+ \texttt{1.000000 0.000000 0.000000}
+
+ \texttt{0.000000 1.000000 0.000000}
+
+ \texttt{0.000000 0.000000 1.000000}
+
+
+ \texttt{projection}
+
+ \texttt{1.000000 0.000000 0.000000 0.000000}
+
+ \texttt{0.000000 1.000000 0.000000 0.000000}
+
+ \texttt{0.000000 0.000000 1.000000 0.000000}
+}
 
 Tabela 3.5: Resultados da calibração impressos no console
  
 Os valores destacados serão utilizados em breve. Uma calibração bem sucedida resultará em linhas retas na vida real aparecerem como linhas retas na imagem corrigida. Uma calibração falha normalmente resulta em imagens em branco, irreconhecíveis ou que não preservam as linhas retas.
-Após uma calibração bem sucedida pode-se ajustar o Deslizador SCALE no topo da janela de calibração para mudar o tamanho da imagem retificada. Uma escala de 0.0 significa que a imagem está formatada de modo que os pixels pretos criados para a preencher os espaços deixados pelos pixels movidos não estejam presentes. A imagem não terá as curvas pretas de correção mas alguns pixels da imagem original serão descartados. A escala de 1.0 significa que todos os pixels da imagem original são visíveis mas a imagem corrigida tem bordas pretas onde não há pixels de entrada da imagem original.
-Se a calibração for satisfatória, o botão COMMIT deve ser clicado para enviar os parâmetros de calibração para o armazenamento permanente. A GUI fechará e a seguinte mensagem será impressa no console “writing calibration data to...”.
+Após uma calibração bem sucedida pode-se ajustar o deslizador \textit{SCALE} no topo da janela de calibração para mudar o tamanho da imagem retificada. Uma escala de 0.0 significa que a imagem está formatada de modo que os \textit{pixels} pretos criados para a preencher os espaços deixados pelos \textit{pixels} movidos não estejam presentes. A imagem não terá as curvas pretas de correção mas alguns \textit{pixels} da imagem original serão descartados. A escala de 1.0 significa que todos os \textit{pixels} da imagem original são visíveis mas a imagem corrigida tem bordas pretas onde não há \textit{pixels} de entrada da imagem original.
+Se a calibração for satisfatória, o botão \textit{COMMIT} deve ser clicado para enviar os parâmetros de calibração para o armazenamento permanente. A \textit{GUI} fechará e a seguinte mensagem será impressa no console \textit{“writing calibration data to...”}.
 
 \subsubsection{Criação do arquivo de calibração}
 
-Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no entanto é interessante criar um arquivo de configuração para ser facilmente reutilizado caso se queira usar essa configuração em outra máquina ou salvar a calibração em um local mais seguro. Esse arquivo de calibração também é importante pois o dataset\_slam necessita dele para executar, ou seja, ele não usa a calibração salva pelo calibrador em disco. Na sessão anterior(3.2.3.6) foram destacadas em laranja alguns valores:
+Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no entanto é interessante criar um arquivo de configuração para ser facilmente reutilizado caso se queira usar essa configuração em outra máquina ou salvar a calibração em um local mais seguro. Esse arquivo de calibração também é importante pois o \texttt{dataset\_slam} necessita dele para executar, ou seja, ele não usa a calibração salva pelo calibrador em disco. Na sessão anterior(3.2.3.6) foram destacadas em laranja alguns valores:
 
-width
+{\setlength{\parindent}{0cm}
+\texttt{width}
 
-640
+\texttt{640}
 
-height
-480
 
-camera matrix
-430.215550 0.000000 306.691343
-0.000000 430.531693 227.224800
-0.000000 0.000000 1.000000
+\texttt{height}
 
-distortion
--0.337586 0.111612 -0.000218 -0.000030 0.0000
+\texttt{480}
+
+
+\texttt{camera matrix}
+
+\texttt{430.215550 0.000000 306.691343}
+
+\texttt{0.000000 430.531693 227.224800}
+
+\texttt{0.000000 0.000000 1.000000}
+
+
+\texttt{distortion}
+
+\texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}}
+
 
 
 Tabela 3.6: Informações relevantes extraídas da tabela 3.2.
 
 Esses valores serão usados para compor o arquivo. Em um novo documento de texto insira o seguinte modelo:
 
-\texttt{fx/width fy/height cx/width cy/height d
-in\_width in\_height
-"crop" / "full" / "none"
-out\_width out\_height}
+{\setlength{\parindent}{0cm}
+\texttt{fx/width fy/height cx/width cy/height d}
+
+\texttt{in\_width in\_height}
+
+\texttt{"crop" / "full" / "none"}
+
+\texttt{out\_width out\_height}}
 
 Tabela 3.7: Modelo de arquivo de configuração com legenda
+
 Nesse caso deve-se fazer os cálculos substituindo os valores do modelo com os da suas cores respondentes acima, quanto mais precisas as calculadoras usadas melhor. Na terceira linha:
 
-\texttt{crop} - Corta a imagem para o tamanho máximo enquanto inclui apenas pixels válidos.
-\texttt{full} - Não corta a imagem mas pode incluir pixels inválidos.
+\texttt{crop} - Corta a imagem para o tamanho máximo enquanto inclui apenas \textit{pixels} válidos.
+\texttt{full} - Não corta a imagem mas pode incluir \textit{pixels} inválidos.
 \texttt{none} - Não realiza a operação de correção de distorção radial
 
 Recomenda-se o uso do valor \texttt{crop}. O resultado final deve ficar assim de acordo com o o seguinte exemplo:
 
-\texttt{0.672211796875 0.89694102708333333333333333333333 0.4792052234375 0.473385 -0.337586 0.111612 -0.000218 -0.000030 0.0000 
-640 480
-crop
-640 480}
+{\setlength{\parindent}{0cm}
+\texttt{0.672211796875 0.89694102708333333333333333333333 0.4792052234375 0.473385 -0.337586 0.111612 -0.000218 -0.000030 0.0000}
+
+\texttt{640 480}
+
+\texttt{crop}
+
+\texttt{640 480}}
 
 Tabela 3.8: Exemplo de arquivo de configuração final.
 
-Uma observação é que ao inserir os resultados no arquivo, deve-se certificar que o ponto flutuante é ‘.’(ponto) e não ‘,’(vírgula) pois isso fará com que o arquivo não funcione corretamente. Após isso arquivo deve ser salvo como {nome\_do\_arquivo\_de\_calibração.cfg} e estará pronto para ser usado. Se estiver usando um arquivo de calibração do OpenCV, que foi o usado no \textit{PhotoGuide}, a transformação é similar ao resultado da calibração do \textit{LSD-SLAM}. Considerando a seguinte saída da calibração do OpenCV:
+Uma observação é que ao inserir os resultados no arquivo, deve-se certificar que o ponto flutuante é ‘.’(ponto) e não ‘,’(vírgula) pois isso fará com que o arquivo não funcione corretamente. Após isso arquivo deve ser salvo como texttt{nome\_do\_arquivo\_de\_calibração.cfg} e estará pronto para ser usado. Se estiver usando um arquivo de calibração do \textit{OpenCV}, que foi o usado no \textit{PhotoGuide}, a transformação é similar ao resultado da calibração do \textit{LSD-SLAM}. Considerando a seguinte saída da calibração do \textit{OpenCV}:
 
-\texttt{<Camera\_Matrix type\_id="opencv-matrix">
-<rows>3</rows>
-<cols>3</cols>
-<dt>d</dt>
-<data>
- 6.5746697944293521e+002 0. 3.1950000000000000e+002
- 0. 6.5746697944293521e+002 2.3950000000000000e+002
- 0. 0. 1.
-</data></Camera\_Matrix>
-<Distortion\_Coefficients type\_id="opencv-matrix">
-<rows>5</rows>
-<cols>1</cols>
-<dt>d</dt>
-<data>
- -4.1802327176423804e-001 5.0715244063187526e-001 0. 0. -5.7843597214487474e-001</data></Distortion\_Coefficients>}
+{\setlength{\parindent}{0cm}
+\texttt{<Camera\_Matrix type\_id="opencv-matrix">}
+
+\texttt{<rows>3</rows>}
+
+\texttt{<cols>3</cols>}
+
+\texttt{<dt>d</dt>}
+
+\texttt{<data>}
+
+\texttt{ 6.5746697944293521e+002 0. 3.1950000000000000e+002}
+
+\texttt{ 0. 6.5746697944293521e+002 2.3950000000000000e+002}
+
+\texttt{ 0. 0. 1.}
+
+\texttt{</data></Camera\_Matrix>}
+
+\texttt{<Distortion\_Coefficients type\_id="opencv-matrix">}
+
+\texttt{<rows>5</rows>}
+
+\texttt{<cols>1</cols>}
+
+\texttt{<dt>d</dt>}
+
+\texttt{<data>}
+
+\texttt{ -4.1802327176423804e-001 5.0715244063187526e-001 0. 0. -5.7843597214487474e-001</data></Distortion\_Coefficients>}}
  
-Tabela 3.9: Exemplo de arquivo de calibração do OpenCV.
+Tabela 3.9: Exemplo de arquivo de calibração do \textit{OpenCV}.
 
-Deve ser convertido para um arquivo no formato .cfg de modo que:
+Deve ser convertido para um arquivo no formato \textit{.cfg} de modo que:
 
-\texttt{fx fy cx cy k1 k2 p1 p2
-640 480
-"crop" / "full" / "none"
-640 480}
+{\setlength{\parindent}{0cm}\texttt{fx fy cx cy k1 k2 p1 p2}
 
-Tabela 3.10: Modelo de arquivo de configuração usando a calibração do OpenCV.
+\texttt{640 480}
+
+\texttt{"crop" / "full" / "none"}
+
+\texttt{640 480}}
+
+Tabela 3.10: Modelo de arquivo de configuração usando a calibração do \textit{OpenCV}.
 
 Lembrando de converter a notação científica, no caso desse exemplo o arquivo final ficará dessa forma:
 
+{\setlength{\parindent}{0cm}
+\texttt{0.065746697944293521 0.03195 0.065746697944293521 0.02395 -0.41802327176423804 0.50715244063187526 0 0}
 
-\texttt{0.065746697944293521 0.03195 0.065746697944293521 0.02395 -0.41802327176423804 0.50715244063187526 0 0 
-640 480
-crop
-640 480}
+\texttt{640 480}
 
-Tabela 3.11: Exemplo de arquivo de configuração final usando a calibração do OpenCV.
+\texttt{crop}
+
+\texttt{640 480}}
+
+Tabela 3.11: Exemplo de arquivo de configuração final usando a calibração do \textit{OpenCV}.
 
 \subsection{Utilização da ferramenta}
 
-Com a câmera calibrada pode-se agora começar a usar de fato a ferramenta, \textit{LSD-SLAM} é dividido em dois pacotes ROS, \texttt{lsd\_slam\_core} e \texttt{lsd\_slam\_viewer}. \texttt{lsd\_slam\_core} contém o sistema SLAM completo, enquanto o \texttt{lsd\_slam\_viewer} é opcionalmente usado para a visualização 3D.
+Com a câmera calibrada pode-se agora começar a usar de fato a ferramenta, \textit{LSD-SLAM} é dividido em dois pacotes \textit{ROS}, \texttt{lsd\_slam\_core} e \texttt{lsd\_slam\_viewer}. \texttt{lsd\_slam\_core} contém o sistema \textit{SLAM} completo, enquanto o \texttt{lsd\_slam\_viewer} é opcionalmente usado para a visualização 3D.
 Para impulsionar o sistema do \textit{LSD-SLAM} é o suficiente inicializar um primeiro quadro-chave com uma mapa de profundidade aleatório e alta variância. Com movimentos translacionais da câmera o suficiente nos primeiros segundos o algoritmo “trava” em uma certa configuração, e após algumas propagações de quadros-chaves ela converge para a configuração correta de profundidade.
 
 \subsubsection{\texttt{lsd\_slam\_viewer} - Visualizador 3D}
@@ -341,7 +410,7 @@ O visualizador além de ser usado para visualizar também pode ser usado para ex
 
 Tabela 3.12: Comando para executar o visualizador 3D.
 
-Esse comando irá abrir a tela de PointCloudViewer, nela é possível ver em tempo real como está a reconstrução do ambiente. Também é possível gravar e reproduzir a saída gerada pelas trajetórias usando respectivamente os comandos para gravar e reproduzir:
+Esse comando irá abrir a tela de \textit{PointCloudViewer}, nela é possível ver em tempo real como está a reconstrução do ambiente. Também é possível gravar e reproduzir a saída gerada pelas trajetórias usando respectivamente os comandos para gravar e reproduzir:
 
 \texttt{rosbag record /lsd\_slam/graph /lsd\_slam/keyframes /lsd\_slam/liveframes -o file\_pc.bag
 rosbag play file\_pc.bag}
@@ -350,9 +419,11 @@ Tabela 3.13: Comandos sequenciais para gravar e reproduzir a saída do visualiza
 
 Não haverá necessidade de reiniciar o visualizador, ele irá reiniciar automaticamente ao se carregar uma entrada diferente. Alguns atalhos úteis para usar na janela:
 
-r : Reset, limpa todos os dados mostrados.
-w : Imprime o número de total de pontos, pontos sendo mostrados no momento, Keyframes (Quadros-chave) e restrições no console.
-p : Escreve os pontos atualmente mostras como nuvem de pontos para o arquivo: lsd\_slam\_viewer/pc.ply, que pode ser aberto, por exemplo, no Meshlab. Use  em combinação com o sparsityFactor (ver anexo para detalhes) para reduzir o número de pontos escritos.
+\begin{description}
+	\item[r :]{Reset, limpa todos os dados mostrados.}
+	\item[w :]{Imprime o número de total de pontos, pontos sendo mostrados no momento, \textit{Keyframes} (Quadros-chave) e restrições no console.}
+	\item[p :]{Escreve os pontos atualmente mostras como nuvem de pontos para o arquivo: lsd\_slam\_viewer/pc.ply, que pode ser aberto, por exemplo, no \textit{Meshlab}. Use  em combinação com o \textit{sparsityFactor}  para reduzir o número de pontos escritos.}
+\end{description}	
 
 \subsubsection{Obtendo o mapa 3D usando o \texttt{live\_slam}}
 
@@ -360,8 +431,8 @@ Para obter o mapa ao vivo, usando uma câmera, o seguinte comando deve ser execu
 
 \texttt{rosrun lsd\_slam\_core live\_slam /image:=usb\_cam/image\_raw /camera\_info:=usb\_cam}
 
-Tabela 3.14: Comando para executar o \texttt{live\_slam} com calibração salva no ROS.
-Os parâmetros destacados em vermelhos estão preenchidos com os que o usuário configurou em sua máquina, no caso desse trabalho foi optados pelas nomenclaturas padrões de instalação. Ao se usar esse comando, apenas as dimensões da imagem e a matriz K das mensagens de \texttt{camera\_info} serão usadas, isto é, o vídeo tem que estar corrigido.
+Tabela 3.14: Comando para executar o \texttt{live\_slam} com calibração salva no \textit{ROS}.
+Os parâmetros destacados em vermelhos estão preenchidos com os que o usuário configurou em sua máquina, no caso desse trabalho foi optados pelas nomenclaturas padrões de instalação. Ao se usar esse comando, apenas as dimensões da imagem e a matriz $K$ das mensagens de \texttt{camera\_info} serão usadas, isto é, o vídeo tem que estar corrigido.
 
 Alternativamente, pode-se especificar um arquivo de calibração usando o seguinte comando:
 
@@ -373,66 +444,71 @@ Novamente, o texto em vermelho corresponde ao que foi configurado pelo usuário 
 
 As telas a seguir mostram exemplos da ferramenta rodando, nota-se que os pontos escritos na nuvem estão invertidos por causa da captura da câmera. 
 
-Figura 3.20 - DebugWindow DEPTH do \texttt{live\_slam.}
+Figura 3.20 - \textit{DebugWindow DEPTH} do \texttt{live\_slam.}
 
-Figura 3.21 - PointCloud referente à figura 3.20.
+Figura 3.21 - \textit{PointCloud} referente à figura 3.20.
 
 
-Figura 3.22 - DebugWindow DEPTH do\texttt{ live\_slam}, continuação.
+Figura 3.22 - \textit{DebugWindow DEPTH} do\texttt{ live\_slam}, continuação.
 
-Figura 3.23 - PointCloud referente à figura 3.22. continuação.
+Figura 3.23 - \textit{PointCloud} referente à figura 3.22. continuação.
 
-Figura 3.24 - DebugWindow DEPTH do \texttt{live\_slam}, continuação da execução.
+Figura 3.24 - \textit{DebugWindow DEPTH} do \texttt{live\_slam}, continuação da execução.
 
-Figura 3.25 - PointCloud referente à figura 3.24, continuação da reconstrução.
+Figura 3.25 - \textit{PointCloud} referente à figura 3.24, continuação da reconstrução.
 
-O output do \texttt{lsd\_slam\_core} está sendo transferido para o visualizador na janela “PointCloud Viewer” no formato de nuvem de pontos que podem ser rotacionados e observados em qualquer ângulo. A janela DebugWindow DEPTH é a janela que oferece informações sobre a execução do algoritmo incluindo:
+O output do \texttt{lsd\_slam\_core} está sendo transferido para o visualizador na janela \textit{PointCloud Viewer} no formato de nuvem de pontos que podem ser rotacionados e observados em qualquer ângulo. A janela \textit{DebugWindow DEPTH} é a janela que oferece informações sobre a execução do algoritmo incluindo:
 
-Map upd : A taxa em que os quadros estão sendo computados;
-Trk : A taxa de quadros do dataset/câmera;
-O terceiro parâmetro não possui identificação mas se encontra no formato X/Y/Z e significa rotação do quadro atual com o quadro original nos 3 eixos;
-Dens X\% : A densidade média dos pontos;
-Good X\% : A quantidade de pontos pontos bons que podem ser utilizados pelo algoritmo, importante para verificar condições de distorção na imagem da câmera como: iluminação, foco, movimentação, taxa de bits insuficiente na compressão ou similaridade daquele quadro atual com os feitos anteriormente;
-Scale X\% : Escala entre os pontos
-Número de pontos utilizados pelo algoritmo;
-Quadro atual;
-Numeração de quadro refinador por keyframe.
+\begin{description}
+	\item[Map upd :]{A taxa em que os quadros estão sendo computados.}
+	\item[Trk :]{A taxa de quadros do \textit{dataset}/câmera.}
+	\item[X/Y/Z :]{O terceiro parâmetro não possui identificação mas se encontra no formato X/Y/Z e significa rotação do quadro atual com o quadro original nos 3 eixos.}
+	\item[Dens X\% :]{A densidade média dos pontos.}
+	\item[Good X\% :]{ A quantidade de pontos pontos bons que podem ser utilizados pelo algoritmo, importante para verificar condições de distorção na imagem da câmera como: iluminação, foco, movimentação, taxa de bits insuficiente na compressão ou similaridade daquele quadro atual com os feitos anteriormente.}
+	\item[Scale X\% :]{Escala entre os pontos.}
+	\item{Número de pontos utilizados pelo algoritmo.}
+	\item{Quadro atual.}
+	\item{Numeração de quadro refinador por keyframe.}
+\end{description}
 
-Além disso as cores representam o grau de proximidade de cada gradiente do quadro. Tomando o verde como referência, quanto mais vermelho mais perto o gradiente está da câmera em relação aos gradientes verdes, nesse caso eles estão entre o verde e a câmera. Em contrapartida quanto mais azul estiver o gradiente mais longe da camera em relação ao gradiente verde está da câmera. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o keyframe atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
+Além disso as cores representam o grau de proximidade de cada gradiente do quadro. Tomando o verde como referência, quanto mais vermelho mais perto o gradiente está da câmera em relação aos gradientes verdes, nesse caso eles estão entre o verde e a câmera. Em contrapartida quanto mais azul estiver o gradiente mais longe da camera em relação ao gradiente verde está da câmera. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
 
 Essas informações são comuns tanto ao \texttt{live\_slam} quanto ao \texttt{dataset\_slam}. O método \texttt{live\_slam} se caracteriza por servir de teste do ambiente para se fazer o dataset. Ele possui suas vantagens e desvantagens:
 
 Vantagens:
 
-O funcionamento do algoritmo pode ser visto em tempo real.
-A condição de iluminação pode ser testada usando esse modo mais rapidamente.
+\begin{itemize}
+	\item{O funcionamento do algoritmo pode ser visto em tempo real.}
+	\item{A condição de iluminação pode ser testada usando esse modo mais rapidamente.}
+\end{itemize}
 
 Desvantagens:
 
-É necessário utilizar em um computador portátil para que possa-se mover com a câmera.
-A mobilidade enquanto se usa esse método é prejudicada.
-É mais difícil mudar os parâmetros enquanto roda o algoritmo.
-Baixa reprodutividade.
-Consumo de recursos do computador alto.
+\begin{itemize}
+	\item{É necessário utilizar em um computador portátil para que possa-se mover com a câmera.}
+	\item{A mobilidade enquanto se usa esse método é prejudicada.}
+	\item{É mais difícil mudar os parâmetros enquanto roda o algoritmo.}
+	\item{Baixa reprodutividade.}
+	\item{Consumo de recursos do computador alto.}
+\end{itemize}	
 
-Também é possível salvar o vídeo capturado usando o parâmetro do \texttt{lsd\_slam} viewer saveAllVideo, no entanto essa operação é ainda mais custosa, na máquina usada para os testes essa opção não foi possível ser utilizada.
+Também é possível salvar o vídeo capturado usando o parâmetro do \texttt{lsd\_slam\_viewer} \textit{saveAllVideo}, no entanto essa operação é ainda mais custosa, nas máquinas usadas para os testes essa opção não foi possível ser utilizada.
 
 \subsubsection{Obtendo o mapa 3D usando o \texttt{dataset\_slam}}
 
-Para obter o mapa utilizando um dataset, execute o seguinte comando:
+Para obter o mapa utilizando um \textit{dataset}, execute o seguinte comando:
 
 \texttt{rosrun lsd\_slam\_core dataset\_slam \_files:=/caminho/para/seu/dataset \_hz:=<hz> \_calib:=/caminho/para/seu/arquivodeccalibracao}
 
 Tabela 3.16: Comando para executar o \texttt{dataset\_slam} com um arquivo de calibração externo
 
-Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu dataset, <hz> idealmente deverá ser trocado para 0, o que permite o track e mapping sequencial, mas haverá uma queda de performance do que a contrapartida em tempo real. Por fim, troque /caminho/para/seu/arquivodeccalibracao pelo caminho do seu arquivo de configuração resultante na seção 3.2.3.6.
-Segue abaixo algumas capturas de tela com o comando sendo executado:
+Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, \texttt{<hz>} idealmente deverá ser trocado para 0, o que permite o tracking e mapping sequencial, mas haverá uma queda de performance do que a contrapartida em tempo real. Por fim, troque \texttt{/caminho/para/seu/arquivodeccalibracao} pelo caminho do seu arquivo de configuração resultante na seção 3.2.3.6. Segue abaixo algumas capturas de tela com o comando sendo executado:
 
-Figuras 3.26 e 3.27 - PointCloud e DebugWindow DEPTH do \texttt{dataset\_slam}.
+Figuras 3.26 e 3.27 - \textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam}.
 
-	Figuras 3.28 e 3.29 - PointCloud e DebugWindow DEPTH do \texttt{dataset\_slam}.
+Figuras 3.28 e 3.29 - \textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam}.
 
-É necessário também, dependendo do dataset usado, um refinamento dos parâmetros de visualização e também da forma que o \texttt{lsd\_slam\_core} opera, pois com os parâmetros default, é possível perceber que a grama em frente ao prédio atrapalhou a captura dos gradientes.
+É necessário também, dependendo do \textit{dataset} usado, um refinamento dos parâmetros de visualização e também da forma que o \texttt{lsd\_slam\_core} opera, pois com os parâmetros padrões é possível perceber que a grama em frente ao prédio atrapalhou a captura dos gradientes.
 
 \subsubsection{Parâmetros \texttt{rqt\_reconfigure}}
 
@@ -446,42 +522,42 @@ E então será aberta uma janela com vários parâmetros de acordo com quais jan
 
 Figura 3.30 - Tela do \texttt{rqt\_reconfigure}
 
-\subsubsubsection{minUseGrad}
+\subsubsubsection{\textit{minUseGrad}}
 
 Esse parâmetro indica a extensão mínima do gradiente para que o algoritmo o reconheça. Em outras palavras, quanto maior esse valor mais restritivo será a captura de gradientes. diminuindo esse parâmetro, gradientes pequenos como texturas irregulares, grama e outros gradientes não uniformes serão reconhecidos. Deve-se analisar cuidadosamente o quanto do ambiente deseja-se capturar e ajustar esse parâmetro de acordo, assim como o exemplo a seguir:
 
 
-Figura 3.31 - minUseGrad no seu valor padrão de 5.0
+Figura 3.31 - \textit{minUseGrad} no seu valor padrão de 5.0
 
-Figura 3.32 - minUseGrad em 25.0
+Figura 3.32 - \textit{minUseGrad} em 25.0
 
-Pelos exemplos dá para perceber que usar o minUseGrad no seu valor padrão de 5.0 acrescenta muito ruido devido à grama, além da própria grama ser uma textura que pode ser facilmente confundida gerando erros de relocalização mais à frente na execução. Ao diminuir o parâmetro, a continuidade do gradiente precisa ser mais uniforme para poder ser aceito pelo algoritmo. Não há heurística para a escolha desse valor e ele deve ser testado para cada ambiente. Também vale frisar que aumentar demais esse valor pode cortar alguns gradientes perfeitamente utilizáveis mas que são menos uniformes como por exemplo a passarela até o prédio na imagem.
+Pelos exemplos dá para perceber que usar o \textit{minUseGrad} no seu valor padrão de 5.0 acrescenta muito ruido devido à grama, além da própria grama ser uma textura que pode ser facilmente confundida gerando erros de relocalização mais à frente na execução. Ao diminuir o parâmetro, a continuidade do gradiente precisa ser mais uniforme para poder ser aceito pelo algoritmo. Não há heurística para a escolha desse valor e ele deve ser testado para cada ambiente. Também vale frisar que aumentar demais esse valor pode cortar alguns gradientes perfeitamente utilizáveis mas que são menos uniformes como por exemplo a passarela até o prédio na imagem.
 
-\subsubsubsection{KFUsageWeight e KFDistanceWeight}
-
-
-Esses parâmetros influenciam na frequência em que novos keyframes são obtidos. O KFUsageWeight é em razão da quantidade de quadros usados para refinar, nesse caso um número maior faz com que o algoritmo capture novos keyframes diminuindo a quantidade de refinamento em cada um consequentemente, como no exemplo a seguir:
+\subsubsubsection{\textit{KFUsageWeight e KFDistanceWeight}}
 
 
-Figura 3.33 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFUsageWeight padrão de 4.0 e KFDistWeight padrão de 3.0
+Esses parâmetros influenciam na frequência em que novos keyframes são obtidos. O \textit{KFUsageWeight} é em razão da quantidade de quadros usados para refinar, nesse caso um número maior faz com que o algoritmo capture novos keyframes diminuindo a quantidade de refinamento em cada um consequentemente, como no exemplo a seguir:
 
-Figura 3.34 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFUsageWeight máximo de 20.0
 
-Figura 3.35 - PointCloud e KeyFrames do corredor do 1º andar do DCOMP usando o KFUsageWeight máximo de 20.0
+Figura 3.33 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0
 
-Figura 3.36 - PointCloud e KeyFrames do corredor do 1º andar do DCOMP usando o KFUsageWeight máximo de 20.0
+Figura 3.34 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
 
-Figura 3.37 - PointCloud e KeyFrames do corredor do 1º andar do Dcomp usando o KFUsageWeight máximo de 20.0
+Figura 3.35 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
 
-Nas janelas do PointCloud, as linhas verdes e vermelhas representam constraints entre keyframes e as pirâmides azuis são keyframes e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também dá para ver que há muito mais constraints e keyframes nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor nesse caso, há uma carga muito maior desse processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de keyframes que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores com potencia reduzida. Da mesma forma o KFDistWeight também modifica a quantidade de keyframes, mas ao contrário do KFUsageWeight, ele faz a partir da distancia, ou seja, caso o dataset possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de keyframes no primeiro caso e o aumento de keyframes no segundo caso. Isso faz com que o refinamento dos keyframes seja mais dependente do dataset fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo dataset usado acima só que com o valor máximo do KFDistWeight.
+Figura 3.36 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
 
-Figura 3.38 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFDistWeight máximo de 20.0
+Figura 3.37 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do Dcomp usando o KFUsageWeight máximo de 20.0
 
-Figura 3.39 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFUsageWeight máximo de 20.0
+Nas janelas do \textit{PointCloud}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também dá para ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor nesse caso, há uma carga muito maior desse processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores com potência reduzida. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distancia, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
 
-Como o novo exemplo demonstra, os keyframes se comparados aos do valor padrão são mais numerosos, e o resultado geral também foi melhor. O aumento do parâmetro não é tão custoso para máquina como é no KFUsageWeight, assim  há a possibilidade de usá-lo em computadores com poder de processamento reduzido ou no \texttt{live\_slam}. É importante a experimentação desses parâmetros para se obter o melhor resultado de acordo com o dataset utilizado e a máquina utilizada, para concluir essa sessão, segue um exemplo do valor máximo de ambos os parâmetros juntos.
+Figura 3.38 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0
 
-Figura 3.40 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFUsageWeight e KFDistWeight máximos de 20.0
+Figura 3.39 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
 
-Figura 3.41 - PointCloud e keyframes do corredor do 1º andar do DCOMP usando o KFUsageWeight e KFDistWeight máximos de 20.0
+Como o novo exemplo demonstra, os \textit{keyframes} se comparados aos do valor padrão são mais numerosos, e o resultado geral também foi melhor. O aumento do parâmetro não é tão custoso para máquina como é no \textit{KFUsageWeight}, assim há a possibilidade de usá-lo em computadores com poder de processamento reduzido ou no \texttt{live\_slam}. É importante a experimentação desses parâmetros para se obter o melhor resultado de acordo com o \textit{dataset} utilizado e a máquina utilizada, para concluir essa sessão, segue um exemplo do valor máximo de ambos os parâmetros juntos.
+
+Figura 3.40 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0
+
+Figura 3.41 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0
 
