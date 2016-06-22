@@ -131,6 +131,9 @@ Equações \eqref{eq7}, \eqref{eq8}: Representações de $f$ e $U$.
 
 O sistema de equações $U^{T}f = 0$ é linear, homogêneo e possui 9 incógnitas, com 8 pares de pontos correspondentes. Caso seja possível obter 8 casamentos, então é possível, no geral, obter uma solução única para \textbf{F}, definida por um fator de escala. Essa abordagem é conhecida como o algoritmo de 8 pontos.
 
+\section{\textit{Simultaneous Localization And Mapping}}
+
+O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. Uma diferença com relação ao \textit{SFM} é que enquanto algoritmos e ferramentas que o utilizam \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
 
 \section{Algoritmos de detecção de características}
 
@@ -148,10 +151,6 @@ Infelizmente as combinações encontradas podem ser errôneas, logo é preciso e
 
 As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
 
-
-\section{\textit{Simultaneous Localization And Mapping}}
-
-O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
 
 \section{\textit{LSD-SLAM}}
 
