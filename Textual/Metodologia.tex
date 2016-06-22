@@ -191,7 +191,7 @@ Todos esses fatores interferem no reconhecimento do padrão fazendo com que o re
 
 Começa-se obtendo as dependências necessárias e compilando o driver usando os seguintes comandos respectivamente:
 
-\begin{table}[!ht]
+\begin{table}[!ht]\label{tb:1}
 \begin{tabular}{| p{\textwidth}|}
 \hline
 \texttt{\$ rosdep install camera\_calibration} \\
@@ -205,10 +205,10 @@ Começa-se obtendo as dependências necessárias e compilando o driver usando os
 
 Ao final da sessão 5, a câmera deve estar configurada e funcionando. Para ter certeza que a câmera está de fato enviando seus dados para o \textit{ROS}, usa-se o seguinte comando:
 
-\begin{table}[!ht]
+\begin{table}[!ht]\label{tb:2}
 \begin{tabular}{| p{\textwidth}|}
 \hline
-\texttt{\$ rostopic list}
+\texttt{\$ rostopic list}\\
 \hline
 \end{tabular}
 \caption{Comandos para inicializar a instalação do módulo que fará a calibração da câmera}
@@ -216,7 +216,7 @@ Ao final da sessão 5, a câmera deve estar configurada e funcionando. Para ter 
 
 Esse comando irá listar todos os topics que são os nodos ativos no \textit{ROS}. A saída deve conter esses \textit{topics}:
 
-\begin{table}[!ht]
+\begin{table}[!ht]\label{tb:3}
 \begin{tabular}{| p{\textwidth}|}
 \hline
 \texttt{/usb\_cam/camera\_info} \\
@@ -232,13 +232,13 @@ Caso a saída não apresente erros, a câmera está pronta para ser calibrada.
 
 Para começar a calibração é necessário carregar os topics com as imagens da câmera que será calibrada usando o seguinte comando:
 
-\begin{table}[!ht]
+\begin{table}[!ht]\label{tb:4}
 \begin{tabular}{| p{\textwidth}|}
 \hline
-\texttt{\$ rosrun camera\_calibration cameracalibrator.py --size 9x6 --square 0.108 image:=/usb\_cam/image\_raw camera:=/usb\_cam}
+\texttt{\$ rosrun camera\_calibration cameracalibrator.py --size 9x6 --square 0.108 image:=/usb\_cam/image\_raw camera:=/usb\_cam}\\
 \hline
 \end{tabular}
-\caption{ Inicialização do módulo que calibrará a câmera}
+\caption{Inicialização do módulo que calibrará a câmera}
 \end{table}
 
 Vale frisar a importância de que o parâmetro \texttt{--size} é o tamanho do tabuleiro, no entanto ele conta não as casas e sim as linhas entre as casas:
@@ -255,7 +255,12 @@ Esse padrão por exemplo tem 10x7 casas, no entanto suas linhas são 9x6. O par�
 O parâmetro \texttt{--square} é o tamanho real do lado das casas do tabuleiro que imprimimos em metros. No caso o comando acima indica que cada casa do tabuleiro possui 0,108 metros ou 10,8 centímetros. É recomendado que o usuário que reproduza estes passos use uma régua para medir o seu tabuleiro.
 Após executar o comando, a janela de calibração será aberta, como mostra a figura 3.13:
 
-Figura 3.13 - Janela de configuração reconhecendo do tabuleiro
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-13.png}
+	\caption{Janela de configuração reconhecendo do tabuleiro}
+	\label{fig3:13}
+\end{figure}
 
 \subsubsection{Movendo o tabuleiro}
 
@@ -274,7 +279,35 @@ Para se obter uma boa calibração é necessário mover o tabuleiro pelo quadro 
 
 A cada passo segure o tabuleiro até que que apareça na imagem o destaque do padrão.
 
-Figuras 3.14-3.19 - Demonstração de posições para calibração
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \caption{Desmonstração de posição para calibração \#1}\label{fig3:14}
+  \includegraphics[width=\linewidth]{Imagens/figura3-14.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \caption{Desmonstração de posição para calibração \#2}\label{fig3:15}
+  \includegraphics[width=\linewidth]{Imagens/figura3-15.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \caption{Desmonstração de posição para calibração \#3}\label{fig3:16}
+  \includegraphics[width=\linewidth]{Imagens/figura3-16.png}
+\endminipage
+\end{figure}
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-17.png}
+  \caption{Desmonstração de posição para calibração \#4}\label{fig3:17}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-18.png}
+  \caption{Desmonstração de posição para calibração \#5}\label{fig3:18}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Imagens/figura3-19.png}
+  \caption{Desmonstração de posição para calibração \#6}\label{fig3:19}
+\endminipage
+\end{figure}
 
 Ao mover o tabuleiro, podem ser percebidas 4 Barras (X,Y,\textit{Size},\textit{Skew}) na barra lateral que aumentam de tamanho conforme ele vai capturando amostras. Quando o botão \textit{CALIBRATE} estiver iluminado quer dizer que há dados o suficiente para calibrar, ao ser clicado, começará o processo de calibração.
 A calibração dura em média um minuto. A janela estará cinza e inativa durante esse tempo, nesse caso a calibração está ocorrendo e o programa não travou, bastando apenas aguardar.
@@ -284,70 +317,52 @@ A calibração dura em média um minuto. A janela estará cinza e inativa durant
 Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como essa. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
 
 
-{\setlength{\parindent}{0cm}
+%{\setlength{\parindent}{0cm}
+\begin{table}[!ht]\label{tb:5}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{D = [-0.33758562758914146, 0.11161239414304096, -0.00021819272592442094, -3.029195446330518e-05]}\\
+ \texttt{K = [430.21554970319971, 0.0, 306.6913434743704, 0.0, 430.53169252696676, 227.22480030078816, 0.0, 0.0, 1.0{]}}\\
+\texttt{R = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0{]}}\\
+\texttt{P = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]}\\
+ \texttt{\# oST version 5.0 parameters}\\
+\\
+ \texttt{[image]}\\
+\\
+ \texttt{width}\\
+ \texttt{640}\\
+\\
+ \texttt{height}\\
+ \texttt{480}\\
+\\
+ \texttt{[narrow\_stereo/left]}\\
+\\
+ \texttt{camera matrix}\\
+ \texttt{430.215550 0.000000 306.691343}\\
+ \texttt{0.000000 430.531693 227.224800}\\
+ \texttt{0.000000 0.000000 1.000000}\\
+\\
+ \texttt{distortion}\\
+ \texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}\\
+\\
+ \texttt{rectification}\\
+ \texttt{1.000000 0.000000 0.000000}\\
+ \texttt{0.000000 1.000000 0.000000}\\
+ \texttt{0.000000 0.000000 1.000000}\\
+\\
+ \texttt{projection}\\
+ \texttt{1.000000 0.000000 0.000000 0.000000}\\
+\\
+ \texttt{0.000000 1.000000 0.000000 0.000000}\\
+ \texttt{0.000000 0.000000 1.000000 0.000000}\\
+\hline
+\end{tabular}
+\caption{Resultados da calibração impressos no console}
+\end{table}
 
-\texttt{D = {[}-0.33758562758914146, 0.11161239414304096, -0.00021819272592442094, -3.0291954\\46330518e-05{]}}
-
- \texttt{K = {[}430.21554970319971, 0.0, 306.6913434743704, 0.0, 430.53169252696676, 227.22480030078816, 0.0, 0.0, 1.0{]}}
-
-\texttt{R = {[}1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0{]}}
-
-\texttt{P = {[}1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0{]}}
-
- \texttt{\# oST version 5.0 parameters}
-
-
- \texttt{{[}image{]}}
-
-
- \texttt{width}
-
- \texttt{640}
-
-
-
- \texttt{height}
-
- \texttt{480}
-
-
-
- \texttt{{[}narrow\_stereo/left{]}}
-
-
- \texttt{camera matrix}
-
- \texttt{430.215550 0.000000 306.691343}
-
- \texttt{0.000000 430.531693 227.224800}
-
- \texttt{0.000000 0.000000 1.000000}
-
-
- \texttt{distortion}
-
- \texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}
-
-
- \texttt{rectification}
-
- \texttt{1.000000 0.000000 0.000000}
-
- \texttt{0.000000 1.000000 0.000000}
-
- \texttt{0.000000 0.000000 1.000000}
+%}
 
 
- \texttt{projection}
-
- \texttt{1.000000 0.000000 0.000000 0.000000}
-
- \texttt{0.000000 1.000000 0.000000 0.000000}
-
- \texttt{0.000000 0.000000 1.000000 0.000000}
-}
-
-Tabela 3.5: Resultados da calibração impressos no console
  
 Os valores destacados serão utilizados em breve. Uma calibração bem sucedida resultará em linhas retas na vida real aparecerem como linhas retas na imagem corrigida. Uma calibração falha normalmente resulta em imagens em branco, irreconhecíveis ou que não preservam as linhas retas.
 Após uma calibração bem sucedida pode-se ajustar o deslizador \textit{SCALE} no topo da janela de calibração para mudar o tamanho da imagem retificada. Uma escala de 0.0 significa que a imagem está formatada de modo que os \textit{pixels} pretos criados para a preencher os espaços deixados pelos \textit{pixels} movidos não estejam presentes. A imagem não terá as curvas pretas de correção mas alguns \textit{pixels} da imagem original serão descartados. A escala de 1.0 significa que todos os \textit{pixels} da imagem original são visíveis mas a imagem corrigida tem bordas pretas onde não há \textit{pixels} de entrada da imagem original.
@@ -357,46 +372,41 @@ Se a calibração for satisfatória, o botão \textit{COMMIT} deve ser clicado p
 
 Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no entanto é interessante criar um arquivo de configuração para ser facilmente reutilizado caso se queira usar essa configuração em outra máquina ou salvar a calibração em um local mais seguro. Esse arquivo de calibração também é importante pois o \texttt{dataset\_slam} necessita dele para executar, ou seja, ele não usa a calibração salva pelo calibrador em disco. Na sessão anterior(3.2.3.6) foram destacadas em laranja alguns valores:
 
-{\setlength{\parindent}{0cm}
-\texttt{width}
+%{\setlength{\parindent}{0cm}
+\begin{table}[!ht]\label{tb:6}
+\begin{tabular}{| p{\textwidth}|}
+\hline\texttt{width}\\
+\texttt{640}\\
+\\
+\texttt{height}\\
+\texttt{480}\\
+\\
+\texttt{camera matrix}\\
+\texttt{430.215550 0.000000 306.691343}\\
+\texttt{0.000000 430.531693 227.224800}\\
+\texttt{0.000000 0.000000 1.000000}\\
+\\
+\texttt{distortion}\\
+\texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}\\
+\hline
+\end{tabular}
+\caption{Informações relevantes extraídas da tabela \ref{tb:5}}
+\end{table}
 
-\texttt{640}
-
-
-\texttt{height}
-
-\texttt{480}
-
-
-\texttt{camera matrix}
-
-\texttt{430.215550 0.000000 306.691343}
-
-\texttt{0.000000 430.531693 227.224800}
-
-\texttt{0.000000 0.000000 1.000000}
-
-
-\texttt{distortion}
-
-\texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}}
-
-
-
-Tabela 3.6: Informações relevantes extraídas da tabela 3.2.
 
 Esses valores serão usados para compor o arquivo. Em um novo documento de texto insira o seguinte modelo:
 
-{\setlength{\parindent}{0cm}
-\texttt{fx/width fy/height cx/width cy/height d}
-
-\texttt{in\_width in\_height}
-
-\texttt{"crop" / "full" / "none"}
-
-\texttt{out\_width out\_height}}
-
-Tabela 3.7: Modelo de arquivo de configuração com legenda
+\begin{table}[!ht]\label{tb:7}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{fx/width fy/height cx/width cy/height d}\\
+\texttt{in\_width in\_height}\\
+\texttt{"crop" / "full" / "none"}\\
+\texttt{out\_width out\_height}\\
+\hline
+\end{tabular}
+\caption{Modelo de arquivo de configuração com legenda}
+\end{table}
 
 Nesse caso deve-se fazer os cálculos substituindo os valores do modelo com os da suas cores respondentes acima, quanto mais precisas as calculadoras usadas melhor. Na terceira linha:
 
@@ -406,76 +416,70 @@ Nesse caso deve-se fazer os cálculos substituindo os valores do modelo com os d
 
 Recomenda-se o uso do valor \texttt{crop}. O resultado final deve ficar assim de acordo com o o seguinte exemplo:
 
-{\setlength{\parindent}{0cm}
-\texttt{0.672211796875 0.89694102708333333333333333333333 0.4792052234375 0.473385 -0.337586 0.111612 -0.000218 -0.000030 0.0000}
-
-\texttt{640 480}
-
-\texttt{crop}
-
-\texttt{640 480}}
-
-Tabela 3.8: Exemplo de arquivo de configuração final.
+\begin{table}[!ht]\label{tb:8}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{0.672211796875 0.89694102708333333333333333333333 0.4792052234375 0.473385 -0.337586 0.111612 -0.000218 -0.000030 0.0000}\\
+\texttt{640 480}\\
+\texttt{crop}\\
+\texttt{640 480}\\
+\hline
+\end{tabular}
+\caption{Exemplo de arquivo de configuração final}
+\end{table}
 
 Uma observação é que ao inserir os resultados no arquivo, deve-se certificar que o ponto flutuante é ‘.’(ponto) e não ‘,’(vírgula) pois isso fará com que o arquivo não funcione corretamente. Após isso arquivo deve ser salvo como texttt{nome\_do\_arquivo\_de\_calibração.cfg} e estará pronto para ser usado. Se estiver usando um arquivo de calibração do \textit{OpenCV}, que foi o usado no \textit{PhotoGuide}, a transformação é similar ao resultado da calibração do \textit{LSD-SLAM}. Considerando a seguinte saída da calibração do \textit{OpenCV}:
 
-{\setlength{\parindent}{0cm}
-\texttt{<Camera\_Matrix type\_id="opencv-matrix">}
-
-\texttt{<rows>3</rows>}
-
-\texttt{<cols>3</cols>}
-
-\texttt{<dt>d</dt>}
-
-\texttt{<data>}
-
-\texttt{ 6.5746697944293521e+002 0. 3.1950000000000000e+002}
-
-\texttt{ 0. 6.5746697944293521e+002 2.3950000000000000e+002}
-
-\texttt{ 0. 0. 1.}
-
-\texttt{</data></Camera\_Matrix>}
-
-\texttt{<Distortion\_Coefficients type\_id="opencv-matrix">}
-
-\texttt{<rows>5</rows>}
-
-\texttt{<cols>1</cols>}
-
-\texttt{<dt>d</dt>}
-
-\texttt{<data>}
-
-\texttt{ -4.1802327176423804e-001 5.0715244063187526e-001 0. 0. -5.7843597214487474e-001</data></Distortion\_Coefficients>}}
- 
-Tabela 3.9: Exemplo de arquivo de calibração do \textit{OpenCV}.
+\begin{table}[!ht]\label{tb:9}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{<Camera\_Matrix type\_id="opencv-matrix">}\\
+\texttt{<rows>3</rows>}\\
+\texttt{<cols>3</cols>}\\
+\texttt{<dt>d</dt>}\\
+\texttt{<data>}\\
+\texttt{ 6.5746697944293521e+002 0. 3.1950000000000000e+002}\\
+\texttt{ 0. 6.5746697944293521e+002 2.3950000000000000e+002}\
+\texttt{ 0. 0. 1.}\\
+\texttt{</data></Camera\_Matrix>}\\
+\texttt{<Distortion\_Coefficients type\_id="opencv-matrix">}\\
+\texttt{<rows>5</rows>}\\
+\texttt{<cols>1</cols>}\\
+\texttt{<dt>d</dt>}\\
+\texttt{<data>}\\
+\texttt{ -4.1802327176423804e-001 5.0715244063187526e-001 0. 0. -5.7843597214487474e-001</data></Distortion\_Coefficients>}\\
+ \hline
+\end{tabular}
+\caption{Exemplo de arquivo de calibração do \textit{OpenCV}}
+\end{table}
 
 Deve ser convertido para um arquivo no formato \textit{.cfg} de modo que:
 
-{\setlength{\parindent}{0cm}\texttt{fx fy cx cy k1 k2 p1 p2}
-
-\texttt{640 480}
-
-\texttt{"crop" / "full" / "none"}
-
-\texttt{640 480}}
-
-Tabela 3.10: Modelo de arquivo de configuração usando a calibração do \textit{OpenCV}.
+\begin{table}[!ht]\label{tb:10}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{fx fy cx cy k1 k2 p1 p2}\\
+\texttt{640 480}\\
+\texttt{"crop" / "full" / "none"}\\
+\texttt{640 480}\\
+ \hline
+\end{tabular}
+\caption{Modelo de arquivo de configuração usando a calibração do \textit{OpenCV}}
+\end{table}
 
 Lembrando de converter a notação científica, no caso desse exemplo o arquivo final ficará dessa forma:
 
-{\setlength{\parindent}{0cm}
-\texttt{0.065746697944293521 0.03195 0.065746697944293521 0.02395 -0.41802327176423804 0.50715244063187526 0 0}
-
-\texttt{640 480}
-
-\texttt{crop}
-
-\texttt{640 480}}
-
-Tabela 3.11: Exemplo de arquivo de configuração final usando a calibração do \textit{OpenCV}.
+\begin{table}[!ht]\label{tb:11}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{0.065746697944293521 0.03195 0.065746697944293521 0.02395 -0.41802327176423804 0.50715244063187526 0 0}\\
+\texttt{640 480}\\
+\texttt{crop}\\
+\texttt{640 480}\\
+ \hline
+\end{tabular}
+\caption{Exemplo de arquivo de configuração final usando a calibração do \textit{OpenCV}}
+\end{table}
 
 \subsection{Utilização da ferramenta}
 
@@ -486,16 +490,26 @@ Para impulsionar o sistema do \textit{LSD-SLAM} é o suficiente inicializar um p
 
 O visualizador além de ser usado para visualizar também pode ser usado para exportar a nuvem de pontos como .ply. Para operar ao vivo, o seguinte comando é executado:
 
-\texttt{rosrun lsd\_slam\_viewer viewer}
-
-Tabela 3.12: Comando para executar o visualizador 3D.
+\begin{table}[!ht]\label{tb:12}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{rosrun lsd\_slam\_viewer viewer}\\
+\hline
+\end{tabular}
+\caption{Comando para executar o visualizador 3D}
+\end{table}
 
 Esse comando irá abrir a tela de \textit{PointCloudViewer}, nela é possível ver em tempo real como está a reconstrução do ambiente. Também é possível gravar e reproduzir a saída gerada pelas trajetórias usando respectivamente os comandos para gravar e reproduzir:
 
+\begin{table}[!ht]\label{tb:13}
+\begin{tabular}{| p{\textwidth}|}
+\hline
 \texttt{rosbag record /lsd\_slam/graph /lsd\_slam/keyframes /lsd\_slam/liveframes -o file\_pc.bag
-rosbag play file\_pc.bag}
-
-Tabela 3.13: Comandos sequenciais para gravar e reproduzir a saída do visualizador no formato .bag
+rosbag play file\_pc.bag}\\
+\hline
+\end{tabular}
+\caption{Comandos sequenciais para gravar e reproduzir a saída do visualizador no formato .bag}
+\end{table}
 
 Não haverá necessidade de reiniciar o visualizador, ele irá reiniciar automaticamente ao se carregar uma entrada diferente. Alguns atalhos úteis para usar na janela:
 
@@ -509,33 +523,73 @@ Não haverá necessidade de reiniciar o visualizador, ele irá reiniciar automat
 
 Para obter o mapa ao vivo, usando uma câmera, o seguinte comando deve ser executado:
 
-\texttt{rosrun lsd\_slam\_core live\_slam /image:=usb\_cam/image\_raw /camera\_info:=usb\_cam}
+\begin{table}[!ht]\label{tb:14}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{rosrun lsd\_slam\_core live\_slam /image:=usb\_cam/image\_raw /camera\_info:=usb\_cam}\\
+\hline
+\end{tabular}
+\caption{Comando para executar o \texttt{live\_slam} com calibração salva no \textit{ROS}}
+\end{table}
 
-Tabela 3.14: Comando para executar o \texttt{live\_slam} com calibração salva no \textit{ROS}.
 Os parâmetros destacados em vermelhos estão preenchidos com os que o usuário configurou em sua máquina, no caso desse trabalho foi optados pelas nomenclaturas padrões de instalação. Ao se usar esse comando, apenas as dimensões da imagem e a matriz $K$ das mensagens de \texttt{camera\_info} serão usadas, isto é, o vídeo tem que estar corrigido.
 
 Alternativamente, pode-se especificar um arquivo de calibração usando o seguinte comando:
 
-\texttt{rosrun lsd\_slam\_core live\_slam /image:=usb\_cam/image\_raw \_calib:=/caminho/para/seu/arquivodeccalibracao}
-
-Tabela 3.15: Comando para executar o \texttt{live\_slam} com arquivo de calibração externo.
+\begin{table}[!ht]\label{tb:15}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{rosrun lsd\_slam\_core live\_slam /image:=usb\_cam/image\_raw \_calib:=/caminho/para/seu/arquivodeccalibracao}\\
+\hline
+\end{tabular}
+\caption{Comando para executar o \texttt{live\_slam} com arquivo de calibração externo}
+\end{table}
 
 Novamente, o texto em vermelho corresponde ao que foi configurado pelo usuário anteriormente. O texto \texttt{/caminho/para/seu/arquivodeccalibracao} deve ser trocado para o caminho do arquivo de calibração criado.
 
 As telas a seguir mostram exemplos da ferramenta rodando, nota-se que os pontos escritos na nuvem estão invertidos por causa da captura da câmera. 
 
-Figura 3.20 - \textit{DebugWindow DEPTH} do \texttt{live\_slam.}
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-20.jpg}
+	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} \#1}
+	\label{fig3:20}
+\end{figure}
 
-Figura 3.21 - \textit{PointCloud} referente à figura 3.20.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-21.jpg}
+	\caption{\textit{PointCloud} referente à figura \ref{fig3:20}}
+	\label{fig3:21}
+\end{figure}
 
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-22.jpg}
+	\caption{\textit{DebugWindow DEPTH} do\texttt{ live\_slam} \#2}
+	\label{fig3:22}
+\end{figure}
 
-Figura 3.22 - \textit{DebugWindow DEPTH} do\texttt{ live\_slam}, continuação.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-23.jpg}
+	\caption{\textit{PointCloud} referente à figura \ref{3:22}. continuação}
+	\label{fig3:23}
+\end{figure}
 
-Figura 3.23 - \textit{PointCloud} referente à figura 3.22. continuação.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-24.jpg}
+	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} \#3}
+	\label{fig3:24}
+\end{figure}
 
-Figura 3.24 - \textit{DebugWindow DEPTH} do \texttt{live\_slam}, continuação da execução.
-
-Figura 3.25 - \textit{PointCloud} referente à figura 3.24, continuação da reconstrução.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-25.jpg}
+	\caption{\textit{PointCloud} referente à figura \ref{3:24}}
+	\label{fig3:25}
+\end{figure}
 
 O output do \texttt{lsd\_slam\_core} está sendo transferido para o visualizador na janela \textit{PointCloud Viewer} no formato de nuvem de pontos que podem ser rotacionados e observados em qualquer ângulo. A janela \textit{DebugWindow DEPTH} é a janela que oferece informações sobre a execução do algoritmo incluindo:
 
@@ -578,15 +632,34 @@ Também é possível salvar o vídeo capturado usando o parâmetro do \texttt{ls
 
 Para obter o mapa utilizando um \textit{dataset}, execute o seguinte comando:
 
-\texttt{rosrun lsd\_slam\_core dataset\_slam \_files:=/caminho/para/seu/dataset \_hz:=<hz> \_calib:=/caminho/para/seu/arquivodeccalibracao}
+\begin{table}[!ht]\label{tb:16}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{rosrun lsd\_slam\_core dataset\_slam \_files:=/caminho/para/seu/dataset \_hz:=<hz> \_calib:=/caminho/para/seu/arquivodeccalibracao}\\
+\hline
+\end{tabular}
+\caption{Comando para executar o \texttt{dataset\_slam} com um arquivo de calibração externo}
+\end{table}
 
-Tabela 3.16: Comando para executar o \texttt{dataset\_slam} com um arquivo de calibração externo
+Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, \texttt{<hz>} idealmente deverá ser trocado para 0, o que permite o rastreamento e mapeamento sequencial, mas haverá uma queda de performance do que a contrapartida em tempo real. Por fim, troque \texttt{/caminho/para/seu/arquivodeccalibracao} pelo caminho do seu arquivo de configuração resultante na seção 3.2.3.6. Segue abaixo algumas capturas de tela com o comando sendo executado:
 
-Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, \texttt{<hz>} idealmente deverá ser trocado para 0, o que permite o tracking e mapping sequencial, mas haverá uma queda de performance do que a contrapartida em tempo real. Por fim, troque \texttt{/caminho/para/seu/arquivodeccalibracao} pelo caminho do seu arquivo de configuração resultante na seção 3.2.3.6. Segue abaixo algumas capturas de tela com o comando sendo executado:
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-26E3-27.jpg}
+	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#1}
+	\label{fig3:26}
+\end{figure}
 
-Figuras 3.26 e 3.27 - \textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam}.
 
-Figuras 3.28 e 3.29 - \textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam}.
+
+
+
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-28E3-29.jpg}
+	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#4}
+	\label{fig3:27}
+\end{figure}
 
 É necessário também, dependendo do \textit{dataset} usado, um refinamento dos parâmetros de visualização e também da forma que o \texttt{lsd\_slam\_core} opera, pois com os parâmetros padrões é possível perceber que a grama em frente ao prédio atrapalhou a captura dos gradientes.
 
@@ -594,13 +667,25 @@ Figuras 3.28 e 3.29 - \textit{PointCloud} e \textit{DebugWindow DEPTH} do \textt
 
 Uma característica fundamental da ferramenta é a capacidade de modificar alguns parâmetros do algoritmo, esses parâmetros podem ser modificados usando a ferramenta \texttt{rqt\_reconfigure} que vem junto com o pacote do \textit{LSD-SLAM} que pode ser chamado usando o seguinte comando:
 
-\texttt{rosrun rqt\_reconfigure rqt\_reconfigure}
-
-Tabela 3.17 - Comando para inicialização do \texttt{rqt\_reconfigure}
+\begin{table}[!ht]\label{tb:16}
+\begin{tabular}{| p{\textwidth}|}
+\hline
+\texttt{rosrun rqt\_reconfigure rqt\_reconfigure}\\
+\hline
+\end{tabular}
+\caption{Comando para inicialização do \texttt{rqt\_reconfigure}}
+\end{table}
 
 E então será aberta uma janela com vários parâmetros de acordo com quais janelas do \textit{LSD-SLAM} estão abertas, isto é, o \texttt{lsd\_slam\_core} e o \texttt{lsd\_slam\_viewer}. Para cada uma das janelas os parâmetros podem ser modificados em tempo real. A figura 3.30 mostra alguns parâmetros de configuração.
 
-Figura 3.30 - Tela do \texttt{rqt\_reconfigure}
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-30.jpg}
+	\caption{Tela do \texttt{rqt\_reconfigure}}
+	\label{fig3:38}
+\end{figure}
+
+
 
 \subsubsubsection{\textit{minUseGrad}}
 
