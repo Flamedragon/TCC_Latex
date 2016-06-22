@@ -645,7 +645,7 @@ Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, 
 
 \begin{figure}[!htb]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-26E3-27.jpg}
+		\includegraphics[width= \textwidth]{Imagens/figura3-26E3-27.png}
 	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#1}
 	\label{fig3:26}
 \end{figure}
@@ -656,7 +656,7 @@ Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, 
 
 \begin{figure}[!htb]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-28E3-29.jpg}
+		\includegraphics[width= \textwidth]{Imagens/figura3-28E3-29.png}
 	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#4}
 	\label{fig3:27}
 \end{figure}
@@ -680,9 +680,9 @@ E então será aberta uma janela com vários parâmetros de acordo com quais jan
 
 \begin{figure}[!htb]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-30.jpg}
+		\includegraphics[width= \textwidth]{Imagens/figura3-30.png}
 	\caption{Tela do \texttt{rqt\_reconfigure}}
-	\label{fig3:38}
+	\label{fig3:28}
 \end{figure}
 
 
@@ -691,10 +691,19 @@ E então será aberta uma janela com vários parâmetros de acordo com quais jan
 
 Esse parâmetro indica a extensão mínima do gradiente para que o algoritmo o reconheça. Em outras palavras, quanto maior esse valor mais restritivo será a captura de gradientes. diminuindo esse parâmetro, gradientes pequenos como texturas irregulares, grama e outros gradientes não uniformes serão reconhecidos. Deve-se analisar cuidadosamente o quanto do ambiente deseja-se capturar e ajustar esse parâmetro de acordo, assim como o exemplo a seguir:
 
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-31.png}
+	\caption{\textit{minUseGrad} no seu valor padrão de 5.0}
+	\label{fig3:29}
+\end{figure}
 
-Figura 3.31 - \textit{minUseGrad} no seu valor padrão de 5.0
-
-Figura 3.32 - \textit{minUseGrad} em 25.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-32.png}
+	\caption{\textit{minUseGrad} em 25.0}
+	\label{fig3:30}
+\end{figure}
 
 Pelos exemplos dá para perceber que usar o \textit{minUseGrad} no seu valor padrão de 5.0 acrescenta muito ruido devido à grama, além da própria grama ser uma textura que pode ser facilmente confundida gerando erros de relocalização mais à frente na execução. Ao diminuir o parâmetro, a continuidade do gradiente precisa ser mais uniforme para poder ser aceito pelo algoritmo. Não há heurística para a escolha desse valor e ele deve ser testado para cada ambiente. Também vale frisar que aumentar demais esse valor pode cortar alguns gradientes perfeitamente utilizáveis mas que são menos uniformes como por exemplo a passarela até o prédio na imagem.
 
@@ -703,26 +712,72 @@ Pelos exemplos dá para perceber que usar o \textit{minUseGrad} no seu valor pad
 
 Esses parâmetros influenciam na frequência em que novos keyframes são obtidos. O \textit{KFUsageWeight} é em razão da quantidade de quadros usados para refinar, nesse caso um número maior faz com que o algoritmo capture novos keyframes diminuindo a quantidade de refinamento em cada um consequentemente, como no exemplo a seguir:
 
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-33.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0}
+	\label{fig3:31}
+\end{figure}
 
-Figura 3.33 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-34.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#1}
+	\label{fig3:32}
+\end{figure}
 
-Figura 3.34 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-35E3-39.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#2}
+	\label{fig3:33}
+\end{figure}
 
-Figura 3.35 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
 
-Figura 3.36 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-36.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#3}
+	\label{fig3:34}
+\end{figure}
 
-Figura 3.37 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do Dcomp usando o KFUsageWeight máximo de 20.0
+
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-37.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#4}
+	\label{fig3:35}
+\end{figure}
+
 
 Nas janelas do \textit{PointCloud}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também dá para ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor nesse caso, há uma carga muito maior desse processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores com potência reduzida. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distancia, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
 
-Figura 3.38 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-38.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#1}
+	\label{fig3:36}
+\end{figure}
 
-Figura 3.39 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-35E3-39.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#2}
+	\label{fig3:37}
+\end{figure}
 
 Como o novo exemplo demonstra, os \textit{keyframes} se comparados aos do valor padrão são mais numerosos, e o resultado geral também foi melhor. O aumento do parâmetro não é tão custoso para máquina como é no \textit{KFUsageWeight}, assim há a possibilidade de usá-lo em computadores com poder de processamento reduzido ou no \texttt{live\_slam}. É importante a experimentação desses parâmetros para se obter o melhor resultado de acordo com o \textit{dataset} utilizado e a máquina utilizada, para concluir essa sessão, segue um exemplo do valor máximo de ambos os parâmetros juntos.
 
-Figura 3.40 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-40.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#1}
+	\label{fig3:38}
+\end{figure}
 
-Figura 3.41 - \textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0
-
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width= \textwidth]{Imagens/figura3-41.png}
+	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#2}
+	\label{fig3:39}
+\end{figure}
