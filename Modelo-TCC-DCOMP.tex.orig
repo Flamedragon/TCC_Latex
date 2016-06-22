@@ -11,8 +11,13 @@
 % Geração de dummy text
 % Retirar para a versão final do documento
 \usepackage{lipsum}
+<<<<<<< HEAD
+=======
 \usepackage{amsmath}
 \usepackage{graphicx}
+>>>>>>> b5f882615357d2f9dd6d09ea7f1a8a4f86467af8
+
+
 %Compila o indice
 \makeindex
 
@@ -69,7 +74,6 @@
 \include{Textual/Introducao}
 \include{Textual/EstadoDaArte}
 \include{Textual/Metodologia}
-\include{Textual/Resultados}
 \include{Textual/Conclusao}
 
 % ----------------------------------------------------------
