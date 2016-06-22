@@ -168,8 +168,6 @@
 					Orientador(a):
 					\imprimirorientador
 					\vfill
-					Coorientador(a):
-					\imprimircoorientador
 				\end{minipage}%
 			\vspace*{\fill}
 		}%
