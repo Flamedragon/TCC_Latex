@@ -2,7 +2,7 @@
 
 \section{\textit{Structure from motion}}
 
-\textit{Structure from motion} é o processo de estimar estruturas 3D partindo de imagens sequenciais em duas dimensões [15], que pode conter sinais de movimento, em analogia com a biologia, seria o equivalente ao modo  como os olhos humanos e de outros animais conseguem recuperar estruturas 3D de um plano 2D, nesse caso a retina, partindo de uma cena ou objeto em movimento.
+\textit{Structure from motion} é o processo de estimar estruturas 3D partindo de imagens sequenciais em duas dimensões \cite{SFM}, que pode conter sinais de movimento, em analogia com a biologia, seria o equivalente ao modo  como os olhos humanos e de outros animais conseguem recuperar estruturas 3D de um plano 2D, nesse caso a retina, partindo de uma cena ou objeto em movimento.
 
 Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1} , dois pontos, chamados $m$ no plano $C$ e $m'$ no plano $C'$, podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço $M$. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
 
@@ -14,7 +14,7 @@ Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1} , dois pontos, 
 	
 Com pelo menos duas imagens em diferentes posições, se torna possível inferir a posição 3D de um ponto utilizando sua diferença de posição em ambas imagens. Para tanto é necessário deduzir a posição de duas retas num sistema de coordenadas em comum e é preciso também ter conhecimento da posição relativa da segunda imagem ou câmera com a primeira, o que pode ser chamado de movimento.
 
-Algebricamente, é possível descrever as características da câmera em matrizes chamadas \textbf{matrizes de projeção} [2] com as quais, sabendo seus valores, obtém-se um sistema de equações e computa-se o plano $M$, abaixo:
+Algebricamente, é possível descrever as características da câmera em matrizes chamadas \textbf{matrizes de projeção} \cite{Faugeras-Geometry} com as quais, sabendo seus valores, obtém-se um sistema de equações e computa-se o plano $M$, abaixo:
 
  \begin{equation}\label{eq1}
 	\begin{bmatrix}
@@ -45,7 +45,7 @@ Equação \eqref{eq2} : Sistema de equações para a matriz de projeção $P$ e 
 
 Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. As equações da figura 2.2 representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
 
-Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia[2] entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz 3x3 $M$. Tal homografia é exemplificada como equação pela equacão \eqref{eq3} e também na figura \ref{fig1}:
+Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia \cite{Faugeras-Geometry} entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz 3x3 $M$. Tal homografia é exemplificada como equação pela equacão \eqref{eq3} e também na figura \ref{fig1}:
 
 \begin{equation}\label{eq3}
 m' \simeq Hm.
@@ -60,12 +60,12 @@ Equação \eqref{eq3} : Relação de homografia entre um ponto $m'$ da segunda i
 	\label{fig1}
 \end{figure}
 
-Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Tal homografia pode ser utilizada para construir mosaicos, como mostra a figura \ref{fig2} abaixo. Aplicando na primeira imagem, transformando numa imagem maior representando a cena pelo ponto de vista da segunda imagem mas com uma área de visão maior. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico [2], pois a ambiguidade continua já que os raios correspondentes são idênticos.
+Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Tal homografia pode ser utilizada para construir mosaicos, como mostra a figura \ref{fig2} abaixo. Aplicando na primeira imagem, transformando numa imagem maior representando a cena pelo ponto de vista da segunda imagem mas com uma área de visão maior. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico \cite{Faugeras-Geometry}, pois a ambiguidade continua já que os raios correspondentes são idênticos.
 
 \begin{figure}
 	\centering
 		\includegraphics[width=1.0\textwidth]{Imagens/figura2-2.png}
-	\caption{Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al [2] pag. 24.}
+	\caption{Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al \cite{Faugeras-Geometry} pag. 24.}
 	\label{fig2}
 \end{figure}
 
@@ -74,13 +74,13 @@ Quando os pontos no espaço e as duas câmeras estão em posições distintas, n
 \begin{figure}
 	\centering
 		\includegraphics{Imagens/figura2-3.png}
-	\caption{Exemplificação da redução de 2D para 1D. Faugeras et al [2] pag. 12.}
+	\caption{Exemplificação da redução de 2D para 1D. Faugeras et al \cite{Faugeras-Geometry} pag. 12.}
 	\label{fig3}
 \end{figure}
 
 Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre $m$ e $m'$, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos $Lm$ e $Lm'$ se interceptem. Algebricamente, já que o ponto $M$ da figura \ref{eq2} depende de três coordenadas, e a correspondência entre $m$ e $m'$ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de $m$ e $m'$.
 
-A relação entre o ponto $m$ e a linha epipolar $l'm$ na segunda imagem é linearmente projetiva, já que o raio óptico de $m$ é uma função linear de $m$, e a projeção também é linear. Portanto, há uma matriz 3x3 que descreve tal correspondência, chamada Matriz Fundamental [2]. Dada a linha epipolar do ponto $m: l'm = Fm$, se dois pontos $m$ e $m'$ possuem uma correspondência, o ponto $m'$ pertence à linha epipolar de $m$, satisfazendo a seguinte restrição: 
+A relação entre o ponto $m$ e a linha epipolar $l'm$ na segunda imagem é linearmente projetiva, já que o raio óptico de $m$ é uma função linear de $m$, e a projeção também é linear. Portanto, há uma matriz 3x3 que descreve tal correspondência, chamada Matriz Fundamental \cite{Faugeras-Geometry}. Dada a linha epipolar do ponto $m: l'm = Fm$, se dois pontos $m$ e $m'$ possuem uma correspondência, o ponto $m'$ pertence à linha epipolar de $m$, satisfazendo a seguinte restrição: 
 \begin{equation}\label{eq4}m'TFm = 0\end{equation}, que é bilinear nas coordenadas dos pontos das imagens. Invertendo as duas imagens, $F$ seria transformada em sua versão transposta.
 
 A matriz fundamental depende apenas da configuração das câmeras ,seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura \ref{fig4} mostra um exemplo de geometria epipolar:
@@ -88,7 +88,7 @@ A matriz fundamental depende apenas da configuração das câmeras ,seus parâme
 \begin{figure}
 	\centering
 		\includegraphics{Imagens/figura2-4.png}
-	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'm$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al [2] pag. 25.}
+	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'm$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al \cite{Faugeras-Geometry} pag. 25.}
 	\label{fig4}
 \end{figure}
 
@@ -142,30 +142,30 @@ Tal sistema de equações é linear, homogêneo e possui 9 incógnitas, com 8 pa
 
 \section{Algoritmos de detecção de características}
 
-Encontrar estruturas partindo do movimento apresenta problemas também na visão estéreo, onde há duas câmeras sendo utilizadas para obter mais informações sobre um mesmo objeto sob diferentes pontos de vista, mas a correspondência entre as imagens obtidas e os objetos 3D precisam ser encontradas. Para isso, são utilizadas características distintas como cantos e vértices, possuindo também diferentes gradientes em múltiplas direções, de uma imagem para outra. O algoritmo mais conhecido atualmente é o \textit{SIFT} [16], onde utiliza a máxima para a pirâmide de diferença de \textit{Gauss} como características. Primeiramente o \textit{SIFT} procura uma direção dominante no gradiente, e para deixá-lo invariante à rotação, rotaciona o descritor para que sua orientação seja compatível.
+Encontrar estruturas partindo do movimento apresenta problemas também na visão estéreo, onde há duas câmeras sendo utilizadas para obter mais informações sobre um mesmo objeto sob diferentes pontos de vista, mas a correspondência entre as imagens obtidas e os objetos 3D precisam ser encontradas. Para isso, são utilizadas características distintas como cantos e vértices, possuindo também diferentes gradientes em múltiplas direções, de uma imagem para outra. O algoritmo mais conhecido atualmente é o \textit{SIFT} \cite{SIFT}, onde utiliza a máxima para a pirâmide de diferença de \textit{Gauss} como características. Primeiramente o \textit{SIFT} procura uma direção dominante no gradiente, e para deixá-lo invariante à rotação, rotaciona o descritor para que sua orientação seja compatível.
 
-O \textit{SURF}[20] também é um algoritmo conhecido na tarefa de obter características, mas ao invés de obter as diferenças de \textit{Gauss}, se baseia em determinantes de matrizes Hessianas para localização e escala [24]. E ao invés de calcular histogramas dos gradientes, computa a soma dos componentes destes com seus valores absolutos. Todas as características detectadas de todas as imagens então são combinadas.
+O \textit{SURF}\cite{SURF} também é um algoritmo conhecido na tarefa de obter características, mas ao invés de obter as diferenças de \textit{Gauss}, se baseia em determinantes de matrizes Hessianas para localização e escala \cite{Hessian}. E ao invés de calcular histogramas dos gradientes, computa a soma dos componentes destes com seus valores absolutos. Todas as características detectadas de todas as imagens então são combinadas.
 
-O \textit{ORB (Oriented FAST and Rotated BRIEF)} surgiu como uma alternativa ao algoritmo de detecção e descrição de pontos característicos \textit{SIFT} na questão de eficiência em smartphones, já que se mostra mais eficiente em dispositivos com menos poder de processamento, bem como não ser patenteado, ao contrário do \textit{SIFT} e \textit{SURF}, podendo acarretar em problemas de propriedade intelectual. O \textit{ORB} toma como base a detecção de pontos característicos do \textit{SIFT} e o descritor do \textit{BRIEF}, já que ambos são bem eficientes nestas tarefas e baixo custo computacional. Um dos problemas demonstrados por Rublee et al[11] em seu artigo é a falta de invariância com relação à rotação no \textit{BRIEF}.
+O \textit{ORB (Oriented FAST and Rotated BRIEF)} surgiu como uma alternativa ao algoritmo de detecção e descrição de pontos característicos \textit{SIFT} na questão de eficiência em smartphones, já que se mostra mais eficiente em dispositivos com menos poder de processamento, bem como não ser patenteado, ao contrário do \textit{SIFT} e \textit{SURF}, podendo acarretar em problemas de propriedade intelectual. O \textit{ORB} toma como base a detecção de pontos característicos do \textit{SIFT} e o descritor do \textit{BRIEF}, já que ambos são bem eficientes nestas tarefas e baixo custo computacional. Um dos problemas demonstrados por Rublee et al\cite{ORB-Artigo} em seu artigo é a falta de invariância com relação à rotação no \textit{BRIEF}.
 
-Como dito anteriormente, o algoritmo \textit{FAST} foi escolhido para detecção de \textit{keypoints} em sistemas em tempo real que procuram um casamento isto é, encontrar a similaridade entre duas imagens, entre características visuais, mas o algoritmo precisava ser incrementado com a pirâmide de \textit{schemes} para escala[11] e o filtro de Harris[11] para rejeitar cantos. Ao contrário do \textit{SIFT} e \textit{SURF}, o \textit{FAST} não provém de um operador de orientação. Como descrito em seu artigo, há várias formas de se descrever a orientação de um \textit{keypoint}. Algumas destas formas envolvem computações de histogramas de gradientes, mas tais métodos são muito ostensivos computacionalmente e no caso do \textit{SURF}, levando à aproximações não muito boas.
+Como dito anteriormente, o algoritmo \textit{FAST} foi escolhido para detecção de \textit{keypoints} em sistemas em tempo real que procuram um casamento isto é, encontrar a similaridade entre duas imagens, entre características visuais, mas o algoritmo precisava ser incrementado com a pirâmide de \textit{schemes} para escala\cite{ORB-Artigo} e o filtro de Harris\cite{ORB-Artigo} para rejeitar cantos. Ao contrário do \textit{SIFT} e \textit{SURF}, o \textit{FAST} não provém de um operador de orientação. Como descrito em seu artigo, há várias formas de se descrever a orientação de um \textit{keypoint}. Algumas destas formas envolvem computações de histogramas de gradientes, mas tais métodos são muito ostensivos computacionalmente e no caso do \textit{SURF}, levando à aproximações não muito boas.
 
-Para os descritores, o \textit{BRIEF} é utilizado pela robustez para luz, \textit{blur} e distorção de perspectiva, mas é sensível com a rotação do plano [11]. O \textit{BRIEF} utiliza testes binários para treinar um conjunto de árvores de classificação [11], normalmente treinadas com 500 ou mais \textit{keypoints}, podem ser utilizadas para retornar a assinatura de um \textit{keypoint arbitrário} [11].
+Para os descritores, o \textit{BRIEF} é utilizado pela robustez para luz, \textit{blur} e distorção de perspectiva, mas é sensível com a rotação do plano \cite{ORB-Artigo}. O \textit{BRIEF} utiliza testes binários para treinar um conjunto de árvores de classificação \cite{ORB-Artigo}, normalmente treinadas com 500 ou mais \textit{keypoints}, podem ser utilizadas para retornar a assinatura de um \textit{keypoint arbitrário} \cite{ORB-Artigo}.
 
-Infelizmente as combinações encontradas podem ser errôneas, logo é preciso eliminar falsos positivos. Para isso normalmente se é utilizado o \textit{RANSAC} , algoritmo que remove combinações de pontos \textit{outliers}, isto é, combinações que provavelmente não pertencem ao espaço. O \textit{RANSAC} também é utilizado para resolver o \textit{Location Determination Problem}, que tem como objetivo determinar os pontos no espaço que têm projeção numa imagem com localizações conhecidas [19].
+Infelizmente as combinações encontradas podem ser errôneas, logo é preciso eliminar falsos positivos. Para isso normalmente se é utilizado o \textit{RANSAC} , algoritmo que remove combinações de pontos \textit{outliers}, isto é, combinações que provavelmente não pertencem ao espaço. O \textit{RANSAC} também é utilizado para resolver o \textit{Location Determination Problem}, que tem como objetivo determinar os pontos no espaço que têm projeção numa imagem com localizações conhecidas \cite{RANSAC}.
 
 As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
 
 
 \section{\textit{Simultaneous Localization And Mapping}}
 
-O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação[9]. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
+O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
 
 \section{\textit{LSD-SLAM}}
 
 Um dos maiores benefícios do \textit{SLAM} monocular, e simultaneamente o seu maior desafio, vem da sua ambiguidade de escala inerente: A escala do mundo não pode ser observado e muda com o tempo, sendo uma das maiores fontes de erro. A vantagem é que isso permite a troca entre ambientes de diferentes escalas como ambientes internos com móveis e ambientes externos. Por outro lado sensores escalonados como câmeras estéreo e câmeras de profundidade provém resultados mais confiáveis mas não oferecem a mesma flexibilidade tanto na facilidade de troca entre diferentes escalas quanto no \textit{hardware}, fazendo a abordagem \textit{monocular} funcionar para câmeras de celular que é um \textit{hardware} mais acessível. 
 
-Segundo o artigo do \textit{LSD-SLAM} [12], o algoritmo consiste de três componentes principais: \textbf{tracking (rastreamento)}, \textbf{depth map estimation (estimativa de mapa de profundidade)} e \textbf{map optimization (otimização de mapa)} :
+Segundo o artigo do \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo}, o algoritmo consiste de três componentes principais: \textbf{tracking (rastreamento)}, \textbf{depth map estimation (estimativa de mapa de profundidade)} e \textbf{map optimization (otimização de mapa)} :
 
 \begin{itemize}
 	\item{O componente de \textbf{tracking} continuamente rastreia novas imagens de câmera; Isso é, ele estima sua pose de corpo rígido $\xi \in se(3)$ com relação ao quadro-chave atual, usando a pose do quadro anterior como inicialização.}
