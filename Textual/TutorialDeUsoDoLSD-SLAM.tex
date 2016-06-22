@@ -10,7 +10,7 @@ Etapas para preparação:
 	\item{Instalação do \textit{Ubuntu}: A instalação do \textit{Ubuntu} deve ser da versão 12 ou 14 obrigatoriamente, a versão usada no trabalho foi a 14.04.}
 	\item{Instalação do  \textit{ROS}: O \textit{ROS} vai ser utilizado para a leitura dos quadros da câmera/\textit{dataset} além de ser onde a ferramenta é implementada.\cite{ROS-Tutorial}}
 	\item{Instalação do \textit{LSD-SLAM}.\cite{GitHub-LSD-SLAM}}
-	\item{Instalação do  \texttt{usb\_cam}: \texttt{usb\_cam} é um driver \textit{ROS} para habilitar câmeras \textit{USB} a serem utilizadas como \textit{stream} de dados para o \textit{ROS} e consequentemente o \textit{LSD-SLAM}, se não há intenção de usar câmeras, como no caso da utilização de um \textit{dataset}, o driver \textit{USB} não é necessário.}
+	\item{Instalação do  \texttt{usb\_cam}: \texttt{usb\_cam} é um \textit{driver} \textit{ROS} para habilitar câmeras \textit{USB} a serem utilizadas como \textit{stream} de dados para o \textit{ROS} e consequentemente o \textit{LSD-SLAM}, se não há intenção de usar câmeras, como quando utilizando um \textit{dataset}, o \textit{driver} \textit{USB} não é necessário.}
 	\item{Calibração da câmera: Será detalhado nas próximas sessões.}
 \end{enumerate}
 
@@ -30,11 +30,11 @@ Primeiramente deve-se imprimir um tabuleiro de xadrez \cite{Setup-CalibrateMonoc
 	\item{Estar com tinta esmaecida ou borrada.}
 \end{itemize}	
 
-Todos esses fatores interferem no reconhecimento do padrão fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro com elas, mova-se para um lugar espaçoso de pelo menos 5 $m^2$, livre de obstruções e bem iluminado.
+Todos esses fatores interferem no reconhecimento do padrão fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro, mova-se para um lugar espaçoso de pelo menos $5m^2$, livre de obstruções e bem iluminado.
 
 \subsection{Compilando e construindo a ferramenta de calibração}
 
-Começa-se obtendo as dependências necessárias e compilando o driver usando os seguintes comandos respectivamente:
+Começa-se obtendo as dependências necessárias e compilando o \textit{driver} usando os seguintes comandos respectivamente:
 
 \begin{table}[!ht]\label{tb:1}
 \begin{tabular}{| p{\textwidth}|}
@@ -46,9 +46,9 @@ Começa-se obtendo as dependências necessárias e compilando o driver usando os
 \end{table}
 
 
-\subsection{Envio de quadross pela câmera}
+\subsection{Envio de quadros pela câmera}
 
-Ao final da sessão 5, a câmera deve estar configurada e funcionando. Para ter certeza que a câmera está de fato enviando seus dados para o \textit{ROS}, usa-se o seguinte comando:
+Antes de começar a calibração deve-se concluir configuração do pacote usb\_cam e a câmera deve estar conectada e configurada pelo pacote. Para ter certeza que a câmera está de fato enviando seus dados para o \textit{ROS}, usa-se o seguinte comando:
 
 \begin{table}[!ht]\label{tb:2}
 \begin{tabular}{| p{\textwidth}|}
@@ -59,7 +59,7 @@ Ao final da sessão 5, a câmera deve estar configurada e funcionando. Para ter 
 \caption{Comandos para inicializar a instalação do módulo que fará a calibração da câmera}
 \end{table}
 
-Esse comando irá listar todos os topics que são os nodos ativos no \textit{ROS}. A saída deve conter esses \textit{topics}:
+Esse comando irá listar todos os \textit{topics} que são os nodos ativos no \textit{ROS}. A saída deve conter esses \textit{topics}:
 
 \begin{table}[!ht]\label{tb:3}
 \begin{tabular}{| p{\textwidth}|}
@@ -75,7 +75,7 @@ Caso a saída não apresente erros, a câmera está pronta para ser calibrada.
 
 \subsection{Rodando o nodo de calibração}
 
-Para começar a calibração é necessário carregar os topics com as imagens da câmera que será calibrada usando o seguinte comando:
+Para começar a calibração é necessário carregar os \textit{topics} com as imagens da câmera que será calibrada usando o seguinte comando:
 
 \begin{table}[!ht]\label{tb:4}
 \begin{tabular}{| p{\textwidth}|}
@@ -96,8 +96,8 @@ Vale frisar a importância de que o parâmetro \texttt{--size} é o tamanho do t
 \end{figure}
 
 
-Esse padrão por exemplo tem 10x7 casas, no entanto suas linhas são 9x6. O parâmetro \texttt{--size} deve ser nesse caso 9x6.
-O parâmetro \texttt{--square} é o tamanho real do lado das casas do tabuleiro que imprimimos em metros. No caso o comando acima indica que cada casa do tabuleiro possui 0,108 metros ou 10,8 centímetros. É recomendado que o usuário que reproduza estes passos use uma régua para medir o seu tabuleiro.
+Esse padrão por exemplo tem 10x7 casas, no entanto suas linhas são 9x6. Logo o parâmetro \texttt{--size} deve ser 9x6.
+O parâmetro \texttt{--square} é o tamanho real do lado das casas do tabuleiro que imprimimos em metros. O comando acima indica que cada casa do tabuleiro possui 0,108 metros ou 10,8 centímetros. É recomendado que o usuário que reproduza estes passos use uma régua para medir o seu tabuleiro.
 Após executar o comando, a janela de calibração será aberta, como mostra a figura 3.13:
 
 \begin{figure}[!htb]
@@ -112,7 +112,7 @@ Após executar o comando, a janela de calibração será aberta, como mostra a f
 Para se obter uma boa calibração é necessário mover o tabuleiro pelo quadro da câmera de modo que:
 
 \begin{itemize}
-	\item{O tabuleiro se encontre na esquerda, direita, topo e baixo do campo de vista da câmera.}
+	\item{O tabuleiro se encontre nas partes esquerda, direita, superior e inferior do campo de vista da câmera.}
 	\begin{itemize}
 		\item{Barra X - Campo de vista esquerda/direita.}
 		\item{Barra Y - Campo de vista topo/baixo.}
@@ -154,12 +154,12 @@ A cada passo segure o tabuleiro até que que apareça na imagem o destaque do pa
 \endminipage
 \end{figure}
 
-Ao mover o tabuleiro, podem ser percebidas 4 Barras (X,Y,\textit{Size},\textit{Skew}) na barra lateral que aumentam de tamanho conforme ele vai capturando amostras. Quando o botão \textit{CALIBRATE} estiver iluminado quer dizer que há dados o suficiente para calibrar, ao ser clicado, começará o processo de calibração.
-A calibração dura em média um minuto. A janela estará cinza e inativa durante esse tempo, nesse caso a calibração está ocorrendo e o programa não travou, bastando apenas aguardar.
+Ao mover o tabuleiro, podem ser percebidas 4 Barras: X,Y,\textit{Size},\textit{Skew}; na barra lateral que aumentam de tamanho conforme ele vai capturando amostras. Quando o botão \textit{CALIBRATE} estiver iluminado quer dizer que há dados suficientes para calibrar, clicando ele começará o processo de calibração.
+A calibração dura em média um minuto. A janela estará cinza e inativa durante esse tempo, isso indica que a calibração está ocorrendo e o programa não travou, bastando apenas aguardar.
 
 \subsection{Resultados da calibração}
 
-Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como essa. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
+Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como demonstra a tabela \ref{tb:5}. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
 
 
 %{\setlength{\parindent}{0cm}
@@ -215,7 +215,7 @@ Se a calibração for satisfatória, o botão \textit{COMMIT} deve ser clicado p
 
 \subsection{Criação do arquivo de calibração}
 
-Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no entanto é interessante criar um arquivo de configuração para ser facilmente reutilizado caso se queira usar essa configuração em outra máquina ou salvar a calibração em um local mais seguro. Esse arquivo de calibração também é importante pois o \texttt{dataset\_slam} necessita dele para executar, ou seja, ele não usa a calibração salva pelo calibrador em disco. Na sessão anterior(3.2.3.6) foram destacadas em laranja alguns valores:
+Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no entanto é interessante criar um arquivo de configuração para ser facilmente reutilizado caso se queira usar essa configuração em outra máquina ou salvar a calibração em um local mais seguro. Esse arquivo de calibração também é importante pois o \texttt{dataset\_slam} necessita dele para executar, ou seja, ele não usa a calibração salva pelo calibrador em disco. Na sessão anterior foram destacadas em laranja alguns valores:
 
 %{\setlength{\parindent}{0cm}
 \begin{table}[!ht]\label{tb:6}
@@ -253,13 +253,13 @@ Esses valores serão usados para compor o arquivo. Em um novo documento de texto
 \caption{Modelo de arquivo de configuração com legenda}
 \end{table}
 
-Nesse caso deve-se fazer os cálculos substituindo os valores do modelo com os da suas cores respondentes acima, quanto mais precisas as calculadoras usadas melhor. Na terceira linha:
+Dessa forma deve-se fazer os cálculos substituindo os valores do modelo com os da suas cores respondentes acima, quanto mais precisas as calculadoras usadas melhor pois mais casas decimais serão usadas potencialmente reduzindo o erro. Na terceira linha:
 
 \texttt{crop} - Corta a imagem para o tamanho máximo enquanto inclui apenas \textit{pixels} válidos.
 \texttt{full} - Não corta a imagem mas pode incluir \textit{pixels} inválidos.
 \texttt{none} - Não realiza a operação de correção de distorção radial
 
-Recomenda-se o uso do valor \texttt{crop}. O resultado final deve ficar assim de acordo com o o seguinte exemplo:
+Recomenda-se o uso do valor \texttt{crop}. O resultado final deve ficar à listagem \ref{tb:8}:
 
 \begin{table}[!ht]\label{tb:8}
 \begin{tabular}{| p{\textwidth}|}
@@ -273,7 +273,7 @@ Recomenda-se o uso do valor \texttt{crop}. O resultado final deve ficar assim de
 \caption{Exemplo de arquivo de configuração final}
 \end{table}
 
-Uma observação é que ao inserir os resultados no arquivo, deve-se certificar que o ponto flutuante é ‘.’(ponto) e não ‘,’(vírgula) pois isso fará com que o arquivo não funcione corretamente. Após isso arquivo deve ser salvo como texttt{nome\_do\_arquivo\_de\_calibração.cfg} e estará pronto para ser usado. Se estiver usando um arquivo de calibração do \textit{OpenCV}, que foi o usado no \textit{PhotoGuide}, a transformação é similar ao resultado da calibração do \textit{LSD-SLAM}. Considerando a seguinte saída da calibração do \textit{OpenCV}:
+Uma observação é que ao inserir os resultados no arquivo, deve-se certificar que o ponto flutuante é ‘.’(ponto) e não ‘,’(vírgula) pois isso fará com que o arquivo não funcione corretamente. Depois disso arquivo deve ser salvo como texttt{nome\_do\_arquivo\_de\_calibração.cfg} e estará pronto para ser usado. Se estiver usando um arquivo de calibração do \textit{OpenCV}, que foi o usado no \textit{PhotoGuide}, a transformação é similar ao resultado da calibração do \textit{LSD-SLAM}. Considerando a seguinte saída da calibração do \textit{OpenCV}:
 
 \begin{table}[!ht]\label{tb:9}
 \begin{tabular}{| p{\textwidth}|}
@@ -312,7 +312,7 @@ Deve ser convertido para um arquivo no formato \textit{.cfg} de modo que:
 \caption{Modelo de arquivo de configuração usando a calibração do \textit{OpenCV}}
 \end{table}
 
-Lembrando de converter a notação científica, no caso desse exemplo o arquivo final ficará dessa forma:
+Lembrando de converter a notação científica, nesse exemplo o arquivo final ficará dessa forma:
 
 \begin{table}[!ht]\label{tb:11}
 \begin{tabular}{| p{\textwidth}|}
@@ -329,11 +329,11 @@ Lembrando de converter a notação científica, no caso desse exemplo o arquivo 
 \section{Utilização da ferramenta}
 
 Com a câmera calibrada pode-se agora começar a usar de fato a ferramenta, \textit{LSD-SLAM} é dividido em dois pacotes \textit{ROS}, \texttt{lsd\_slam\_core} e \texttt{lsd\_slam\_viewer}. \texttt{lsd\_slam\_core} contém o sistema \textit{SLAM} completo, enquanto o \texttt{lsd\_slam\_viewer} é opcionalmente usado para a visualização 3D.
-Para impulsionar o sistema do \textit{LSD-SLAM} é o suficiente inicializar um primeiro quadro-chave com uma mapa de profundidade aleatório e alta variância. Com movimentos translacionais da câmera o suficiente nos primeiros segundos o algoritmo “trava” em uma certa configuração, e após algumas propagações de quadros-chaves ela converge para a configuração correta de profundidade.
+Para inicializar o sistema do \textit{LSD-SLAM} é o suficiente começar com um primeiro quadro-chave com uma mapa de profundidade aleatório e alta variância. Com suficientes movimentos translacionais da câmera nos primeiros segundos o algoritmo “trava” em uma certa configuração, e após algumas propagações de quadros-chaves ela converge para a configuração correta de profundidade.
 
 \subsection{\texttt{lsd\_slam\_viewer} - Visualizador 3D}
 
-O visualizador além de ser usado para visualizar também pode ser usado para exportar a nuvem de pontos como .ply. Para operar ao vivo, o seguinte comando é executado:
+O visualizador, além de ser usado para visualizar, também pode ser usado para exportar a nuvem de pontos como .ply. Para abrir o visualizador, o seguinte comando é executado:
 
 \begin{table}[!ht]\label{tb:12}
 \begin{tabular}{| p{\textwidth}|}
@@ -349,8 +349,8 @@ Esse comando irá abrir a tela de \textit{PointCloudViewer}, nela é possível v
 \begin{table}[!ht]\label{tb:13}
 \begin{tabular}{| p{\textwidth}|}
 \hline
-\texttt{rosbag record /lsd\_slam/graph /lsd\_slam/keyframes /lsd\_slam/liveframes -o file\_pc.bag
-rosbag play file\_pc.bag}\\
+\texttt{rosbag record /lsd\_slam/graph /lsd\_slam/keyframes /lsd\_slam/liveframes -o file\_pc.bag}\\
+\texttt{rosbag play file\_pc.bag}\\
 \hline
 \end{tabular}
 \caption{Comandos sequenciais para gravar e reproduzir a saída do visualizador no formato .bag}
@@ -377,7 +377,7 @@ Para obter o mapa ao vivo, usando uma câmera, o seguinte comando deve ser execu
 \caption{Comando para executar o \texttt{live\_slam} com calibração salva no \textit{ROS}}
 \end{table}
 
-Os parâmetros destacados em vermelhos estão preenchidos com os que o usuário configurou em sua máquina, no caso desse trabalho foi optados pelas nomenclaturas padrões de instalação. Ao se usar esse comando, apenas as dimensões da imagem e a matriz $K$ das mensagens de \texttt{camera\_info} serão usadas, isto é, o vídeo tem que estar corrigido.
+Os parâmetros destacados em vermelhos estão preenchidos com os que o usuário configurou em sua máquina, nesse trabalho foram optados pelas nomenclaturas padrões de instalação. Ao se usar esse comando, apenas as dimensões da imagem e a matriz $K$ das mensagens de \texttt{camera\_info} serão usadas, isto é, o vídeo tem que estar corrigido.
 
 Alternativamente, pode-se especificar um arquivo de calibração usando o seguinte comando:
 
@@ -450,7 +450,7 @@ O output do \texttt{lsd\_slam\_core} está sendo transferido para o visualizador
 	\item{Numeração de quadro refinador por keyframe.}
 \end{description}
 
-Além disso as cores representam o grau de proximidade de cada gradiente do quadro. Tomando o verde como referência, quanto mais vermelho mais perto o gradiente está da câmera em relação aos gradientes verdes, nesse caso eles estão entre o verde e a câmera. Em contrapartida quanto mais azul estiver o gradiente mais longe da camera em relação ao gradiente verde está da câmera. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
+Além disso as cores representam o grau de proximidade de cada gradiente do quadro. Tomando o verde como referência, quanto mais vermelho mais perto o gradiente está da câmera em relação aos gradientes verdes, logo eles estão entre o verde e a câmera. Em contrapartida quanto mais azul estiver o gradiente mais longe da camera em relação ao gradiente verde está da câmera. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
 
 Essas informações são comuns tanto ao \texttt{live\_slam} quanto ao \texttt{dataset\_slam}. O método \texttt{live\_slam} se caracteriza por servir de teste do ambiente para se fazer o \textit{dataset}. Ele possui suas vantagens e desvantagens:
 
@@ -555,7 +555,7 @@ Pelos exemplos dá para perceber que usar o \textit{minUseGrad} no seu valor pad
 \subsubsection{\textit{KFUsageWeight e KFDistanceWeight}}
 
 
-Esses parâmetros influenciam na frequência em que novos keyframes são obtidos. O \textit{KFUsageWeight} é em razão da quantidade de quadros usados para refinar, nesse caso um número maior faz com que o algoritmo capture novos keyframes diminuindo a quantidade de refinamento em cada um consequentemente, como no exemplo a seguir:
+Esses parâmetros influenciam na frequência em que novos keyframes são obtidos. O \textit{KFUsageWeight} é em razão da quantidade de quadros usados para refinar, de forma que um número maior faz com que o algoritmo capture novos keyframes diminuindo a quantidade de refinamento em cada um consequentemente, como no exemplo a seguir:
 
 \begin{figure}[!htb]
 	\centering
@@ -595,7 +595,7 @@ Esses parâmetros influenciam na frequência em que novos keyframes são obtidos
 \end{figure}
 
 
-Nas janelas do \textit{PointCloud}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também dá para ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor nesse caso, há uma carga muito maior desse processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores com potência reduzida. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distancia, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
+Nas janelas do \textit{PointCloud}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também dá para ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor dessa forma, há uma carga muito maior desse processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores com potência reduzida. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distancia, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
 
 \begin{figure}[!htb]
 	\centering
