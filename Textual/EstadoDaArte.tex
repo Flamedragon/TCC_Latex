@@ -1,3 +1,4 @@
+
 \chapter{Estado da arte}
 
 \section{\textit{Structure from motion}}
@@ -100,7 +101,8 @@ Já que todos os raios ópticos contém o centro óptico $C$ da primeira câmera
 Para o cálculo da matriz fundamental, tem-se $m$ e $m'$ correspondentes abaixo:
 
 \begin{equation}\label{eq5}
-m = \begin{bmatrix}u\\v\\1\\ \end{bmatrix}
+m = \begin{bmatrix}u\\v\\1\\ \end{bmatrix}, 
+m' = \begin{bmatrix}u'\\v'\\1\\ \end{bmatrix}
 \end{equation}
 
 Equação \eqref{eq5}: Matrizes dos pontos $m$ e $m'$.
@@ -133,11 +135,30 @@ O sistema de equações $U^{T}f = 0$ é linear, homogêneo e possui 9 incógnita
 
 \section{\textit{Simultaneous Localization And Mapping}}
 
-O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. Uma diferença com relação ao \textit{SFM} é que enquanto algoritmos e ferramentas que o utilizam \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
+O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente usando o mapa. O \textit{SFM} consiste em realizar a reconstrução com base em estruturas estáticas, já o \textit{SLAM} tem como objetivo realizar a reconstrução partindo do movimento realizado, seja ao vivo de um \textit{stream} ou um vídeo. O \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distancia entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis e por pessoas e não robôs. O \textit{LSD-SLAM} oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas sessões.
+
+
 
 \section{Algoritmos de detecção de características}
-
-Encontrar estruturas partindo do movimento apresenta problemas também na visão estéreo Mesmo utilizando câmeras estéro, ainda existem problemas para mapear estruturas a partir do movimento das câmeras, onde normalmente há duas câmeras sendo utilizadas para obter mais informações sobre um mesmo objeto sob diferentes pontos de vista, mas a correspondência entre as imagens obtidas e os objetos 3D precisam ser encontradas. Para isso, são utilizadas características distintas como cantos e vértices, possuindo também diferentes gradientes em múltiplas direções, de uma imagem para outra. O algoritmo mais conhecido atualmente é o \textit{SIFT} \cite{SIFT}, onde utiliza a máxima para a pirâmide de diferença de \textit{Gauss} como características. Primeiramente o \textit{SIFT} procura uma direção dominante no gradiente, e para deixá-lo invariante à rotação, rotaciona o descritor para que sua orientação seja compatível.
+  
+Mesmo utilizando câmeras estéro, ainda existem problemas para mapear estruturas a partir do movimento das câmeras, onde normalmente há duas câmeras sendo utilizadas para obter mais informações sobre um mesmo objeto sob diferentes pontos de vista, mas a correspondência entre as imagens obtidas e os objetos 3D precisam ser encontradas. Para isso, são utilizadas características distintas como cantos e vértices, possuindo também diferentes gradientes em múltiplas direções, de uma imagem para outra. O algoritmo mais conhecido atualmente é o \textit{SIFT} \cite{SIFT}, onde utiliza a máxima para a pirâmide de diferença de \textit{Gauss} como características. Primeiramente o \textit{SIFT} procura uma direção dominante no gradiente, e para deixá-lo invariante à rotação, rotaciona o descritor para que sua orientação seja compatível.
+  
+  As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
+  
+\section{Bibliotecas}
+  
+\subsection{\textit{FIT3D}}
+O \textit{FIT3D} foi desenvolvido por Esteban et al\cite{FIT3D}, com o intuito de ser uma ferramenta única para realizar os 5 passos do processo de reconstrução de uma cena, que são: calibração da câmera, estimação de movimento, otimização, reconstrução e modelagem. Foi criado para \textit{MATLAB}® e é composto de várias funções próprias bem como de pacotes de terceiros como o \textit{SIFT}, utilizadas em seu pipeline para reconstruir a cena, composto pelas seguintes fases:
+\begin{description}
+ \item[Calibração: ]{Processo de obter os parâmetros intrínsecos que descrevem a câmera. Inclui parâmetros para distorção radial, como mostrado no livro de Faugeras cap 4.5 e 4.6 \cite{Faugeras-Geometry}, distância focal, centro de projeção e parâmetros \textit{skew};}
+ \item[Egomotion (odometria visual): ]{É a estimativa de movimento de uma câmera entre quadros baseada na informação obtida das imagens denominada como parâmetros extrínsecos. No \textit{FIT3D}, apenas quadros consecutivos são considerados para movimento;}
+ \item[Refinamento: ]{Dado que as imagens são obtidas com ruído e este é propagado para a estimação de movimento, é desejável que haja uma otimização para melhorar as estimativas;}
+ \item[Reconstrução: ]{Partindo das posições das câmeras, parâmetros de calibração e as imagens, a reconstrução é o processo de se obter uma representação 3D da cena bem como um conjunto de pontos 3D;}
+ \item[Modelagem: ]{Processo de converter uma nuvem esparsa de pontos 3D em algo de maior ordem, como um plano, superfície ou modelo.}
+\end{description}
+  
+ Para obter a distorção radial, o \textit{FIT3D} utiliza o método de Zhang \cite{FIT3D}. Infelizmente, o \textit{FIT3D} não é atualizado desde 2010, acarretando numa documentação e código obsoletos, e diversos bugs foram encontrados durantes os testes realizados, inclusive impedindo o processamento da reconstrução do nosso \textit{dataset}. Outro problema encontrado é a falta de uma forma que seja possível executar o algoritmo ao vivo, ao contrário do \textit{LSD-SLAM} apresentado na próxima seção.
+  
 
 O \textit{SURF}\cite{SURF} também é um algoritmo conhecido na tarefa de obter características, mas ao invés de obter as diferenças de \textit{Gauss}, se baseia em determinantes de matrizes Hessianas para localização e escala \cite{Hessian}. E ao invés de calcular histogramas dos gradientes, computa a soma dos componentes destes com seus valores absolutos. Todas as características detectadas de todas as imagens então são combinadas.
 
@@ -152,7 +173,7 @@ Infelizmente as combinações encontradas podem ser errôneas, logo é preciso e
 As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
 
 
-\section{\textit{LSD-SLAM}}
+\subsection{\textit{LSD-SLAM}}
 
 Um dos maiores benefícios do \textit{SLAM} monocular, e simultaneamente o seu maior desafio, vem da sua ambiguidade de escala inerente: A escala do mundo não pode ser observado e muda com o tempo, sendo uma das maiores fontes de erro. A vantagem é que isso permite a troca entre ambientes de diferentes escalas como ambientes internos com móveis e ambientes externos. Por outro lado sensores escalonados como câmeras estéreo e câmeras de profundidade provém resultados mais confiáveis mas não oferecem a mesma flexibilidade tanto na facilidade de troca entre diferentes escalas quanto no \textit{hardware}, fazendo a abordagem \textit{monocular} funcionar para câmeras de celular que é um \textit{hardware} mais acessível. 
 
