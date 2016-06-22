@@ -4,10 +4,9 @@ Apresentaremos neste capítulo a motivação para este trabalho, problemas encon
 
 \section{Motivação}
 
-Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D}, o carro autônomo em desenvolvimento pela \textit{Google} \cite{googlex} e realidade virtual, criando assim novos ramos de pesquisa, novos mercados à serem explorados.
+Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D} e realidade virtual, criando assim novos ramos de pesquisa, novos mercados a serem explorados. Algumas modelagens são feitas utilizando sensores ativos, isto é, onde usa-se dispositivos que enviarão sinais e então estes são interpretados pelo algoritmo. Outra forma é utilizando câmeras passivas, que mandam o \textit{stream} ou uma gravação para ser processo pelo algoritmo. Um projeto da \textit{Google} é o projeto Tango \cite{Tango}, que consiste numa tentativa da \textit{Google} de comercializar o \textit{SLAM}, e colocá-lo na próxima geração de dispositivos \textit{Android}. Outros trabahos sobre \textit{SLAM} e Visão Computacional podem ser vistos em \cite{Trabalhos-Geral-SLAM}.
 
-Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado a priori, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar a forma dos mais diversos objetos e também a topografia do ambiente. 
-
+Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado a priori, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar o contorno e forma de objetos, ou também reconhecer a topografia do ambiente. 
 
 \section{Objetivos}
 
@@ -24,7 +23,7 @@ O trabalho possui as seguintes fases:
 %considerar usar description lista no lugar
 \begin{itemize}
 \item{Estudo sobre o estado da arte: Foram pesquisados os diversos métodos disponíveis atualmente para mapeamento de ambientes, bem como seus pormenores. Também como  poderiam ser utilizados para o objetivo deste trabalho}
-\item{Criação de um aplicativo para o sistema operacional \textit{Android}, onde fosse possível calibrar a câmera e obter um preprocessamento do \textit{dataset}, na forma de um banco de dados com quadros e seus \textit{keypoints}}
+\item{Criação de um aplicativo para o sistema operacional \textit{Android}, onde fosse possível calibrar a câmera e obter um preprocessamento do \textit{dataset}, na forma de um banco de dadodros e seus \textit{keypoints}}
 \item{Estudo e testes com as ferramentas encontradas: Várias ferramentas para reconstrução de ambientes foram encontradas, e nesta fase todas seriam testadas}
 \item{Criação do \textit{dataset}: Vídeos e imagens do ambiente externo e interno do departamento}
 \item{Processamento e avaliação do \textit{dataset}: Nesta fase foi realizado o processamento do \textit{dataset} com a ferramenta \textit{LSD-SLAM}, onde foi preciso realizar diversos testes para um melhor refinamento de suas configurações}
