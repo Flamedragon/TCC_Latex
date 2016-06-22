@@ -4,18 +4,18 @@ Apresentaremos neste capítulo a motivação para este trabalho, problemas encon
 
 \section{Motivação}
 
-Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D}, o carro autônomo em desenvolvimento pela \textit{Google} \cite{googlex} e realidade virtual, criando assim novos ramos de pesquisa, novos mercados à serem explorados.
+Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D} e realidade virtual, criando assim novos ramos de pesquisa, novos mercados a serem explorados. Algumas modelagens são feitas utilizando sensores ativos, isto é, onde usa-se dispositivos que enviarão sinais e então estes são interpretados pelo algoritmo. Outra forma é utilizando câmeras passivas, que mandam o \textit{stream} ou uma gravação para ser processo pelo algoritmo. Um projeto da \textit{Google} é o projeto Tango \cite{Tango}, que consiste numa tentativa da \textit{Google} de comercializar o \textit{SLAM}, e colocá-lo na próxima geração de dispositivos \textit{Android}. Outros trabahos sobre \textit{SLAM} e Visão Computacional podem ser vistos em \cite{Trabalhos-Geral-SLAM}.
 
-Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado previamente, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar a forma dos mais diversos objetos e também a topografia do ambiente. 
+Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado a priori, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar o contorno e forma de objetos, ou também reconhecer a topografia do ambiente. 
 
 
 \section{Objetivos}
 
-Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D de estruturas e ambientes, internos e externos, afim de utilizá-lo para outros fins potenciais. Tendo como estudo de caso, a reconstrução 3D do prédio do departamento de computação.
+Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D de estruturas e ambientes, internos e externos, a fim de utilizá-lo para outros fins potenciais. Tendo como estudo de caso, a reconstrução 3D do prédio do departamento de computação.
 
 \subsection{Objetivos Específicos}
 
-Para atingir o objetivo, foram utilizadas duas câmeras: uma câmera \textit{USB} do modelo PSEye® e a câmera nativa do smartphone \textit{Motorola Moto X Play 32GB} para obter imagens e vídeos do ambiente; o software \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo} para modelagem e o \textit{software VLC} para extrair os quadros dos vídeos capturados pelas câmeras a fim de criar os \textit{datasets}. Ao longo do trabalho, foi criado um aplicativo para o sistema mobile \textit{Android}, onde seria possível calibrar a câmera do dispositivo \textit{smartphone Android} e também gravar os \textit{datasets} necessários para o trabalho, na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do \textit{dataset}.
+Para atingir o objetivo, foram utilizadas duas câmeras: uma câmera \textit{USB} do modelo PSEye® e a câmera nativa do smartphone \textit{Motorola Moto X Play 32GB} para obter imagens e vídeos do ambiente; o software \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo} para modelagem e o \textit{software VLC} para extrair os quadros dos vídeos capturados pelas câmeras a fim de criar os \textit{datasets}. Ao longo do trabalho, foi criado um aplicativo para o sistema mobile \textit{Android}, onde é possível calibrar a câmera do dispositivo \textit{smartphone Android} e também gravar os \textit{datasets} necessários para o trabalho, na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do \textit{dataset}.
 
 
 \section{Abordagem utilizada}
