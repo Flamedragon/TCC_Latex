@@ -1,5 +1,7 @@
 \chapter{Instalação e uso do \textit{LSD-SLAM}}
 
+\renewcommand{\tablename}{Listagem}
+
 \section{Instalação da estação de trabalho}
 
 Apesar dos detalhes dessa etapa não fazerem parte do escopo desse trabalho, algumas informações técnicas podem auxiliar o leitor a experimentar a ferramenta.
@@ -159,7 +161,7 @@ A calibração dura em média um minuto. A janela estará cinza e inativa durant
 
 \subsection{Resultados da calibração}
 
-Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como demonstra a tabela \ref{tb:5}. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
+Depois de concluída a calibração os resultados dessa calibração podem ser vistos no terminal como demonstra a listagem \ref{tb:5}. Os valores poderão diferir com os apresentados, dependendo da câmera utilizada:
 
 
 %{\setlength{\parindent}{0cm}
@@ -235,7 +237,7 @@ Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no en
 \texttt{-0.337586 0.111612 -0.000218 -0.000030 0.0000}\\
 \hline
 \end{tabular}
-\caption{Informações relevantes extraídas da tabela \ref{tb:5}}
+\caption{Informações relevantes extraídas da listagem \ref{tb:5}}
 \end{table}
 
 
@@ -512,7 +514,7 @@ Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, 
 
 Uma característica fundamental da ferramenta é a capacidade de modificar alguns parâmetros do algoritmo, esses parâmetros podem ser modificados usando a ferramenta \texttt{rqt\_reconfigure} que vem junto com o pacote do \textit{LSD-SLAM} que pode ser chamado usando o seguinte comando:
 
-\begin{table}[!ht]\label{tb:16}
+\begin{table}[!ht]\label{tb:17}
 \begin{tabular}{| p{\textwidth}|}
 \hline
 \texttt{rosrun rqt\_reconfigure rqt\_reconfigure}\\
