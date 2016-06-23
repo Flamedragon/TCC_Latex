@@ -13,6 +13,11 @@
 \usepackage{lipsum}
 \usepackage{amsmath}
 \usepackage{graphicx}
+
+\usepackage{chngcntr}  
+\usepackage{tocloft}
+\usepackage{hyperref}
+
 %Compila o indice
 \makeindex
 
@@ -52,8 +57,9 @@
 \cleardoublepage
 
 \pdfbookmark[0]{\listtablename}{lot}
-\renewcommand{\tablename}{Listagem}
+
 \renewcommand*\listtablename{Lista de Listagens}
+
 \listoftables*
 \cleardoublepage
     
