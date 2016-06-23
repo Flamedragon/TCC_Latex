@@ -25,7 +25,7 @@ Por fim, a ultima filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O 
 
 Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento, a figura \ref{fig3:2} mostra um exemplo da execução do app:
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-2E4-4.png}
 	\caption{\textit{Keypoints} encontrados e filtrados entre duas imagens.}
@@ -41,7 +41,7 @@ Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com
 	\item{Círculos alinhados simetricamente \ref{fig3:5}}
 \end{itemize}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{Imagens/figura3-3E3-12.png}
   \caption{Tabuleiro de xadrez}\label{fig3:3}
@@ -70,28 +70,28 @@ Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com
 
 Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, a qual servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10}	 e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como a contra partida sem filtragem:
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-8.png}
 	\caption{Execução do \textit{PhotoGuide} e os \textit{keypoints} filtrados da cena \#1}
 	\label{fig3:8}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-9.png}
 	\caption{Execução do \textit{PhotoGuide} e os \textit{keypoints} filtrados da cena \#2}
 	\label{fig3:9}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-10.png}
 	\caption{\textit{Keypoints} não filtrados da cena \#1}
 	\label{fig3:10}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-11.png}
 	\caption{\textit{Keypoints} não filtrados da cena \#2}
@@ -141,4 +141,18 @@ Softwares e periféricos utilizados:
 \end{itemize}
 
 No começo da utilização do \textit{LSD-SLAM} foi testada a câmera \textit{Logitech® HD Webcam c270}, porém essa câmera não oferecia a capacidade mínima recomendado pelo \textit{LSD-SLAM} para obter resultados decentes, que era ter taxa de quadros de pelo menos 30 \textit{FPS} e \textit{global shutter}, em que todos os \textit{pixels} do quadro são expostos ao mesmo tempo, a \textit{PSEye®} se enquadrava em ambos os requisitos e foi usada no lugar da \textit{Logitech}. No entanto usar a câmera \textit{PSEye®} apesar de permitir um resultado melhor, era uma câmera \textit{USB} que devido a mobilidade da câmera estava limitada ao cabo além do próprio tamanho e peso do \textit{notebook} limitava a captura de \textit{datasets} a ser feita usando um \textit{notebook} com a \textit{PSEye®} conectada. Após algum tempo usando a \textit{PSEye®}, os testes foram migrados para a câmera do \textit{smartphone Motorola® Moto X Play}, que tem como diferencial a sua captura de vídeos em mais de 30\textit{FPS} em alta taxa de \textit{bits}. Apesar da câmera não ser \textit{global shutter} e sim \textit{rolling shutter}, em que os \textit{pixels} são expostos sequencialmente em uma direção, que é mais comum entre câmeras \textit{smartphone}, o resultado for satisfatório para o objetivo do trabalho de oferecer o mapeamento 3D do ambiente a partir de um aparelho móvel. A calibração da câmera \textit{smartphone} foi obtida a partir da calibração do \textit{PhotoGuide} e usada como parâmetro para o \textit{LSD-SLAM} usando o método de conversão na sessão 3.2.3.7.
+
+\subsection{Captura dos \textit{datasets}}
+
+Os \textit{datasets} capturados foram os seguintes:
+
+\begin{itemize}
+	\item{Fachada do DCOMP virada para o estacionamento usando a câmera \textit{PSEye®} - 6180 imagens - 119621}
+	\item{Jardim de área residencial usando a câmera \textit{PSEye®} - 660 imagens - 87093 pontos}
+	\item{Sala de Mestrado II usando a câmera \textit{PSEye®} - número de imagens desconhecido por ter sido feito usando o live\_slam sem salvar as imagens - 168915 pontos}
+	\item{Fachada do DCOMP virada para o estacionamento usando a câmera do \textit{smartphone Motorola® Moto X Play} 32GB- 3280 imagens - 3680087 pontos}
+	\item{Corredor interno do 1º andar do DCOMP usando a câmera do \textit{smartphone Motorola® Moto X Play} 32GB - 8319 imagens  - 5877083 pontos}
+\end{itemize}
+
+Todos os datasets foram capturados a 30FPS e resolução de 640x480.
 
