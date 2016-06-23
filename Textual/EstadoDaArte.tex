@@ -15,23 +15,28 @@ Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1}, dois pontos, c
 	
 Com pelo menos duas imagens em diferentes posições, se torna possível inferir a posição 3D de um ponto utilizando sua diferença de posição em ambas imagens. Para tanto é necessário deduzir a posição de duas retas num sistema de coordenadas em comum e é preciso também ter conhecimento da posição relativa da segunda imagem ou câmera com a primeira, o que pode ser chamado de movimento.
 
-Algebricamente, é possível descrever as características da câmera em matrizes chamadas \textbf{matrizes de projeção} \cite{Faugeras-Geometry} com as quais, sabendo seus valores, computa-se o plano $M$, abaixo:
+Algebricamente, se soubermos as matrizes de projeção $P$ e $P'$, podemos computar $M$ a partir de $m$ e $m'$, resolvendo o sistema linear de 4 equações, três incógnitas abaixo \cite{Faugeras-Geometry}:
 
- \begin{equation}\label{eq1}
-	M = 	
-	\begin{bmatrix}
+
+\begin{equation}\label{eq1}
+\begin{aligned}
+	PM = m \\
+	P'M = m'
+\end{aligned} \; \;
+\begin{bmatrix}
 		P
-	\end{bmatrix}
-	\begin{bmatrix}
-		x\\y\\z
-	\end{bmatrix}
-	\begin{bmatrix}
+\end{bmatrix}_{3x4}	
+\underbrace{\begin{bmatrix}
+		x \\ y \\ 1
+\end{bmatrix}
+}_{M}
+\underbrace{\begin{bmatrix}
 		m\\v\\1
-	\end{bmatrix}
-	\begin{bmatrix}
+\end{bmatrix}}_{m}	
+\underbrace{\begin{bmatrix}
 		m'\\v'\\1
-	\end{bmatrix}
-\end{equation}	
+	\end{bmatrix}}_{m'}
+\end{equation}
  
 
 Equação \eqref{eq1}: Matriz de projeção $P$, plano $M$ e retas $m^T = \begin{bmatrix}u & v & 1\end{bmatrix}$ e $m'^T = \begin{bmatrix}u' & v' & 1\end{bmatrix}$, respectivamente.
