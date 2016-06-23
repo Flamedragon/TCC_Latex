@@ -5,7 +5,7 @@
 
 \textit{Structure from motion} é o processo de estimar estruturas 3D partindo de imagens sequenciais em duas dimensões \cite{SFM}, que pode conter sinais de movimento, em analogia com a biologia, seria o equivalente ao modo  como os olhos humanos e de outros animais conseguem recuperar estruturas 3D de um plano 2D, nesse caso a retina, partindo de uma cena ou objeto em movimento.
 
-Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1} , dois pontos, chamados $m$ no plano $C$ e $m'$ no plano $C'$, podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço $M$. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
+Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1}, dois pontos, chamados $m$ no plano $C$ e $m'$ no plano $C'$, podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço $M$. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
 
 \begin{itemize}
 	\item{Dado um ponto m na primeira imagem, onde está seu correspondente m’ na segunda imagem?}
@@ -34,7 +34,7 @@ Algebricamente, é possível descrever as características da câmera em matrize
 \end{equation}	
  
 
-Equação \eqref{eq1} : Matriz de projeção $P$, plano $M$ e retas $m^T = \begin{bmatrix}u & v & 1\end{bmatrix}$ e $m'^T = \begin{bmatrix}u' & v' & 1\end{bmatrix}$, respectivamente.
+Equação \eqref{eq1}: Matriz de projeção $P$, plano $M$ e retas $m^T = \begin{bmatrix}u & v & 1\end{bmatrix}$ e $m'^T = \begin{bmatrix}u' & v' & 1\end{bmatrix}$, respectivamente.
 
 \begin{equation}\label{eq2}
 \begin{cases}
@@ -43,9 +43,9 @@ P' M \simeq m'.
 \end{cases}
 \end{equation}
 
-Equação \eqref{eq2} : Sistema de equações para a matriz de projeção $P$ e $P'$, respectivamente.
+Equação \eqref{eq2}: Sistema de equações para a matriz de projeção $P$ e $P'$, respectivamente.
 
-Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. As equações da figura 2.2 representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
+Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. O sistema de equações \eqref{eq2} representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
 
 Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia \cite{Faugeras-Geometry} entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz $M$ de tamanho 3x3. A homografia é exemplificada como equação pela equacão \eqref{eq3} e também na figura \ref{fig1}:
 
@@ -53,7 +53,7 @@ Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia
 m' \simeq Hm.
 \end{equation}
 
-Equação \eqref{eq3} : Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira, como equação.
+Equação \eqref{eq3}: Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira, como equação.
 
 \begin{figure}
 	\centering
@@ -80,12 +80,12 @@ Quando os pontos no espaço e as duas câmeras estão em posições distintas, n
 	\label{fig3}
 \end{figure}
 
-Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre $m$ e $m'$, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos $Lm$ e $Lm'$ se interceptem. Algebricamente, já que o ponto $M$ da figura \ref{eq2} depende de três coordenadas, e a correspondência entre $m$ e $m'$ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de $m$ e $m'$.
+Outra forma de se obter o mesmo resultado é considerar algumas restrições às câmeras ao invés de sua correspondência. Supondo que há uma correspondência válida entre $m$ e $m'$, a posição relativa de ambas as câmeras precisa ser de forma que os raios ópticos $Lm$ e $Lm'$ se interceptem. Algebricamente, já que o ponto $M$ da figura \ref{fig3} depende de três coordenadas, e a correspondência entre $m$ e $m'$ depende no total de 4 parâmetros, é necessário também que haja uma relação algébrica entre as coordenadas de $m$ e $m'$.
 
 A relação entre o ponto $m$ e a linha epipolar $l'm$ na segunda imagem é linearmente projetiva, já que o raio óptico de $m$ é uma função linear de $m$, e a projeção também é linear. Portanto, há uma matriz 3x3 que descreve essa correspondência, chamada Matriz Fundamental \cite{Faugeras-Geometry}. Dada a linha epipolar do ponto $m: l'm = Fm$, se dois pontos $m$ e $m'$ possuem uma correspondência, o ponto $m'$ pertence à linha epipolar de $m$, satisfazendo a seguinte restrição: 
-\begin{equation}\label{eq4}m'^{T}Fm = 0\end{equation}, que é bilinear nas coordenadas dos pontos das imagens. Invertendo o papel das duas imagens, $F$ seria transformada em sua versão transposta.
+\begin{equation}\label{eq4}m'^{T}Fm = 0\end{equation} que é bilinear nas coordenadas dos pontos das imagens. Invertendo o papel das duas imagens, $F$ seria transformada em sua versão transposta.
 
-A matriz fundamental depende apenas da configuração das câmeras ,seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura \ref{fig4} mostra um exemplo de geometria epipolar:
+A matriz fundamental depende apenas da configuração das câmeras, seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura \ref{fig4} mostra um exemplo de geometria epipolar:
 
 \begin{figure}
 	\centering
@@ -96,7 +96,7 @@ A matriz fundamental depende apenas da configuração das câmeras ,seus parâme
 
 Normalmente não se assume qualquer relação espacial entre os pontos no espaço, apenas a informação disponível pela correspondência projetiva, ou seja, a correspondência de pontos por projeção linear. A geometria epipolar é a restrição básica que decorre da existência de dois pontos de vista distintos. Ambos podem ser obtidos por duas câmeras diferentes ou com uma câmera em movimento, denominado \textit{Structure from Motion}. As restrições epipolares descrevem totalmente a correspondência de pares de correspondências genéricas entre pontos de cada imagem, e a ambiguidade ao longo da linha epipolar causada pela ambiguidade ao longo dos raios ópticos da operação de projeção. Partindo do fato de que a matriz fundamental depende apenas da geometria da câmera, descreve todas as restrições epipolares, logo compila toda a informação disponível das correspondências projetivas. 
 
-Já que todos os raios ópticos contém o centro óptico $C$ da primeira câmera, todas as linhas epipolares contém a projeção de $C$ na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamada epipolo. Como mostra a figura \ref{fig2}, o fato da epipolo da segunda imagem pertencer às linhas epipolares significa que $e'TFm = 0$, ou, $FTe' = 0$. Invertendo as duas imagens, $Fe = 0$. Pode-se concluir que $F$ é uma matriz de grau 2 e $det(F) = 0$. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, $F$ depende de sete parâmetros.
+Já que todos os raios ópticos contém o centro óptico $C$ da primeira câmera, todas as linhas epipolares contém a projeção de $C$ na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamada epipolo. Como mostra a figura \ref{fig2}, o fato da epipolo da segunda imagem pertencer às linhas epipolares significa que $e'^{T}Fm = 0$, ou, $F^{T}e' = 0$. Invertendo as duas imagens, $Fe = 0$. Pode-se concluir que $F$ é uma matriz de grau 2 e $det(F) = 0$. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, $F$ depende de sete parâmetros.
 
 Para o cálculo da matriz fundamental, tem-se $m$ e $m'$ correspondentes abaixo:
 
@@ -123,10 +123,10 @@ Equação \eqref{eq6}: Matriz fundamental $F$.
 Logo, a restrição epipolar $m'^{T}Fm = 0$ pode ser representada como $U^{T}f = 0$, onde:
 
 \begin{equation}\label{eq7}
-f = [F_{11}, F_{12}, F_{13}, F_{21}, F_{22}, F_{23}, F_{31}, F_{32}, F_{33}] {T}
+f = [F_{11}, F_{12}, F_{13}, F_{21}, F_{22}, F_{23}, F_{31}, F_{32}, F_{33}^{T}
 \end{equation}
 \begin{equation}\label{eq8}
-U = [uu', vu', u', uv', vv', v', uv,1] ^ {T}
+U = [uu', vu', u', uv', vv', v', uv,1]^{T}
 \end{equation}
 
 Equações \eqref{eq7}, \eqref{eq8}: Representações de $f$ e $U$.
@@ -148,7 +148,7 @@ Mesmo utilizando câmeras estéro, ainda existem problemas para mapear estrutura
 \section{Bibliotecas}
   
 \subsection{\textit{FIT3D}}
-O \textit{FIT3D} foi desenvolvido por Esteban et al\cite{FIT3D}, com o intuito de ser uma ferramenta única para realizar os 5 passos do processo de reconstrução de uma cena, que são: calibração da câmera, estimação de movimento, otimização, reconstrução e modelagem. Foi criado para \textit{MATLAB}® e é composto de várias funções próprias bem como de pacotes de terceiros como o \textit{SIFT}, utilizadas em seu pipeline para reconstruir a cena, composto pelas seguintes fases:
+O \textit{FIT3D} foi desenvolvido por Esteban et al\cite{FIT3D}, com o intuito de ser uma ferramenta única para realizar os 5 passos do processo de reconstrução de uma cena, que são: calibração da câmera, estimação de movimento, otimização, reconstrução e modelagem. Foi criado para \textit{MATLAB}® e é composto de várias funções próprias bem como de pacotes de terceiros como o \textit{SIFT}, utilizadas em seu \textit{pipeline} para reconstruir a cena, composto pelas seguintes fases:
 \begin{description}
  \item[Calibração: ]{Processo de obter os parâmetros intrínsecos que descrevem a câmera. Inclui parâmetros para distorção radial, como mostrado no livro de Faugeras cap 4.5 e 4.6 \cite{Faugeras-Geometry}, distância focal, centro de projeção e parâmetros \textit{skew};}
  \item[Egomotion (odometria visual): ]{É a estimativa de movimento de uma câmera entre quadros baseada na informação obtida das imagens denominada como parâmetros extrínsecos. No \textit{FIT3D}, apenas quadros consecutivos são considerados para movimento;}
@@ -168,16 +168,16 @@ Como dito anteriormente, o algoritmo \textit{FAST} foi escolhido para detecção
 
 Para os descritores, o \textit{BRIEF} é utilizado pela robustez para luz, \textit{blur} e distorção de perspectiva, mas é sensível com a rotação do plano \cite{ORB-Artigo}. O \textit{BRIEF} utiliza testes binários para treinar um conjunto de árvores de classificação \cite{ORB-Artigo}, normalmente treinadas com 500 ou mais \textit{keypoints}, podem ser utilizadas para retornar a assinatura de um \textit{keypoint arbitrário} \cite{ORB-Artigo}.
 
-Infelizmente as combinações encontradas podem ser errôneas, logo é preciso eliminar falsos positivos. Para isso normalmente se é utilizado o \textit{RANSAC} , algoritmo que remove combinações de pontos \textit{outliers}, isto é, combinações que provavelmente não pertencem ao espaço. O \textit{RANSAC} também é utilizado para resolver o \textit{Location Determination Problem}, que tem como objetivo determinar os pontos no espaço que têm projeção numa imagem com localizações conhecidas \cite{RANSAC}.
+Infelizmente as combinações encontradas podem ser errôneas, logo é preciso eliminar falsos positivos. Para isso normalmente se é utilizado o \textit{RANSAC}, algoritmo que remove combinações de pontos \textit{outliers}, isto é, combinações que provavelmente não pertencem ao espaço. O \textit{RANSAC} também é utilizado para resolver o \textit{Location Determination Problem}, que tem como objetivo determinar os pontos no espaço que têm projeção numa imagem com localizações conhecidas \cite{RANSAC}.
 
 As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
 
 
 \subsection{\textit{LSD-SLAM}}
 
-Um dos maiores benefícios do \textit{SLAM} monocular, e simultaneamente o seu maior desafio, vem da sua ambiguidade de escala inerente: A escala do mundo não pode ser observado e muda com o tempo, sendo uma das maiores fontes de erro. A vantagem é que isso permite a troca entre ambientes de diferentes escalas como ambientes internos com móveis e ambientes externos. Por outro lado sensores escalonados como câmeras estéreo e câmeras de profundidade provém resultados mais confiáveis mas não oferecem a mesma flexibilidade tanto na facilidade de troca entre diferentes escalas quanto no \textit{hardware}, fazendo a abordagem \textit{monocular} funcionar para câmeras de celular que é um \textit{hardware} mais acessível. 
+Um dos maiores benefícios do \textit{SLAM} monocular, e simultaneamente o seu maior desafio, vem da sua ambiguidade de escala inerente: A escala do mundo não pode ser observado e muda com o tempo, sendo uma das maiores fontes de erro. A vantagem é que isso permite a troca entre ambientes de diferentes escalas como ambientes internos com móveis e ambientes externos. Por outro lado sensores escalonados como câmeras estéreo e câmeras de profundidade provém resultados mais confiáveis mas não oferecem a mesma flexibilidade tanto na facilidade de troca entre diferentes escalas quanto no \textit{hardware}, fazendo a abordagem monocular funcionar para câmeras de celular que é um \textit{hardware} mais acessível. 
 
-Segundo o artigo do \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo}, o algoritmo consiste de três componentes principais: \textbf{tracking (rastreamento)}, \textbf{depth map estimation (estimativa de mapa de profundidade)} e \textbf{map optimization (otimização de mapa)} :
+Segundo o artigo do \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo}, o algoritmo consiste de três componentes principais: \textbf{tracking (rastreamento)}, \textbf{depth map estimation (estimativa de mapa de profundidade)} e \textbf{map optimization (otimização de mapa)}:
 
 \begin{itemize}
 	\item{O componente de \textbf{tracking} continuamente rastreia novas imagens de câmera; Isso é, ele estima sua pose de corpo rígido $\xi \in se(3)$ com relação ao quadro-chave atual, usando a pose do quadro anterior como inicialização.}

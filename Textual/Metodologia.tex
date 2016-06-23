@@ -5,15 +5,15 @@ A metodologia deste trabalho foi dividida em duas partes: A obtenção dos dados
 
 \section{\textit{PhotoGuide}}
 
-Desenvolvido para a plataforma \textit{Android}®, o \textit{PhotoGuide} \cite{PhotoGuide} teve como objetivo primário a reconstrução de ambientes à partir da câmera do dispositivo que fosse executado da plataforma \textit{Android}. O aplicativo utiliza diversos algoritmos providos pela biblioteca de terceiros \textit{OpenCV} \cite{OpenCV}. O objetivo do \textit{PhotoGuide} é, partindo do \textit{stream} da câmera ou recebendo um conjunto de imagens sequenciais, obter os quadros num intervalo pré-determinado e então enviar pares para serem processados utilizando o \textit{ORB}, retornando os keypoints encontrados depois de filtrados, sendo inseridos num banco de dados no final do processo.  Primeiramente foi necessário obter os keypoints da cena, e os algoritmos mais utilizados para isso são \textit{SIFT} e \textit{SURF}, mas infelizmente ambos são patenteados, o que nos obrigaria a lidar com a questão das patentes e permissão de uso. O \textit{ORB} e \textit{BRISK} são algoritmos para obter keypoints e seus descritores, e foram desenvolvidos para terem uma performance semelhante ao \textit{SIFT} e\textit{ SURF}, tornando-se assim a melhor escolha já que são de livre uso.
+Desenvolvido para a plataforma \textit{Android}®, o \textit{PhotoGuide} \cite{PhotoGuide} teve como objetivo primário a reconstrução de ambientes à partir da câmera do dispositivo que fosse executado da plataforma \textit{Android}. O aplicativo utiliza diversos algoritmos providos pela biblioteca de terceiros \textit{OpenCV} \cite{OpenCV}. O objetivo do \textit{PhotoGuide} é, partindo do \textit{stream} da câmera ou recebendo um conjunto de imagens sequenciais, obter os quadros num intervalo pré-determinado e então enviar pares para serem processados utilizando o \textit{ORB}, retornando os \textit{keypoints} encontrados depois de filtrados, sendo inseridos num banco de dados no final do processo.  Primeiramente foi necessário obter os \textit{keypoints} da cena, e os algoritmos mais utilizados para isso são \textit{SIFT} e \textit{SURF}, mas infelizmente ambos são patenteados, o que nos obrigaria a lidar com a questão das patentes e permissão de uso. O \textit{ORB} e \textit{BRISK} são algoritmos para obter \textit{keypoints} e seus descritores, e foram desenvolvidos para terem um desempenho semelhante ao \textit{SIFT} e\textit{ SURF}, tornando-se assim a melhor escolha já que são de livre uso.
 
-Primeiramente, os \textit{keypoints} são obtidos diretamente da câmera do aparelho, mas a taxa de captura usada foi 10 quadros por segundo, e passados (como imagens \textit{bitmap} e em pares) para o \textit{ORB}; então são processado os \textit{keypoints} e seus descritores, mas infelizmente é possível haver ruído na imagem e, portanto, ocasionando em falsos casamento entre uma imagem e outra. Para remover o máximo possível de falsos positivos, foram utilizadas três técnicas de refinamento, na ordem: \textit{Cross Check}, \textit{Ratio Filtering} e \textit{RANSAC}.
+Primeiramente, os \textit{keypoints} são obtidos diretamente da câmera do aparelho, mas a taxa de captura usada foi 10\textit{FPS}, e passados (como imagens \textit{bitmap} e em pares) para o \textit{ORB}; então são processado os \textit{keypoints} e seus descritores, mas infelizmente é possível haver ruído na imagem e, portanto, ocasionando em falsos casamento entre uma imagem e outra. Para remover o máximo possível de falsos positivos, foram utilizadas três técnicas de refinamento, na ordem: \textit{Cross Check}, \textit{Ratio Filtering} e \textit{RANSAC}.
 
-Ao executar o \textit{ORB} e \textit{BRISK}, são obtidos listas de estruturas que possuem informações acerca do keypoint, bem como informações sobre seu correspondente na segunda imagem. O \textit{Cross Check} consiste em rodar o algoritmo duas vezes, uma procurando pontos da primeira imagem na segunda, e outra vez procurando pontos da segunda imagem na primeira. Por fim, percorre ambos, verificando se para cada casamento da primeira lista, as informações batem com o casamento correspondente da segunda lista.
+Ao executar o \textit{ORB} e \textit{BRISK}, são obtidos listas de estruturas que possuem informações acerca do \textit{keypoint}, bem como informações sobre seu correspondente na segunda imagem. O \textit{Cross Check} consiste em rodar o algoritmo duas vezes, uma procurando pontos da primeira imagem na segunda, e outra vez procurando pontos da segunda imagem na primeira. Por fim, percorre ambos, verificando se para cada casamento da primeira lista, as informações batem com o casamento correspondente da segunda lista.
 
 O \textit{Ratio Filtering} percorre a lista resultante, verificando se há mais de um casamento para cada \textit{keypoint}, já que o ideal é que cada \textit{keypoint} tenha apenas um único correspondente na segunda imagem. Ao encontrar mais de uma ocorrência, descarta os pontos mais distantes.
 
-Por fim, a ultima filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O \textit{RANSAC} é um método iterativo para estimar parâmetros de modelos matemáticos partindo de um conjunto de informações obtidas que possuem \textit{outliers}. Também é considerado um método determinístico que possui um bom resultado com confiabilidade. Foi apresentado em 1981 por Fischler e Bolles para tentar resolver o problema da determinação da localização. Ele parte do principio que o conjunto de informações possui inliners, os quais são informações que podem ser explicadas pelos parâmetros do modelo, apesar que podem ter sofrido de ruido, e os outliers, que são informações que não condizem com o modelo. Esses \textit{outliers} podem ser provenientes de ruido, medições errôneas ou uma má interpretação das informações. A figura \ref{fig3:1} possui um exemplo de um conjunto de informações, os pontos, e como o \textit{RANSAC} trataria os \textit{inliners} e \textit{outliners}:
+Por fim, a ultima filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O \textit{RANSAC} é um método iterativo para estimar parâmetros de modelos matemáticos partindo de um conjunto de informações obtidas que possuem \textit{outliers}. Também é considerado um método determinístico que possui um bom resultado com confiabilidade. Foi apresentado em 1981 por Fischler e Bolles para tentar resolver o problema da determinação da localização. Ele parte do principio que o conjunto de informações possui \textit{inliners}, os quais são informações que podem ser explicadas pelos parâmetros do modelo, apesar que podem ter sofrido de ruido, e os \textit{outliers}, que são informações que não condizem com o modelo. Esses \textit{outliers} podem ser provenientes de ruido, medições errôneas ou uma má interpretação das informações. A figura \ref{fig3:1} possui um exemplo de um conjunto de informações, os pontos, e como o \textit{RANSAC} trataria os \textit{inliners} e \textit{outliners}:
 
 \begin{figure}
 	\centering
@@ -23,7 +23,7 @@ Por fim, a ultima filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O 
 \end{figure}
   
 
-Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento, a figura \ref{fig3:2} mostra um exemplo da execução do app:
+Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento, a figura \ref{fig3:2} mostra um exemplo da execução do aplicativo:
 
 \begin{figure}[H]
 	\centering
@@ -113,7 +113,7 @@ A abordagem seguinte adotada no projeto foi a reconstrução de ambientes utiliz
 
 \subsection{Configurações utilizadas}
 
-O \textit{LSD-SLAM} foi testado nas seguintes configurações de máquina, um desktop e um laptop, respectivamente:
+O \textit{LSD-SLAM} foi testado nas seguintes configurações de máquina, um \textit{desktop} e um \textit{laptop}, respectivamente:
 
 \begin{itemize}
 	\item{Processador	\textit{AMD FX™-8350 Eight-Core Processor}, 4000 Mhz, 4 Núcleos, 8 Processadores Lógicos}
@@ -125,7 +125,7 @@ e:
 
 \begin{itemize}
 	\item{Processador \textit{Intel® Core™ i3 M370}, 2399 Mhz, 2 Núcleos, 4 Processadores Lógicos}
-	\item{4GB de memória RAM}
+	\item{4GB de memória \textit{RAM}}
 	\item{Placa gráfica integrada: \textit{Intel® HD Graphics}}
 \end{itemize}	
 
@@ -137,7 +137,7 @@ Softwares e periféricos utilizados:
 	\item{Câmera embutida no \textit{smartphone Motorola® Moto X Play} 32GB em junção com o aplicativo \textit{OpenCamera} para \textit{Android}.}
 	\item{\textit{Software VLC} para extrair os quadros dos vídeos capturados pela câmera.}
 	\item{\textit{Software ROS Indigo}.\cite{ROS-Tutorial}}
-	\item{\textit{Driver} para \textit{webcam} usb\_cam.\cite{Setup-USBCAM}}
+	\item{\textit{Driver} para \textit{webcam} \texttt{usb\_cam}.\cite{Setup-USBCAM}}
 \end{itemize}
 
 No começo da utilização do \textit{LSD-SLAM} foi testada a câmera \textit{Logitech® HD Webcam c270}, porém essa câmera não oferecia a capacidade mínima recomendado pelo \textit{LSD-SLAM} para obter resultados decentes, que era ter taxa de quadros de pelo menos 30 \textit{FPS} e \textit{global shutter}, em que todos os \textit{pixels} do quadro são expostos ao mesmo tempo, a \textit{PSEye®} se enquadrava em ambos os requisitos e foi usada no lugar da \textit{Logitech}. No entanto usar a câmera \textit{PSEye®} apesar de permitir um resultado melhor, era uma câmera \textit{USB} que devido a mobilidade da câmera estava limitada ao cabo além do próprio tamanho e peso do \textit{notebook} limitava a captura de \textit{datasets} a ser feita usando um \textit{notebook} com a \textit{PSEye®} conectada. Após algum tempo usando a \textit{PSEye®}, os testes foram migrados para a câmera do \textit{smartphone Motorola® Moto X Play}, que tem como diferencial a sua captura de vídeos em mais de 30\textit{FPS} em alta taxa de \textit{bits}. Apesar da câmera não ser \textit{global shutter} e sim \textit{rolling shutter}, em que os \textit{pixels} são expostos sequencialmente em uma direção, que é mais comum entre câmeras \textit{smartphone}, o resultado for satisfatório para o objetivo do trabalho de oferecer o mapeamento 3D do ambiente a partir de um aparelho móvel. A calibração da câmera \textit{smartphone} foi obtida a partir da calibração do \textit{PhotoGuide} e usada como parâmetro para o \textit{LSD-SLAM} usando o método de conversão na sessão 3.2.3.7.
@@ -149,10 +149,10 @@ Os \textit{datasets} capturados foram os seguintes:
 \begin{itemize}
 	\item{Fachada do DCOMP virada para o estacionamento usando a câmera \textit{PSEye®} - 6180 imagens - 119621}
 	\item{Jardim de área residencial usando a câmera \textit{PSEye®} - 660 imagens - 87093 pontos}
-	\item{Sala de Mestrado II usando a câmera \textit{PSEye®} - número de imagens desconhecido por ter sido feito usando o live\_slam sem salvar as imagens - 168915 pontos}
+	\item{Sala de Mestrado II usando a câmera \textit{PSEye®} - número de imagens desconhecido por ter sido feito usando o \texttt{live\_slam} sem salvar as imagens - 168915 pontos}
 	\item{Fachada do DCOMP virada para o estacionamento usando a câmera do \textit{smartphone Motorola® Moto X Play} 32GB- 3280 imagens - 3680087 pontos}
 	\item{Corredor interno do 1º andar do DCOMP usando a câmera do \textit{smartphone Motorola® Moto X Play} 32GB - 8319 imagens  - 5877083 pontos}
 \end{itemize}
 
-Todos os datasets foram capturados a 30FPS e resolução de 640x480.
+Todos os datasets foram capturados a 30\text{FPS} e resolução de 640x480.
 
