@@ -15,16 +15,32 @@
 \usepackage{graphicx}
 
 \usepackage{chngcntr}  
-\usepackage{tocloft}
 \usepackage{hyperref}
 
 %Compila o indice
 \makeindex
 
+
+
+\AtBeginDocument{%
+%\usepackage[subfigure]{tocloft}
+%\renewcommand\cfttabpresnum{Listagem}
+%\renewcommand\tablename{Listagem}
+%\addto\captionsportuguese{% Replace "english" with the language you use
+%  \renewcommand{tablename}%
+%    {Listagem}%
+%}
+  %\addto{\captionsenglish{\renewcommand*{\listoftables}{Lista de Listagens}}
+%}
+}
 \begin{document}
+
+
 
 % Seleciona o idioma do documento (conforme pacotes do babel)
 \selectlanguage{brazil}
+
+
 
 % Retira espaço extra obsoleto entre as frases.
 \frenchspacing 
@@ -60,6 +76,7 @@
 
 \renewcommand*\listtablename{Lista de Listagens}
 
+\renewcommand\tablename{Listagem}
 \listoftables*
 \cleardoublepage
     
@@ -67,6 +84,7 @@
 \include{Configuraveis/Simbolos}
     
 \pdfbookmark[0]{\contentsname}{toc}
+
 \tableofcontents*
 \cleardoublepage
 
