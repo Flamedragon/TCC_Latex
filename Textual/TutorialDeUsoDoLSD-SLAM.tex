@@ -394,7 +394,7 @@ Alternativamente, pode-se especificar um arquivo de calibração usando o seguin
 
 Novamente, o texto em vermelho corresponde ao que foi configurado pelo usuário anteriormente. O texto \texttt{\textcolor{blue}{/caminho/para/seu/arquivodeccalibracao}} deve ser trocado para o caminho do arquivo de calibração criado.
 
-As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dessas telas as nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de cabeça para baixo. 
+As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dessas telas a nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de cabeça para baixo. 
 
 \begin{figure}[H]
 	\centering
@@ -406,7 +406,7 @@ As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dess
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-21.jpg}
-	\caption{\textit{PointCloud} referente à figura \ref{fig3:20}}
+	\caption{\textit{Nuvem de pontos} referente à figura \ref{fig3:20}}
 	\label{fig3:21}
 \end{figure}
 
@@ -420,7 +420,7 @@ As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dess
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-23.jpg}
-	\caption{\textit{PointCloud} referente à figura \ref{fig3:22}}
+	\caption{\textit{Nuvem de pontos} referente à figura \ref{fig3:22}}
 	\label{fig3:23}
 \end{figure}
 
@@ -434,11 +434,11 @@ As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dess
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-25.jpg}
-	\caption{\textit{PointCloud} referente à figura \ref{fig3:24}}
+	\caption{\textit{Nuvem de pontos} referente à figura \ref{fig3:24}}
 	\label{fig3:25}
 \end{figure}
 
-A saída do \texttt{lsd\_slam\_core} está sendo transferida para o visualizador na janela \textit{PointCloud Viewer} no formato de nuvem de pontos que podem ser rotacionados e observados em qualquer ângulo. A janela \textit{DebugWindow DEPTH} é a janela que oferece informações sobre a execução do algoritmo incluindo:
+A saída do \texttt{lsd\_slam\_core} está sendo transferida para o visualizador na janela \textit{PointCloudViewer} no formato de nuvem de pontos que podem ser rotacionados e observados em qualquer ângulo. A janela \textit{DebugWindow DEPTH} é a janela que oferece informações sobre a execução do algoritmo incluindo:
 
 \begin{description}
 	\item[Map upd :]{A taxa em que os quadros estão sendo computados.}
@@ -493,7 +493,7 @@ Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-26E3-27.png}
-	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#1}
+	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#1}
 	\label{fig3:26}
 \end{figure}
 
@@ -504,7 +504,7 @@ Troque \texttt{/caminho/para/seu/dataset} pelo caminho do seu \textit{dataset}, 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-28E3-29.png}
-	\caption{\textit{PointCloud} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#4}
+	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#4}
 	\label{fig3:27}
 \end{figure}
 
@@ -562,21 +562,21 @@ Esses parâmetros influenciam na frequência em que novos \textit{keyframes} sã
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-33.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0}
 	\label{fig3:31}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-34.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#1}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#1}
 	\label{fig3:32}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-35}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#2}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#2}
 	\label{fig3:33}
 \end{figure}
 
@@ -584,7 +584,7 @@ Esses parâmetros influenciam na frequência em que novos \textit{keyframes} sã
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-36.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#3}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#3}
 	\label{fig3:34}
 \end{figure}
 
@@ -592,24 +592,24 @@ Esses parâmetros influenciam na frequência em que novos \textit{keyframes} sã
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-37.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#4}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#4}
 	\label{fig3:35}
 \end{figure}
 
 
-Nas janelas do \textit{PointCloud}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também pode-se ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor dessa forma, há uma carga muito maior de processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores mais lentos/com menor capacidade de processamento. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distância, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
+Nas janelas do \textit{Nuvem de pontos}, as linhas verdes e vermelhas representam \textit{constraints} entre \textit{keyframes} e as pirâmides azuis são \textit{keyframes} e a posição da câmera em relação ao modelo total. Percebe-se que o valor padrão não reproduziu um resultado tão bom quanto o valor máximo, e também pode-se ver que há muito mais \textit{constraints} e \textit{keyframes} nas imagem com o valor máximo. Mas apesar de se ter obtido um resultado melhor dessa forma, há uma carga muito maior de processamento do que pelo valor padrão, fazendo o computador demorar muito mais para executar essa operação devido a quantidade maior de \textit{keyframes} que o algoritmo tem que rastrear e interligar, a ponto dela não ser bem aplicada no \texttt{live\_slam}, e nem em computadores mais lentos/com menor capacidade de processamento. Da mesma forma o \textit{KFDistWeight} também modifica a quantidade de \textit{keyframes}, mas ao contrário do \textit{KFUsageWeight}, ele faz a partir da distância, ou seja, caso o \textit{dataset} possua vários quadros bem próximos fisicamente um do outro e outros quadros mais afastados poderá haver diminuição de \textit{keyframes} no primeiro caso e o aumento de \textit{keyframes} no segundo caso. Isso faz com que o refinamento dos \textit{keyframes} seja mais dependente do \textit{dataset} fazendo com que seja necessário um cuidado maior na hora de movimentar a câmera para não acabar coletando uma quantidade insuficiente de quadros naquela localização. Segue abaixo o mesmo \textit{dataset} usado acima só que com o valor máximo do \textit{KFDistWeight}.
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-38.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#1}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#1}
 	\label{fig3:36}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-39.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#2}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#2}
 	\label{fig3:37}
 \end{figure}
 
@@ -618,13 +618,13 @@ Como o novo exemplo demonstra, os \textit{keyframes} se comparados aos do valor 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-40.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#1}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#1}
 	\label{fig3:38}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-41.png}
-	\caption{\textit{PointCloud} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#2}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#2}
 	\label{fig3:39}
 \end{figure}
