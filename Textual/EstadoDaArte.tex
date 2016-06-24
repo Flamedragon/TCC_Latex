@@ -25,20 +25,22 @@ R & t \\
 \end{bmatrix}
 \end{equation}
 
-Onde $R$ é uma matriz de rotação 3x3 e t indica uma translação em 3D.
+\noindent
+onde $R$ é uma matriz de rotação 3x3 e t indica uma translação em 3D.
 
 As características de uma câmera são dadas por seus parâmetros instrínsecos, expressos pela matriz $A$ abaixo:
 
 \begin{equation}
 A \; = \; \;
 \begin{bmatrix}
-		f & 0 & \omega_{0} \\
-		0 & f & \upsilon_{0} \\
+		f & 0 & u_{0} \\
+		0 & f & v_{0} \\
 		0 & 0 & 1
 \end{bmatrix}
 \end{equation}
 
-Onde $f$ é a distância focal em \textit{pixels}, e ($\omega_{a}$,$\upsilon_{0}$) indicam as coordenadas do ponto principal, também denotado por $c$, referente ao centro da imagem.
+\noindent
+onde $f$ é a distância focal em \textit{pixels}, e ($u_{0}$,$v_{0}$) indicam as coordenadas do ponto principal, também denotado por $c$, referente ao centro da imagem.
 A matriz de projeção pode ser calculada a partir de $D$ e $A$, através da equação abaixo:
 
 \begin{equation}\label{eq1}
@@ -46,8 +48,8 @@ A matriz de projeção pode ser calculada a partir de $D$ e $A$, através da equ
 		P
 \end{bmatrix}_{3x4}	\; = \; \;
 \underbrace{\begin{bmatrix}
-		f & 0 & \omega_{0} \\
-		0 & f & \upsilon_{0} \\
+		f & 0 & u_{0} \\
+		0 & f & v_{0} \\
 		0 & 0 & 1
 \end{bmatrix}
 }_{A}
@@ -59,9 +61,9 @@ A matriz de projeção pode ser calculada a partir de $D$ e $A$, através da equ
 \underbrace{\begin{bmatrix}
 		R & t \\
 		0 & 1		
-	\end{bmatrix}}_{m'}
+	\end{bmatrix}}_{D}
 \end{equation}
-Equação \eqref{eq1}: Cálculo para a matriz de projeção $P$.
+Equação \eqref{eq1}: Cálculo da matriz de projeção $P$.
 
 Seja $M$ um plano 3D no sistema de coordenadas do mundo, e $m$ e $m'$ projeções de $M$ em duas câmeras direcionadas à $M$, $m$ e $m'$ são dados pelas expressões abaixo:
 
@@ -85,10 +87,10 @@ Os pontos $m$ e $m'$ estão no sistema de coordenadas das respectivas imagens 2D
 Algebricamente, se soubermos as matrizes de projeção $P$ e $P'$, podemos computar $M$ a partir de $m$ e $m'$, resolvendo o sistema linear de 4 equações, três incógnitas abaixo \cite{Faugeras-Geometry}:
 
 \begin{equation}\label{eq3}
-\begin{aligned}
+\begin{cases}
 	PM = m \\
 	P'M = m'
-\end{aligned} \; \;
+\end{cases}
 \end{equation}
 
 Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. O sistema de equações \eqref{eq3} possui três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
@@ -142,7 +144,7 @@ A matriz fundamental depende apenas da configuração das câmeras, seus parâme
 
 Normalmente não se assume qualquer relação espacial entre os pontos no espaço, apenas a informação disponível pela correspondência projetiva, ou seja, a correspondência de pontos por projeção linear. A geometria epipolar é a restrição básica que decorre da existência de dois pontos de vista distintos. Ambos podem ser obtidos por duas câmeras diferentes ou com uma câmera em movimento, denominado \textit{Structure from Motion}. As restrições epipolares descrevem totalmente a correspondência de pares de correspondências genéricas entre pontos de cada imagem, e a ambiguidade ao longo da linha epipolar causada pela ambiguidade ao longo dos raios ópticos da operação de projeção. Partindo do fato de que a matriz fundamental depende apenas da geometria da câmera, descreve todas as restrições epipolares, logo compila toda a informação disponível das correspondências projetivas. 
 
-Já que todos os raios ópticos contêm o centro óptico $C$ da primeira câmera, todas as linhas epipolares contêm a projeção de $C$ na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamado epipolo. Como mostra a figura \ref{fig2}, o fato do epipolo da segunda imagem pertencer às linhas epipolares significa que $e'^{T}Fm = 0$, ou, $F^{T}e' = 0$. Invertendo as duas imagens, $Fe = 0$. Pode-se concluir que $F$ é uma matriz de grau 3 e $det(F) = 0$. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, $F$ depende de sete parâmetros.
+Já que todos os raios ópticos contêm o centro óptico $C$ da primeira câmera, todas as linhas epipolares contêm a projeção de $C$ na segunda imagem nos pontos onde a primeira câmera é vista pela segunda, chamado epipolo. Como mostra a figura \ref{fig4}, o fato do epipolo da segunda imagem pertencer às linhas epipolares significa que $e'^{T}Fm = 0$, ou, $F^{T}e' = 0$. Invertendo as duas imagens, $Fe = 0$. Pode-se concluir que $F$ é uma matriz de grau 3 e $det(F) = 0$. Como essa restrição algébrica é satisfeita e é apenas definida por um fator de escala, $F$ depende de sete parâmetros.
 
 Para o cálculo da matriz fundamental, tem-se $m$ e $m'$ correspondentes abaixo:
 
@@ -181,7 +183,7 @@ O sistema de equações $U^{T}f = 0$ é linear, homogêneo e possui 9 incógnita
 
 \section{\textit{Simultaneous Localization And Mapping}}
 
-O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente, podendo utilizar informações parciais do mapa caso estejam disponíveis. O \textit{SFM} consiste em realizar a reconstrução com base em estruturas estáticas, já o \textit{SLAM} tem como objetivo realizar a reconstrução partindo do movimento realizado, seja em tempo real de um \textit{stream} ou um vídeo. O \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distância entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada potencialmente em dispositivos móveis. O \textit{LSD-SLAM} é uma biblioteca oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas seções.
+O termo \textit{SLAM} é a sigla para \textit{Simultaneous Localization And Mapping}. O \textit{SLAM} foi criado a partir do problema de construir um mapa de um ambiente desconhecido por um robô móvel enquanto ao mesmo tempo navega pelo ambiente, podendo utilizar informações parciais do mapa caso estejam disponíveis. O \textit{SFM} consiste em realizar a reconstrução com base em estruturas estáticas, já o \textit{SLAM} tem como objetivo realizar a reconstrução partindo do movimento realizado, seja em tempo real de um \textit{stream} ou de um vídeo. O \textit{SLAM} consiste de múltiplas partes: Extração de pontos de referência, associação de dados, estimativa de estados, e atualização de ponto de referência. Há várias formas de resolver cada uma dessas partes menores que pode ser exclusivo de cada implementação\cite{SLAM-Dummies}. Na abordagem padrão para o \textit{SLAM} usa-se sensores a \textit{laser} para estimar a distância entre os pontos de referência e fazer o cálculos com base nesses dados. No caso desse trabalho ao invés de \textit{lasers} e sensores de movimento buscou-se métodos para uso de apenas uma câmera em junção com \textit{Computer Vision e Multiple View Geometry} para que essa implementação possa ser usada em dispositivos móveis. O \textit{LSD-SLAM} é uma biblioteca oferece essa abordagem usando gradientes de imagens digitais e por ser o método utilizado, será discutido nas próximas seções.
 
 
 
@@ -215,7 +217,7 @@ O \textit{FIT3D} foi desenvolvido por Esteban et al\cite{FIT3D}, com o intuito d
  \item[Modelagem: ]{Processo de converter uma nuvem esparsa de pontos 3D em algo de maior ordem, como um plano, superfície ou modelo.}
 \end{description}
   
- Para obter a distorção radial, o \textit{FIT3D} utiliza o método de \textit{Zhang} \cite{FIT3D}. Infelizmente, o \textit{FIT3D} não é atualizado desde 2010, acarretando numa documentação e código obsoletos, e diversos bugs foram encontrados durantes os testes realizados, inclusive impedindo o processamento da reconstrução do nosso \textit{dataset}. Outro problema encontrado é a falta de uma forma que seja possível executar o algoritmo ao vivo, ao contrário do \textit{LSD-SLAM} apresentado na próxima seção.
+ Para obter a distorção radial, o \textit{FIT3D} utiliza o método de \textit{Zhang} \cite{FIT3D}. Infelizmente, o \textit{FIT3D} não é atualizado desde 2010, acarretando numa documentação e código obsoletos, e diversos bugs foram encontrados durantes os testes realizados, inclusive impedindo o processamento da reconstrução do nosso \textit{dataset}. Outro problema encontrado é a impossibilidade de executar o algoritmo em tempo real, ao contrário do \textit{LSD-SLAM} apresentado na próxima seção.
 
 \subsection{\textit{LSD-SLAM}}
 

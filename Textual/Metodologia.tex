@@ -36,9 +36,9 @@ Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypo
 Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com o auxílio da biblioteca \textit{OpenCV}, já que foi percebido que a distorção radial da câmera estava influenciando os resultados. A calibração da câmera, numa forma prática, consiste em fornecer um \textit{stream} da câmera ou sequência de fotos, contendo um padrão pré-definido. O \textit{OpenCV} fornece funções para calibrar a câmera de um dispositivo, necessitando das imagens capturadas do padrão, dentre as seguintes opções:
 
 \begin{itemize}
-	\item{Tabuleiro de xadrez em \ref{fig3:3}}
-	\item{Círculos alinhados assimetricamente em \ref{fig3:4}}
-	\item{Círculos alinhados simetricamente em \ref{fig3:5}}
+	\item{Tabuleiro de xadrez na figura \ref{fig3:3}}
+	\item{Círculos alinhados assimetricamente na figura \ref{fig3:4}}
+	\item{Círculos alinhados simetricamente na figura \ref{fig3:5}}
 \end{itemize}
 
 \begin{figure}[H]
@@ -109,7 +109,7 @@ Outro problema encontrado foi o baixo desempenho, já que a captura constante de
 
 \section{\textit{LSD-SLAM}}
 
-A abordagem seguinte adotada no projeto foi a reconstrução de ambientes utilizando o \textit{LSD-SLAM}. O \textit{LSD-SLAM} é uma ferramenta poderosa porém com pouca documentação, o uso dela se mostra trabalhoso devido ao número grande de parâmetros de configuração possíveis e condições de luz e posição, cada ambiente possui suas próprias configurações otimizadas. A capacidade dessa ferramenta de exportar seus mapas 3D em um tipo de arquivo de fácil leitura faz dela facilmente adaptável para qualquer projeto de navegação 3D e reconhecimento espacial. Aprimoramentos em usabilidade e documentação são desejáveis para futuras versões dessa ferramenta caso seus desenvolvedores continuem a atualizando. Nessa seção serão discutidos particularidades de configuração, uso, funcionamento e métodos da utilização dessa ferramenta.
+A abordagem seguinte adotada no projeto foi a reconstrução de ambientes utilizando o \textit{LSD-SLAM}. O \textit{LSD-SLAM} é uma ferramenta poderosa porém com pouca documentação, o uso dela se mostra trabalhoso devido ao número grande de parâmetros de configuração possíveis e condições de luz e posição, cada ambiente possui suas próprias configurações otimizadas. A capacidade dessa ferramenta de exportar seus mapas 3D em um tipo de arquivo de fácil leitura faz dela facilmente adaptável para qualquer projeto de navegação 3D e reconhecimento espacial. Aprimoramentos em usabilidade e documentação são desejáveis para futuras versões dessa ferramenta caso seus desenvolvedores continuem a atualizando. 
 
 \subsection{Configurações utilizadas}
 
