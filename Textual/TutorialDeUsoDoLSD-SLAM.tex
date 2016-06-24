@@ -13,7 +13,7 @@ Etapas para preparação:
 	\item{Instalação do  \textit{ROS}: O \textit{ROS} vai ser utilizado para a leitura dos quadros da câmera/\textit{dataset} além de ser onde a ferramenta é implementada.\cite{ROS-Tutorial}}
 	\item{Instalação do \textit{LSD-SLAM}.\cite{GitHub-LSD-SLAM}}
 	\item{Instalação do  \texttt{usb\_cam}: \texttt{usb\_cam} é um \textit{driver} \textit{ROS} para habilitar câmeras \textit{USB} a serem utilizadas como \textit{stream} de dados para o \textit{ROS} e consequentemente o \textit{LSD-SLAM}, se não há intenção de usar câmeras, como quando utilizando um \textit{dataset}, o \textit{driver} \textit{USB} não é necessário.}
-	\item{Calibração da câmera: Será detalhado nas próximas sessões.}
+	\item{Calibração da câmera: Será detalhada nas próximas seções.}
 \end{enumerate}
 
 \section{Calibração da câmera}
@@ -32,7 +32,7 @@ Primeiramente deve-se imprimir um tabuleiro de xadrez \cite{Setup-CalibrateMonoc
 	\item{Estar com tinta esmaecida ou borrada.}
 \end{itemize}	
 
-Todos esses fatores interferem no reconhecimento do padrão fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro, mova-se para um lugar espaçoso de pelo menos $5m^2$, livre de obstruções e bem iluminado.
+Todos esses fatores interferem no reconhecimento do padrão, fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro, mova-se para um lugar espaçoso de pelo menos $3mx3m$, livre de obstruções e bem iluminado.
 
 \subsection{Compilando e construindo a ferramenta de calibração}
 
@@ -238,7 +238,7 @@ Do modo que está, o \textit{LSD-SLAM} irá utilizar a calibração salva, no en
 \end{table}
 
 
-Esses valores serão usados para compor o arquivo. Em um novo documento de texto insira o seguinte modelo:
+Esses valores serão usados para compor o arquivo. D indica os coeficientes de distorção radial e K indica os parâmetros intrínsecos da câmera [fx 0 cx 0 fy cy 0 0 1]. Os valores fx e fy indicam as distâncias focais e são iguais quando os \textit{pixels} são isométricos. O ponto (cx, cy) indica o ponto principal da imagem, ou seja, seu centro. Em um novo documento de texto insira o seguinte modelo:
 
 \begin{table}[H]\label{tb:7}
 \begin{tabular}{| p{\textwidth}|}
@@ -394,7 +394,7 @@ Alternativamente, pode-se especificar um arquivo de calibração usando o seguin
 
 Novamente, o texto em vermelho corresponde ao que foi configurado pelo usuário anteriormente. O texto \texttt{\textcolor{blue}{/caminho/para/seu/arquivodeccalibracao}} deve ser trocado para o caminho do arquivo de calibração criado.
 
-As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dessas telas a nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de cabeça para baixo. 
+As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dessas telas a nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de topo para baixo. 
 
 \begin{figure}[H]
 	\centering
@@ -469,7 +469,7 @@ Desvantagens:
 	\item{É necessário utilizar em um computador portátil para que se possa mover com a câmera.}
 	\item{A mobilidade enquanto se usa esse método é prejudicada.}
 	\item{É mais difícil mudar os parâmetros enquanto roda o algoritmo.}
-	\item{Baixa reproducibilidade.}
+	\item{Baixa reprodutibilidade.}
 	\item{Alto consumo de recursos do computador.}
 \end{itemize}	
 
