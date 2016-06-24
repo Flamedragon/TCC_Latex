@@ -15,7 +15,7 @@ O \textit{Ratio Filtering} percorre a lista resultante, verificando se há mais 
 
 Por fim, a última filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O \textit{RANSAC} é um método iterativo para estimar parâmetros de modelos matemáticos partindo de um conjunto de informações obtidas que possuem \textit{outliers}. Também é considerado um método determinístico que possui um bom resultado com confiabilidade. Foi apresentado em 1981 por Fischler e Bolles para tentar resolver o problema da determinação da localização. Ele parte do princípio que o conjunto de informações possui \textit{inliners}, os quais são informações que podem ser explicadas pelos parâmetros do modelo, apesar que podem ter sofrido ruído, e os \textit{outliers}, que são informações que não condizem com o modelo. Esses \textit{outliers} podem ser provenientes de ruído, medições errôneas ou uma má interpretação das informações. A figura \ref{fig3:1} possui um exemplo de um conjunto de informações, os pontos, e como o \textit{RANSAC} trataria os \textit{inliners} e \textit{outliners}:
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\includegraphics{Imagens/figura3-1.jpg}
 	\caption{Exemplificação do tratamento do \textit{RANSAC} com os \textit{inliners} e \textit{outliners}. Imagem licenciada pela CC 3.0}
@@ -57,7 +57,7 @@ Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com
 \end{figure}
 
 
-\begin{figure}[!hb]
+\begin{figure}[H]
 \minipage{0.49\textwidth}
   \includegraphics[width=\linewidth]{Imagens/figura3-6.jpg}
   \caption{Reconhecimento do tabuleiro de xadrez}\label{fig3:6}
@@ -129,7 +129,7 @@ e:
 	\item{Placa gráfica integrada: \textit{Intel® HD Graphics}}
 \end{itemize}	
 
-Softwares e periféricos utilizados:
+\textit{Softwares} e periféricos utilizados:
 
 \begin{itemize}
 	\item{\textit{Ubuntu} versão 14.04\cite{Ubuntu}}

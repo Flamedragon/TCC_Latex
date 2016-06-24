@@ -110,7 +110,7 @@ Equação \eqref{eq4}: Relação de homografia entre um ponto $m'$ da segunda im
 
  Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de intersecção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Essa homografia pode ser utilizada para construir mosaicos, como mostra a figura \ref{fig2} acima. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico \cite{Faugeras-Geometry}, pois a ambiguidade continua já que os raios correspondentes são idênticos. Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação, também não será possível haver homografia.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\includegraphics[width=1.0\textwidth]{Imagens/figura2-2.png}
 	\caption{Duas imagens obtidas com o mesmo ponto de vista, e a imagem resultante da junção das duas com homografia. Faugeras et al \cite{Faugeras-Geometry} pag. 24.}
@@ -119,7 +119,7 @@ Equação \eqref{eq4}: Relação de homografia entre um ponto $m'$ da segunda im
 
 Quando os pontos no espaço e as duas câmeras estão em posições distintas, não é possível predizer a posição do correspondente $m'$ de um ponto qualquer $m$ da primeira imagem, pois essa informação depende da profundidade do ponto 3D ao longo do raio óptico. Geometricamente essa posição não é arbitrária, o ponto $m$ precisa estar numa linha, o raio óptico, logo $m'$ precisa estar localizado na projeção da reta na segunda imagem. Essa linha é chamada \textbf{Linha Epipolar}, do ponto \textbf{m} na segunda imagem. Tendo conhecimento dela, ao procurar o correspondente $m'$, não é necessário procurar em toda a imagem, bastando apenas na linha, reduzindo então uma busca 2D para 1D, mostrado na figura \ref{fig3}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\includegraphics{Imagens/figura2-3.png}
 	\caption{Exemplificação da redução de 2D para 1D. Faugeras et al \cite{Faugeras-Geometry} pag. 12.}
@@ -133,7 +133,7 @@ A relação entre o ponto $m$ e a linha epipolar $l'_{m}$ na segunda imagem é l
 
 A matriz fundamental depende apenas da configuração das câmeras, seus parâmetros intrínsecos, posição e orientação, e não dos pontos 3D da cena. A figura \ref{fig4} mostra um exemplo de geometria epipolar:
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\includegraphics{Imagens/figura2-4.png}
 	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'_{m}$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al \cite{Faugeras-Geometry} pag. 25.}
