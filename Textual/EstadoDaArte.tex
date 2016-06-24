@@ -8,7 +8,7 @@
 Tendo como exemplo os planos $C$ e $C'$ na equação \eqref{eq1}, dois pontos, chamados $m$ no plano $C$ e $m'$ no plano $C'$, podem ser chamados de correspondentes se há projeções do mesmo ponto 3D no espaço $M$. Havendo mais de uma imagem, algumas perguntas podem ser feitas, como:
 
 \begin{itemize}
-	\item{Dado um ponto m na primeira imagem, onde está seu correspondente m’ na segunda imagem?}
+	\item{Dado um ponto $m$ na primeira imagem, onde está seu correspondente $m’$ na segunda imagem?}
 	\item{Qual a geometria 3D da cena?}
 	\item{Qual a posição relativa de ambas câmeras?}
 \end{itemize}
@@ -50,7 +50,7 @@ P' M \simeq m'.
 
 Equação \eqref{eq2}: Sistema de equações para a matriz de projeção $P$ e $P'$, respectivamente.
 
-Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. O sistema de equações \eqref{eq2} representam o sistema com três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
+Para encontrar a estrutura 3D da cena, é necessário obter as matrizes de projeção $P$ e $P'$, pois possuem informações acerca da geometria da cena. O sistema de equações \eqref{eq2} possui três incógnitas e para que seja possível uma solução, as coordenadas de $m$ e $m'$ precisam satisfazer algumas restrições, logo, o ponto $m'$ não pode ser um ponto arbitrário na segunda imagem.
 
 Seja um exemplo em que os pontos 3D estejam num plano II, havendo uma homografia \cite{Faugeras-Geometry} entre II e cada uma das imagens, pode-se concluir que há uma homografia entre ambas imagens, chamada \textbf{homografia planar}, definida por uma matriz $M$ de tamanho 3x3. A homografia é exemplificada como equação pela equacão \eqref{eq3} e também na figura \ref{fig1}:
 
@@ -60,14 +60,14 @@ m' \simeq Hm.
 
 Equação \eqref{eq3}: Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira, como equação.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\includegraphics{Imagens/figura2-1.png}
 	\caption{Relação de homografia entre um ponto $m'$ da segunda imagem com um ponto $m$ da primeira. Faugeras et al [2] pag. 22.}
 	\label{fig1}
 \end{figure}
 
-Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de interseção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Essa homografia pode ser utilizada para construir mosaicos, como mostra a figura \ref{fig2} acima. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico \cite{Faugeras-Geometry}, pois a ambiguidade continua já que os raios correspondentes são idênticos.
+Um outro caso que vale frisar é quando os centros ópticos de ambas imagens são o mesmo, como por exemplo, quando tiradas do mesmo ponto mas apenas com uma rotação. Sejam $m$ e $m'$ pontos arbitrários da imagem 1 e 2, respectivamente, para qualquer plano II que não passe pelo centro ótico das imagens, as imagens também são pontos de intersecção dos raios em comum de ambas. Portanto, são relacionadas pela matriz $H$. Essa homografia pode ser utilizada para construir mosaicos, como mostra a figura \ref{fig2} acima. Apesar de conseguir gerar um campo de visão maior, não é possível obter coordenadas 3D à partir de imagens com o mesmo centro óptico \cite{Faugeras-Geometry}, pois a ambiguidade continua já que os raios correspondentes são idênticos.
 
 \begin{figure}
 	\centering
