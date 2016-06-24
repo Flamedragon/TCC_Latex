@@ -452,7 +452,7 @@ A saída do \texttt{lsd\_slam\_core} está sendo transferida para o visualizador
 	\item{Numeração de quadro refinador por \textit{keyframe}.}
 \end{description}
 
-Além disso as cores representam o grau de proximidade de cada ponto à câmera. Pontos vermelhos são os mais próximos, pontos verdes estão à meia distância e pontos azuis são os mais distantes. Em contrapartida quanto mais azul estiver o gradiente mais longe da camera em relação ao gradiente verde está da câmera. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
+Além disso as cores representam o grau de proximidade de cada ponto à câmera. Pontos vermelhos são os mais próximos, pontos verdes estão à meia distância e pontos azuis são os mais distantes. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
 
 Essas informações são comuns tanto ao \texttt{live\_slam} quanto ao \texttt{dataset\_slam}. O método \texttt{live\_slam} se caracteriza por servir de teste do ambiente para se fazer o \textit{dataset}. Ele possui suas vantagens e desvantagens:
 
