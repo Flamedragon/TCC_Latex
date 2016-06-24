@@ -32,7 +32,7 @@ As características de uma câmera são dadas por seus parâmetros instrínsecos
 \begin{equation}
 A \; = \; \;
 \begin{bmatrix}
-		f & 0 & \omega_{a} \\
+		f & 0 & \omega_{0} \\
 		0 & f & \upsilon_{0} \\
 		0 & 0 & 1
 \end{bmatrix}
@@ -46,7 +46,7 @@ A matriz de projeção pode ser calculada a partir de $D$ e $A$, através da equ
 		P
 \end{bmatrix}_{3x4}	\; = \; \;
 \underbrace{\begin{bmatrix}
-		f & 0 & \omega_{a} \\
+		f & 0 & \omega_{0} \\
 		0 & f & \upsilon_{0} \\
 		0 & 0 & 1
 \end{bmatrix}
@@ -136,7 +136,7 @@ A matriz fundamental depende apenas da configuração das câmeras, seus parâme
 \begin{figure}[H]
 	\centering
 		\includegraphics{Imagens/figura2-4.png}
-	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'_{m}$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $Lm$ e $Lm$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al \cite{Faugeras-Geometry} pag. 25.}
+	\caption{Exemplo de geometria epipolar. Dado um ponto $m$, o seu correspondente $m'$ precisa estar na linha epipolar $l'_{m}$. Dada a correspondência válida entre $m$ e $m'$, a interseção dos raios ópticos $L_m$ e $L_m$ é não-vazia, e coplanar com a linha $CC'$. Faugeras et al \cite{Faugeras-Geometry} pag. 25.}
 	\label{fig4}
 \end{figure}
 
