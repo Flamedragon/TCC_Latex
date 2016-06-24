@@ -182,10 +182,44 @@ As características adquiridas ao longo do tempo são usadas para reconstruir su
 
 Um dos maiores benefícios do \textit{SLAM} monocular, e simultaneamente o seu maior desafio, vem da sua ambiguidade de escala inerente: A escala do mundo não pode ser observada e muda com o tempo, sendo uma das maiores fontes de erro. A vantagem é que isso permite a troca entre ambientes de diferentes escalas como ambientes internos com móveis e ambientes externos. Por outro lado sensores escalonados como câmeras estéreo e câmeras de profundidade fornecem resultados mais confiáveis mas não oferecem a mesma flexibilidade tanto na facilidade de troca entre diferentes escalas quanto no \textit{hardware}, fazendo a abordagem monocular funcionar para câmeras de celular que é um \textit{hardware} mais acessível. 
 
-Segundo o artigo do \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo}, o algoritmo consiste de três componentes principais: \textbf{tracking (rastreamento)}, \textbf{depth map estimation (estimativa de mapa de profundidade)} e \textbf{map optimization (otimização de mapa)}:
+\subsubsection{Transformadas de corpo rígido 3D}
+
+Uma transformada de corpo rígido: $\mathbf{G} \in se(3)$ denota rotação e translação em 3D e é definida pela equação \eqref{eq3d}: 
+
+\begin{equation}\label{eq3d}
+	\mathbf{G} = \begin{pmatrix}
+	\mathbf{R} & \mathbf{t} \\
+	0 & 1\end{pmatrix}
+\quad sendo \quad \mathbf{R} \in SO(3) \quad e \quad \mathbf{t} \in \mathbb{R}^3.
+\end{equation}
+
+Equação \eqref{eq3d}: Transformada de corpo rígido 3D
+
+A representação mínima de pose de câmera é dada pelo elemento correspondente $\mathbf{\xi} \in se(3)$ \cite[p. 4]{LSD-SLAM-Artigo}.
+
+\subsubsection{Transformada de similaridade 3D}
+
+Uma transformada de similaridade 3D: $\mathbf{S}\in sim(3)$ denota rotação, escala e translação e é definida pela equação \eqref{eq3d2}:
+ 
+ \begin{equation}\label{eq3d2}
+ \mathbf{S} = 
+ \begin{pmatrix}
+ \mathbf{R} & \mathbf{t} \\
+ 0  & 1
+ \end{pmatrix}
+\quad com \quad \mathbf{R} \in SO(3), \quad \mathbf{t} \in \mathbb{R}^{3} \quad e \quad s \in \mathbb{R}^+.
+ \end{equation} 
+
+Equação \eqref{eq3d2}: Transformada de similaridade 3D
+ 
+A representação mínima da transformada de similaridade é dada pelo elemento correspondente $\mathbf{\xi} \in sim(3)$ \cite[p. 5]{LSD-SLAM-Artigo}.
+
+\subsubsection{Componentes do \textit{LSD-SLAM}}
+
+Segundo o artigo do \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo}, o algoritmo consiste de três componentes principais: \textbf{\textit{tracking}} (rastreamento), \textbf{\textit{depth map estimation}} (estimativa de mapa de profundidade) e \textbf{\textit{map optimization}} (otimização de mapa):
 
 \begin{itemize}
-	\item{O componente de \textbf{tracking} continuamente rastreia novas imagens de câmera; Isso é, ele estima sua pose de corpo rígido $\xi \in se(3)$ com relação ao quadro-chave atual, usando a pose do quadro anterior como inicialização.}
-	\item{O componente de \textbf{depth map estimation} usa quadros rastreados para refinar ou repor o quadro-chave atual. A profundidade é refinada filtrando entre várias comparações estéreo de pequeno patamar por \textit{pixel} casada com regularização espacial intervalada. Se a câmera se mover muito longe, um novo quadro-chave é inicializado projetando os pontos de quadros-chave perto já rastreados nele.}
-	\item{Assim que o componente do \textbf{depth map estimation} define que a imagem atual não deve ser usada para refinamento, mas como um novo quadro-chave, o anterior é reposto pela nova imagem que se torna um quadro-chave. O mapa de profundidade do quadro chave anterior não será mais refinado e é incorporado ao mapa global pelo componente de \textbf{map optimization}. Para detectar fechamentos de \textit{loops} e mudança de escala uma transformada de similaridade $\xi \in sim(3)$ para \textit{keyframes} já capturados próximos é estimada usando um alinhamento direto de imagem $sim(3)$ que é ciente de escala.}
-\end{itemize}
+	\item{O componente de \textbf{\textit{tracking}} continuamente rastreia novas imagens de câmera; Isso é, ele estima sua pose de corpo rígido, dado por $\mathbf{\xi} \in se(3)$, com relação ao quadro-chave atual, usando a pose do quadro anterior como inicialização.}
+	\item{O componente de \textbf{\textit{depth map estimation}} usa quadros rastreados para refinar ou repor o quadro-chave atual. A profundidade é refinada filtrando, entre várias comparações estéreo de pequeno patamar por \textit{pixel}, casadas com regularização espacial intervalada. Se a câmera se mover muito longe, um novo quadro-chave é inicializado projetando os pontos de quadros-chave perto já rastreados nele.}
+	\item{Assim que o componente do \textbf{\textit{depth map estimation}} define que a imagem atual não deve ser usada para refinamento, mas como um novo quadro-chave, o anterior é reposto pela nova imagem que se torna um quadro-chave. O mapa de profundidade do quadro chave anterior não será mais refinado e é incorporado ao mapa global pelo componente de \textbf{\textit{map optimization}}. Para detectar fechamentos de \textit{loops} e mudança de escala, uma transformada de similaridade, dada por $\mathbf{\xi} \in sim(3)$, é estimada para \textit{keyframes} próximos já capturados.}
+\end{itemize}	
