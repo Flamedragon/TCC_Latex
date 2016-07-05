@@ -1,20 +1,16 @@
 \chapter{Introdução}
 
-Apresentaremos neste capítulo a motivação para este trabalho, problemas encontrados e outros trabalhos que também tentam reconstruir ambientes. A forma como o trabalho está estruturado e a sua proposta inicial será apresentada também.
+Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes. A modelagem de ambientes consiste em usar sensores para capturar as formas de objetos e estruturas com o intuito de criar representações virtuais deles. Como exemplo temos a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D} e realidade virtual, criando assim novos ramos de pesquisa, e novos mercados a serem explorados. Algumas modelagens são feitas utilizando sensores ativos, isto é, onde usa-se dispositivos que enviarão sinais e então seu retorno é interpretado, indicando a localização de obstáculos. Outra forma é utilizando conceitos de Visão Computacional, em que câmeras passivas mandam o \textit{stream} de vídeo ou \textit{dataset} (conjunto) de imagens para serem processados por algoritmos modelados de acordo com a aplicação desejada. Um projeto da \textit{Google} é o projeto \textit{Tango} \cite{Tango}, que consiste numa tentativa da \textit{Google} de comercializar o \textit{SLAM}, e colocá-lo na próxima geração de dispositivos \textit{Android}. Outros trabahos sobre \textit{SLAM (Simultaneous Localization and Mapping)} e Visão Computacional podem ser vistos em \cite{Trabalhos-Geral-SLAM}.
 
-\section{Motivação}
-
-Alguns avanços tecnológicos atualmente são graças à modelagem de ambientes, alguns deles que podem ser citados são: a melhor investigação forense com o mapeamento das cenas de um crime \cite{FIT3D} e realidade virtual, criando assim novos ramos de pesquisa, novos mercados a serem explorados. Algumas modelagens são feitas utilizando sensores ativos, isto é, onde usa-se dispositivos que enviarão sinais e então seu retorno é interpretado, indicando a localização de obstáculos. Outra forma é utilizando câmeras passivas, que mandam o \textit{stream} de vídeo para ser processado pelo algoritmo. Um projeto da \textit{Google} é o projeto \textit{Tango} \cite{Tango}, que consiste numa tentativa da \textit{Google} de comercializar o \textit{SLAM}, e colocá-lo na próxima geração de dispositivos \textit{Android}. Outros trabahos sobre \textit{SLAM} e Visão Computacional podem ser vistos em \cite{Trabalhos-Geral-SLAM}.
-
-Um potencial uso, em que a vida de diversas pessoas seria mudada, é a utilização do mapeamento, seja ele \textit{on the fly} ou realizado a priori, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar o contorno e forma de objetos, ou também reconhecer a topografia do ambiente. 
+Esses avanços permitiram o surgimento de novos ramos. Dentre eles podemos citar a utilização do mapeamento, seja ele \textit{on the fly} ou realizado a priori, para guiar pessoas com deficiência visual num ambiente. Alguns trabalhos semelhantes foram realizados mas diversas dificuldades foram encontradas. Uma delas é a questão de identificar o contorno e forma de objetos, ou também reconhecer a topografia do ambiente. 
 
 \section{Objetivos}
 
-Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D de estruturas e ambientes, internos e externos, a fim de utilizá-lo para outros fins potenciais. Tendo como estudo de caso, a reconstrução 3D do prédio do departamento de computação.
+Os objetivo deste trabalho é realizar, mesmo que parcialmente, o mapeamento 3D de estruturas e ambientes, internos e externos. Nesse trabalho, será adotada como estudo de caso a reconstrução 3D do prédio do departamento de computação.
 
 \subsection{Objetivos Específicos}
 
-Para atingir o objetivo, foram utilizadas duas câmeras: uma câmera \textit{USB} do modelo \textit{PSEye®} e a câmera nativa do \text{smartphone} \textit{Motorola Moto X Play 32GB} para obter imagens e vídeos do ambiente; o \textit{software} \textit{LSD-SLAM} \cite{LSD-SLAM-Artigo} para modelagem e o \textit{software VLC} para extrair os quadros dos vídeos capturados pelas câmeras a fim de criar os \textit{datasets}. Ao longo do trabalho, foi criado um aplicativo para o sistema \textit{mobile} \textit{Android}, onde é possível calibrar a câmera do dispositivo \textit{smartphone Android} e também gravar os \textit{datasets} necessários para o trabalho, na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do \textit{dataset}.
+Ao longo do trabalho, foi criado um aplicativo para o sistema \textit{mobile} \textit{Android}, onde é possível calibrar a câmera do dispositivo \textit{smartphone Android} na tentativa de dispensar a necessidade de um computador em todas as partes da obtenção e processamento do \textit{dataset}. O aplicativo não atingiu o objetivo no entanto produziu resultados que podem ser aprimorados. Ao final a modelagem 3d foi realizada com a ferramenta \textit{LSD-SLAM}
 
 
 \section{Abordagem utilizada}
@@ -22,8 +18,8 @@ Para atingir o objetivo, foram utilizadas duas câmeras: uma câmera \textit{USB
 O trabalho possui as seguintes fases:
 %considerar usar description lista no lugar
 \begin{itemize}
-\item{Estudo sobre o estado da arte: Foram pesquisados os diversos métodos disponíveis atualmente para mapeamento de ambientes, bem como seus pormenores. Também como  poderiam ser utilizados para o objetivo deste trabalho}
-\item{Criação de um aplicativo para o sistema operacional \textit{Android}, onde fosse possível calibrar a câmera e obter um preprocessamento do \textit{dataset}, na forma de um banco de dados e seus \textit{keypoints}}
+\item{Estudo sobre o estado da arte: foram pesquisados os diversos métodos disponíveis atualmente para mapeamento de ambientes, bem como seus pormenores. Também como  poderiam ser utilizados para o objetivo deste trabalho}
+\item{Criação de um aplicativo para o sistema operacional \textit{Android}, onde fosse possível calibrar a câmera e obter um preprocessamento do \textit{dataset}, na forma de um banco de dados e seus \textit{keypoints}, que são pontos característicos na imagem.}
 \item{Estudo e testes com as ferramentas encontradas: Várias ferramentas para reconstrução de ambientes foram encontradas, e nesta fase todas seriam testadas}
 \item{Criação do \textit{dataset}: Vídeos e imagens do ambiente externo e interno do departamento}
 \item{Processamento e avaliação do \textit{dataset}: Nesta fase foi realizado o processamento do \textit{dataset} com a ferramenta \textit{LSD-SLAM}, onde foi preciso realizar diversos testes para um melhor refinamento de suas configurações}
@@ -32,5 +28,4 @@ O trabalho possui as seguintes fases:
 
 \section{Estrutura do Documento}
 
-
-Este trabalho está dividido da seguinte forma: No Capítulo 2 será apresentado o estado da arte sobre reconstrução 3D de ambientes; no Capítulo 3 a metodologia utilizada para obter os objetivos deste trabalho; no Capítulo 4 serão mostrados detalhes da instalação e uso da ferramenta \textit{LSD-SLAM}; no Capítulo 5 serão abordados os resultados obtidos e por fim no Capítulo 6 a conclusão e possíveis trabalhos futuros.
+No Capítulo 2 será apresentado o estado da arte sobre reconstrução 3D de ambientes. No Capítulo 3 a metodologia utilizada para obter os objetivos deste trabalho. Logo em seguida o Capítulo 4 mostrará os resultados obtidos e por fim no Capítulo 5 a conclusão e possíveis trabalhos futuros. No anexo poderão ser encontradas referências para a instalação e uso das ferramentas.
