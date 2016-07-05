@@ -20,7 +20,7 @@ Primeiramente o aplicativo operou sem usar nenhuma das três formas de filtragem
 	\label{fig4:2}
 \end{figure}
 
-Essa situação é pior quando o ambiente possui partes em vidro, como mesas ou janelas, dificultando ainda mais a casamento de pontos, como mostra a figura \ref{fig4:3}
+Essa situação é pior quando o ambiente possui partes em vidro, como mesas ou janelas, dificultando ainda mais a casamento de pontos, como mostra a Figura \ref{fig4:3}
 
 \begin{figure}[H]
 	\centering
@@ -29,7 +29,7 @@ Essa situação é pior quando o ambiente possui partes em vidro, como mesas ou 
 	\label{fig4:3}
 \end{figure}
 
-Ao se adicionar os métodos de filtragem explicados na seção 3.1, é possível eliminar diversos casamentos errôneos, como na figura \ref{fig4:4}:
+Ao se adicionar os métodos de filtragem explicados na seção 3.1, é possível eliminar diversos casamentos errôneos, como na Figura \ref{fig4:4}:
 
 \begin{figure}[H]
 	\centering
@@ -43,7 +43,7 @@ Infelizmente, dependendo do ambiente, o número de casamentos pode ser muito peq
 	
 \section{Resultados com o \textit{LSD-SLAM}}
 
-O \textit{LSD-SLAM} possui diversos parâmetros que podem auxiliar na visualização e refinamento de como seus algoritmos funcionam. Os testes foram realizados em um dos laboratórios do DCOMP, mais precisamente, o laboratório de mestrado II, na área externa do prédio e também em um quintal, este último para testar os resultados sob um ambiente com mais texturas e menos homogêneo. As figuras \ref{fig4:5} a \ref{fig4:15} mostram as \textit{PointClouds} obtidas e fotografias dos ambientes:
+O \textit{LSD-SLAM} possui diversos parâmetros que podem auxiliar na visualização e refinamento de como seus algoritmos funcionam. Os testes foram realizados em um dos laboratórios do DCOMP, mais precisamente, o laboratório de mestrado II, na área externa do prédio e também em um quintal, este último para testar os resultados sob um ambiente com mais texturas e menos homogêneo. As Figuras \ref{fig4:5} a \ref{fig4:15} mostram as \textit{PointClouds} obtidas e fotografias dos ambientes:
 
 \begin{figure}[H]
 	\centering
@@ -146,7 +146,7 @@ As imagens mostram as saídas do algoritmo em diferentes ambientes. Percebe-se q
 
 Alguns problemas encontrados na gravação do \textit{dataset} foram relacionados à luminosidade. Ela afeta fortemente os quadros capturados fazendo com que as imagens tiradas pela câmera sofram problemas de exposição tornando-os inválidos para processamento. Isso se torna mais evidente em ambientes externos sob forte luminosidade ou ambientes internos com pouca luz. O fato que o algoritmo converte todas as imagens usadas também causa problemas no reconhecimento de gradientes caso duas cores tenham a mesma tonalidade. 
 
-A escolha do equipamento também influencia muito, já que inicialmente foi utilizada uma \textit{webcam} da marca \textit{Logitech®} e frequentemente vários quadros eram encontrados distorcidos, pixelados. Ainda sobre o equipamento, foi notado que a falta de foco também prejudica a reconstrução, dado que o algoritmo não consegue realizar casamentos confiáveis onde um dos quadros está embaçado. As figuras \ref{fig4:16}, \ref{fig4:17} e \ref{fig4:18}  exemplificam alguns casos onde esses problemas ocorreram. Também houve dificuldade em interligar  \textit{datasets} diferentes para tentar criar uma reconstrução mais completa pois os erros nas transições entre ambientes, como por exemplo de um corredor para uma escada ou de um corredor para outro corredor só são descobertos após o processo de extrair cada quadro do vídeo e rodar o \textit{LSD-SLAM}, fazendo com que seja necessário uma re-captura do \text{dataset}. 
+A escolha do equipamento também influencia muito, já que inicialmente foi utilizada uma \textit{webcam} da marca \textit{Logitech®} e frequentemente vários quadros eram encontrados distorcidos, pixelados. Ainda sobre o equipamento, foi notado que a falta de foco também prejudica a reconstrução, dado que o algoritmo não consegue realizar casamentos confiáveis onde um dos quadros está embaçado. As Figuras \ref{fig4:16}, \ref{fig4:17} e \ref{fig4:18}  exemplificam alguns casos onde esses problemas ocorreram. Também houve dificuldade em interligar  \textit{datasets} diferentes para tentar criar uma reconstrução mais completa pois os erros nas transições entre ambientes, como por exemplo de um corredor para uma escada ou de um corredor para outro corredor só são descobertos após o processo de extrair cada quadro do vídeo e rodar o \textit{LSD-SLAM}, fazendo com que seja necessário uma re-captura do \text{dataset}. 
 
 \begin{figure}[H]
 	\centering

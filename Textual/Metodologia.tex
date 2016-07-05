@@ -13,17 +13,7 @@ Ao executar o \textit{ORB} e \textit{BRISK}, são obtidas estruturas que possuem
 
 O \textit{Ratio Filtering} percorre a lista resultante, verificando se há mais de um casamento para cada \textit{keypoint}, já que o ideal é que cada \textit{keypoint} tenha apenas um único correspondente na segunda imagem. Ao encontrar mais de uma ocorrência, descarta os pontos mais distantes.
 
-Por fim, a última filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O \textit{RANSAC} é um método iterativo para estimar parâmetros de modelos matemáticos partindo de um conjunto de informações obtidas que possuem \textit{outliers}. Também é considerado um método determinístico que possui um bom resultado com confiabilidade. Foi apresentado em 1981 por Fischler e Bolles para tentar resolver o problema da determinação da localização. Ele parte do princípio que o conjunto de informações possui \textit{inliners}, os quais são informações que podem ser explicadas pelos parâmetros do modelo, apesar que podem ter sofrido ruído, e os \textit{outliers}, que são informações que não condizem com o modelo. Esses \textit{outliers} podem ser provenientes de ruído, medições errôneas ou uma má interpretação das informações. A figura \ref{fig3:1} possui um exemplo de um conjunto de informações, os pontos, e como o \textit{RANSAC} trataria os \textit{inliners} e \textit{outliners}:
-
-\begin{figure}[H]
-	\centering
-		\includegraphics{Imagens/figura3-1.jpg}
-	\caption{Exemplificação do tratamento do \textit{RANSAC} com os \textit{inliners} e \textit{outliners}. Imagem licenciada pela CC 3.0}
-	\label{fig3:1}
-\end{figure}
-  
-
-Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento. A figura \ref{fig3:2} mostra um exemplo da execução do aplicativo:
+Por fim, a última filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. As comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento. A Figura \ref{fig3:2} mostra um exemplo da execução do aplicativo:
 
 \begin{figure}[H]
 	\centering
@@ -36,9 +26,9 @@ Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypo
 Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com o auxílio da biblioteca \textit{OpenCV}, já que foi percebido que a distorção radial da câmera estava influenciando os resultados. A calibração da câmera, numa forma prática, consiste em fornecer um \textit{stream} da câmera ou sequência de fotos, contendo um padrão pré-definido. O \textit{OpenCV} fornece funções para calibrar a câmera de um dispositivo, necessitando das imagens capturadas do padrão, dentre as seguintes opções:
 
 \begin{itemize}
-	\item{Tabuleiro de xadrez na figura \ref{fig3:3}}
-	\item{Círculos alinhados assimetricamente na figura \ref{fig3:4}}
-	\item{Círculos alinhados simetricamente na figura \ref{fig3:5}}
+	\item{Tabuleiro de xadrez na Figura \ref{fig3:3}}
+	\item{Círculos alinhados assimetricamente na Figura \ref{fig3:4}}
+	\item{Círculos alinhados simetricamente na Figura \ref{fig3:5}}
 \end{itemize}
 
 \begin{figure}[H]
@@ -68,7 +58,7 @@ Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com
 \endminipage
 \end{figure}
 
-Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, que servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10} e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como imagens da mesma cena sem filtragem de \textit{keypoints}
+Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, que servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As Figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10} e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como imagens da mesma cena sem filtragem de \textit{keypoints}
 
 \begin{figure}[H]
 	\centering
@@ -109,7 +99,7 @@ Outro problema encontrado foi o baixo desempenho, já que a captura constante de
 
 \section{\textit{LSD-SLAM}}
 
-A abordagem seguinte adotada no projeto foi a reconstrução de ambientes utilizando o \textit{LSD-SLAM}. O \textit{LSD-SLAM} é uma ferramenta poderosa porém com pouca documentação, o uso dela se mostra trabalhoso devido ao número grande de parâmetros de configuração possíveis e condições de luz e posição, cada ambiente possui suas próprias configurações otimizadas. A capacidade dessa ferramenta de exportar seus mapas 3D em um tipo de arquivo de fácil leitura faz dela facilmente adaptável para qualquer projeto de navegação 3D e reconhecimento espacial. Aprimoramentos em usabilidade e documentação são desejáveis para futuras versões dessa ferramenta caso seus desenvolvedores continuem a atualizando. 
+A abordagem seguinte adotada no projeto foi a reconstrução de ambientes utilizando o \textit{LSD-SLAM}. O \textit{LSD-SLAM} é uma ferramenta poderosa porém com pouca documentação, o uso dela se mostra trabalhoso devido ao número grande de parâmetros de configuração possíveis e condições de luz e posição, cada ambiente possui suas próprias configurações otimizadas. A capacidade dessa ferramenta de exportar seus mapas 3D em um tipo de arquivo de fácil leitura faz dela facilmente adaptável para qualquer projeto de navegação 3D e reconhecimento espacial. Aprimoramentos em usabilidade e documentação são desejáveis para futuras versões dessa ferramenta. 
 
 \subsection{Configurações utilizadas}
 
@@ -140,8 +130,25 @@ e:
 	\item{\textit{Driver} para \textit{webcam} \texttt{usb\_cam}.\cite{Setup-USBCAM}}
 \end{itemize}
 
-No começo da utilização do \textit{LSD-SLAM} foi testada a câmera \textit{Logitech® HD Webcam c270}, porém essa câmera não oferecia a capacidade mínima recomendado pelo \textit{LSD-SLAM} para obter resultados decentes, que era ter taxa de quadros de pelo menos 30 \textit{FPS} e \textit{global shutter}, em que todos os \textit{pixels} do quadro são expostos ao mesmo tempo, a \textit{PSEye®} se enquadrava em ambos os requisitos e foi usada no lugar da \textit{Logitech}. No entanto usar a câmera \textit{PSEye®} apesar de permitir um resultado melhor, era uma câmera \textit{USB} que devido a mobilidade da câmera estava limitada ao cabo. Além disso, para usar a \textit{PSEye®} era necessário que ela estivesse conectada a um \textit{notebook}, cujo peso dificultava o processo de captura. Após algum tempo usando a \textit{PSEye®}, os testes foram migrados para a câmera do \textit{smartphone Motorola® Moto X Play}, que tem como diferencial a sua captura de vídeos em mais de 30\textit{FPS} em alta taxa de \textit{bits}. Apesar da câmera não ser \textit{global shutter} e sim \textit{rolling shutter}, em que as linhas de \textit{pixels} são expostas sequencialmente, de cima para baixo, que é mais comum entre câmeras de \textit{smartphones}, o resultado for satisfatório para o objetivo do trabalho de oferecer o mapeamento 3D do ambiente a partir de um aparelho móvel. A calibração da câmera \textit{smartphone} foi obtida a partir da calibração do \textit{PhotoGuide} e usada como parâmetro para o \textit{LSD-SLAM} usando o método de conversão na seção 3.2.3.7.
-
+No início dos testes com o \textit{LSD-SLAM}, a câmera \textit{Logitech® HD Webcam c270} 
+foi utilizada, infelizmente ela não oferecia a capacidade mínima para o \textit{LSD-SLAM}.
+ Alguns requisitos para o \textit{LSD-SLAM} são uma taxa mínima de 30 quadros por segundo e
+ \textit{global shutter}. \textit{Global shutter} é quando todos os pixels de um quadro são 
+ expostos ao mesmo tempo, a \textit{PSEye}® satisfez ambos requisitos e portanto 
+ foi utilizada posteriormente no lugar da Logitech.
+ 
+ Um problema encontrado com a utilização da \textit{PSEye}® foi a mobilidade 
+ limitada da câmera devido ao fato de que precisava estar conectada via \textit{USB}
+ no equipamento usado. Para complementar os testes, foi utilizado o \textit{smartphone}
+ \textit{Motorola Moto G X Play}, cuja câmera permite gravar vídeos com 30 quadros por
+ segundo e também alta taxa de \textit{bits}. Uma desvantagem é que utiliza \textit{rolling shutter}
+ , onde as linhas de pixels são expostas sequencialmente de cima para baixo 
+ (comum em câmeras de \textit{bits}). 
+ 
+ A calibração da câmera do \textit{smartphone} foi obtida a partir do PhotoGuide e 
+ utilizada como parâmetro para o \textit{LSD-SLAM} usando o método de conversão 
+ na seção 3.2.3.7.
+ 
 \subsection{Captura dos \textit{datasets}}
 
 Os \textit{datasets} capturados foram os seguintes:
