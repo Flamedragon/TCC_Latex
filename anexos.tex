@@ -18,21 +18,14 @@ Etapas para preparação:
 
 \section{Calibração da câmera}
 
-Uma calibração da câmera do \textit{OpenCV} pode ser usada no \textit{LSD-SLAM} no entanto ele vem na sua instalação uma ferramenta de calibração mais intuitiva e confiável por oferecer um retorno ao usuário se as amostras tiradas são o suficiente ou não. Além disso câmeras \textit{USB} não podem ser configuradas usando o \textit{software} \textit{Android} \textit{PhotoGuide}.
+Uma calibração da câmera do \textit{OpenCV} pode ser usada na \textit{LSD-SLAM}, no entanto ela vem, na sua instalação, com uma ferramenta de calibração mais intuitiva e confiável por oferecer um retorno ao usuário se as amostras tiradas são o suficiente ou não. Além disso câmeras \textit{USB} não podem ser configuradas usando o \textit{software} \textit{Android} \textit{PhotoGuide}.
 
 \subsection{Imprimindo o padrão tabuleiro de xadrez}
 
 Antes de utilizar a câmera deve-se calibrá-la a fim de eliminar a distorção radial que possa ocorrer ao se capturar quadros da mesma forma que no \textit{OpenCV}.
-Primeiramente deve-se imprimir um tabuleiro de xadrez \cite{Setup-CalibrateMonocularCamera}, preferencialmente em uma folha ou cartolina A3 ou A4 e fixado em uma superfície rígida e plana. Essa folha não deve: 
+Primeiramente deve-se imprimir um tabuleiro de xadrez \cite{Setup-CalibrateMonocularCamera}, preferencialmente em uma folha ou cartolina A3 ou A4 e fixado em uma superfície rígida e plana.
 
-\begin{itemize}
-	\item{Estar amassada.}
-	\item{Coberta com algum material refletor ou fita adesiva em qualquer parte do tabuleiro.}
-	\item{Estar com alguma “casa” do tabuleiro cortada por impressão.}
-	\item{Estar com tinta esmaecida ou borrada.}
-\end{itemize}	
-
-Todos esses fatores interferem no reconhecimento do padrão, fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro, mova-se para um lugar espaçoso de pelo menos 3x3 m, livre de obstruções e bem iluminado.
+Todos esses fatores interferem no reconhecimento do padrão, fazendo com que o resultado da calibração se torne falho. Com o tabuleiro em mãos, tomando cuidado para não cobrir as “casas” do tabuleiro, o desensenvolvedor move-se para um lugar espaçoso de pelo menos 3x3 m, livre de obstruções e bem iluminado.
 
 \subsection{Compilando e construindo a ferramenta de calibração}
 
@@ -394,12 +387,14 @@ Alternativamente, pode-se especificar um arquivo de calibração usando o seguin
 
 Novamente, o texto em vermelho corresponde ao que foi configurado pelo usuário anteriormente. O texto \texttt{\textcolor{blue}{/caminho/para/seu/arquivodeccalibracao}} deve ser trocado para o caminho do arquivo de calibração criado.
 
-As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dessas telas a nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de topo para baixo. 
+As telas a seguir mostram exemplos da ferramenta rodando em tempo real, durante a captura dessas telas a nuvem de pontos não foi rotacionada portanto está na sua posição inicial que é de topo para baixo. As cores representam o grau de proximidade de cada ponto à câmera. Pontos vermelhos são os mais próximos, pontos verdes estão à meia distância e pontos azuis são os mais distantes. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
+
+Essas informações são comuns tanto ao \texttt{live\_slam} quanto ao \texttt{dataset\_slam}. O método \texttt{live\_slam} se caracteriza por servir de teste do ambiente antes de se fazer o \textit{dataset}.  
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-20.jpg}
-	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} \#1}
+	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} (a)}
 	\label{fig3:20}
 \end{figure}
 
@@ -413,7 +408,7 @@ As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dess
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-22.jpg}
-	\caption{\textit{DebugWindow DEPTH} do\texttt{ live\_slam} \#2}
+	\caption{\textit{DebugWindow DEPTH} do\texttt{ live\_slam} (b)}
 	\label{fig3:22}
 \end{figure}
 
@@ -427,7 +422,7 @@ As telas a seguir mostram exemplos da ferramenta rodando, durante a captura dess
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-24.jpg}
-	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} \#3}
+	\caption{\textit{DebugWindow DEPTH} do \texttt{live\_slam} (c)}
 	\label{fig3:24}
 \end{figure}
 
@@ -445,16 +440,14 @@ A saída do \texttt{lsd\_slam\_core} está sendo transferida para o visualizador
 	\item[Trk :]{A taxa de quadros do \textit{dataset}/câmera.}
 	\item[X/Y/Z :]{O terceiro parâmetro não possui identificação mas se encontra no formato X/Y/Z e significa rotação do quadro atual com o quadro original nos 3 eixos.}
 	\item[Dens X\% :]{A densidade média dos pontos.}
-	\item[Good X\% :]{ A quantidade de pontos pontos bons que podem ser utilizados pelo algoritmo, importante para verificar condições de distorção na imagem da câmera como: iluminação, foco, movimentação, taxa de bits insuficiente na compressão ou similaridade daquele quadro atual com os feitos anteriormente.}
+	\item[Good X\% :]{A quantidade de pontos bons que podem ser utilizados pelo algoritmo. Importante para verificar condições de distorção na imagem da câmera como: iluminação, foco, movimentação, taxa de bits insuficiente na compressão ou similaridade daquele quadro atual com os feitos anteriormente.}
 	\item[Scale X\% :]{Escala entre os pontos.}
 	\item{Número de pontos utilizados pelo algoritmo.}
 	\item{Quadro atual.}
 	\item{Numeração de quadro refinador por \textit{keyframe}.}
 \end{description}
 
-Além disso as cores representam o grau de proximidade de cada ponto à câmera. Pontos vermelhos são os mais próximos, pontos verdes estão à meia distância e pontos azuis são os mais distantes. Pontos e gradientes brancos foram reconhecidos pelo detecção de gradiente mas não conseguiu ser reconhecido em escala considerando o \textit{keyframe} atual, normalmente isso ocorre quando há uma diferença de escala inesperada como um objeto que se move ou se a iluminação ou foco da câmera atrapalhar no reconhecimento.
-
-Essas informações são comuns tanto ao \texttt{live\_slam} quanto ao \texttt{dataset\_slam}. O método \texttt{live\_slam} se caracteriza por servir de teste do ambiente para se fazer o \textit{dataset}. Ele possui suas vantagens e desvantagens:
+A captura em tempo real possui vantagens e desvantagens:
 
 Vantagens:
 
@@ -473,7 +466,7 @@ Desvantagens:
 	\item{Alto consumo de recursos do computador.}
 \end{itemize}	
 
-Também é possível salvar o vídeo capturado usando o parâmetro do \texttt{lsd\_slam\_viewer} \textit{saveAllVideo}, no entanto essa operação é ainda mais custosa. Nas máquinas usadas para os testes, não foi possível usar essa opção.
+Também é possível salvar o vídeo capturado usando o parâmetro do \texttt{lsd\_slam\_viewer} \textit{saveAllVideo}, no entanto essa operação exige um processamento maior por ter que salvar as imagens em disco paralelamente à execução. Nas máquinas usadas para os testes, não foi possível usar essa opção.
 
 \subsection{Obtendo o mapa 3D usando o \texttt{dataset\_slam}}
 
@@ -493,7 +486,7 @@ Troque \textcolor{blue}{\texttt{/caminho/para/seu/dataset}} pelo caminho do seu 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-26E3-27.png}
-	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#1}
+	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} (a)}
 	\label{fig3:26}
 \end{figure}
 
@@ -504,7 +497,7 @@ Troque \textcolor{blue}{\texttt{/caminho/para/seu/dataset}} pelo caminho do seu 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width= \textwidth]{Imagens/figura3-28E3-29.png}
-	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} \#4}
+	\caption{\textit{Nuvem de pontos} e \textit{DebugWindow DEPTH} do \texttt{dataset\_slam} (b)}
 	\label{fig3:27}
 \end{figure}
 
@@ -523,7 +516,7 @@ Uma característica fundamental da ferramenta é a capacidade de modificar algun
 \caption{Comando para inicialização do \texttt{rqt\_reconfigure}}
 \end{table}
 
-E então será aberta uma janela com vários parâmetros dependendo de quais janelas do \textit{LSD-SLAM} estão abertas, isto é, o \texttt{lsd\_slam\_core} e o \texttt{lsd\_slam\_viewer}. Para cada uma das janelas os parâmetros podem ser modificados em tempo real. A figura 3.30 mostra alguns parâmetros de configuração.
+E então será aberta uma janela com vários parâmetros dependendo de quais janelas do \textit{LSD-SLAM} estão abertas, isto é, o \texttt{lsd\_slam\_core} e o \texttt{lsd\_slam\_viewer}. Para cada uma das janelas os parâmetros podem ser modificados em tempo real. A figura \ref{fig:3:28} mostra alguns parâmetros de configuração.
 
 \begin{figure}[H]
 	\centering
@@ -561,38 +554,38 @@ Esses parâmetros influenciam na frequência em que novos \textit{keyframes} sã
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-33.png}
+		\includegraphics[width= \textwidth]{Imagens/figura3-33PC.png}
 	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} padrão de 4.0 e \textit{KFDistWeight} padrão de 3.0}
 	\label{fig3:31}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-34.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#1}
+		\includegraphics[width= \textwidth]{Imagens/figura3-34PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 (a)}
 	\label{fig3:32}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-35}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#2}
+		\includegraphics[width= \textwidth]{Imagens/figura3-35PC}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 (b)}
 	\label{fig3:33}
 \end{figure}
 
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-36.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#3}
+		\includegraphics[width= \textwidth]{Imagens/figura3-36PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 (c)}
 	\label{fig3:34}
 \end{figure}
 
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-37.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 \#4}
+		\includegraphics[width= \textwidth]{Imagens/figura3-37PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} máximo de 20.0 (d)}
 	\label{fig3:35}
 \end{figure}
 
@@ -601,15 +594,15 @@ Nas janelas do \textit{PointCloudViewer}, as linhas verdes e vermelhas represent
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-38.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#1}
+		\includegraphics[width= \textwidth]{Imagens/figura3-38PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 (a)}
 	\label{fig3:36}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-39.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 \#2}
+		\includegraphics[width= \textwidth]{Imagens/figura3-39PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFDistWeight} máximo de 20.0 (b)}
 	\label{fig3:37}
 \end{figure}
 
@@ -617,14 +610,14 @@ Como o novo exemplo demonstra, os \textit{keyframes} se comparados aos do valor 
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-40.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#1}
+		\includegraphics[width= \textwidth]{Imagens/figura3-40PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 (a)}
 	\label{fig3:38}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width= \textwidth]{Imagens/figura3-41.png}
-	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 \#2}
+		\includegraphics[width= \textwidth]{Imagens/figura3-41PC.png}
+	\caption{\textit{Nuvem de pontos} e \textit{keyframes} do corredor do 1º andar do DCOMP usando o \textit{KFUsageWeight} e \textit{KFDistWeight} máximos de 20.0 (b)}
 	\label{fig3:39}
 \end{figure}
