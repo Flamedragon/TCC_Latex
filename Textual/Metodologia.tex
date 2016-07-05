@@ -23,7 +23,7 @@ Por fim, a última filtragem é realizada com o \textit{RANSAC} \cite{RANSAC}. O
 \end{figure}
   
 
-Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento. A figura \ref{fig3:2} mostra um exemplo da execução do aplicativo:
+Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypoints} armazenados num banco de dados, para futuro processamento. A Figura \ref{fig3:2} mostra um exemplo da execução do aplicativo:
 
 \begin{figure}[H]
 	\centering
@@ -36,9 +36,9 @@ Por fim, as comparações entre as imagens eram retornadas, e seus \textit{keypo
 Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com o auxílio da biblioteca \textit{OpenCV}, já que foi percebido que a distorção radial da câmera estava influenciando os resultados. A calibração da câmera, numa forma prática, consiste em fornecer um \textit{stream} da câmera ou sequência de fotos, contendo um padrão pré-definido. O \textit{OpenCV} fornece funções para calibrar a câmera de um dispositivo, necessitando das imagens capturadas do padrão, dentre as seguintes opções:
 
 \begin{itemize}
-	\item{Tabuleiro de xadrez na figura \ref{fig3:3}}
-	\item{Círculos alinhados assimetricamente na figura \ref{fig3:4}}
-	\item{Círculos alinhados simetricamente na figura \ref{fig3:5}}
+	\item{Tabuleiro de xadrez na Figura \ref{fig3:3}}
+	\item{Círculos alinhados assimetricamente na Figura \ref{fig3:4}}
+	\item{Círculos alinhados simetricamente na Figura \ref{fig3:5}}
 \end{itemize}
 
 \begin{figure}[H]
@@ -68,7 +68,7 @@ Foi adicionado ao aplicativo a opção de realizar a calibração da câmera com
 \endminipage
 \end{figure}
 
-Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, que servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10} e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como imagens da mesma cena sem filtragem de \textit{keypoints}
+Ao fim da calibração, o algoritmo retorna a matriz de calibração da câmera, que servirá para remover a distorção radial das imagens capturadas posteriormente; vale frisar que a distorção radial será removida somente se  a matriz de calibração tenha sido calculada corretamente. As Figuras \ref{fig3:8},\ref{fig3:9},\ref{fig3:10} e\ref{fig3:11} mostram mais exemplos da execução do aplicativo para obter \textit{keypoints} bem como imagens da mesma cena sem filtragem de \textit{keypoints}
 
 \begin{figure}[H]
 	\centering
