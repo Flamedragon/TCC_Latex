@@ -204,7 +204,17 @@ Para os descritores, o \textit{BRIEF} é utilizado pela robustez para luz, \text
 Infelizmente as combinações encontradas podem ser errôneas, logo é preciso eliminar falsos positivos. Para isso normalmente se é utilizado o \textit{RANSAC}, algoritmo que remove combinações de pontos \textit{outliers}, isto é, combinações que provavelmente não pertencem ao espaço. O \textit{RANSAC} também é utilizado para resolver o \textit{Location Determination Problem}, que tem como objetivo determinar os pontos no espaço que têm projeção numa imagem com localizações conhecidas \cite{RANSAC}.
 
 As características adquiridas ao longo do tempo são usadas para reconstruir suas localizações no espaço 3D e o movimento da câmera. Outra alternativa são as “abordagens diretas”, que tentam obter as informações geométricas sem abstração intermediária como características ou cantos.
-  
+
+\section{RANSAC}
+O \textit{RANSAC} é um método iterativo para estimar parâmetros de modelos matemáticos partindo de um conjunto de informações obtidas que possuem \textit{outliers}. Também é considerado um método determinístico que possui um bom resultado com confiabilidade. Foi apresentado em 1981 por Fischler e Bolles para tentar resolver o problema da determinação da localização. Ele parte do princípio que o conjunto de informações possui \textit{inliners}, os quais são informações que podem ser explicadas pelos parâmetros do modelo, apesar que podem ter sofrido ruído, e os \textit{outliers}, que são informações que não condizem com o modelo. Esses \textit{outliers} podem ser provenientes de ruído, medições errôneas ou uma má interpretação das informações. A figura \ref{fig3:1} possui um exemplo de um conjunto de informações, os pontos, e como o \textit{RANSAC} trataria os \textit{inliers} e \textit{outliers}:
+
+\begin{figure}[H]
+	\centering
+		\includegraphics{Imagens/figura3-1.jpg}
+	\caption{Exemplificação do tratamento do \textit{RANSAC} com os \textit{inliers} e \textit{outliers}. Imagem licenciada pela CC 3.0}
+	\label{fig3:1}
+\end{figure}
+
 \section{Bibliotecas}
   
 \subsection{\textit{FIT3D}}
