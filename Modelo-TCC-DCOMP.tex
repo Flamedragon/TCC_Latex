@@ -24,19 +24,6 @@
 %Compila o indice
 \makeindex
 
-
-
-\AtBeginDocument{%
-%\usepackage[subfigure]{tocloft}
-%\renewcommand\cfttabpresnum{Listagem}
-%\renewcommand\tablename{Listagem}
-%\addto\captionsportuguese{% Replace "english" with the language you use
-%  \renewcommand{tablename}%
-%    {Listagem}%
-%}
-  %\addto{\captionsenglish{\renewcommand*{\listoftables}{Lista de Listagens}}
-%}
-}
 \begin{document}
 
 
@@ -78,9 +65,6 @@
 
 \pdfbookmark[0]{\listtablename}{lot}
 
-\renewcommand*\listtablename{Lista de Listagens}
-
-\renewcommand\tablename{Listagem}
 \listoftables*
 \cleardoublepage
 
